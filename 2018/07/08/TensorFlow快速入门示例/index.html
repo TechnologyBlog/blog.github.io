@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="TensorFlow,机器学习,">
+  <meta name="keywords" content="机器学习,TensorFlow,">
 
 
 
@@ -82,7 +82,7 @@
 
 
 <meta name="description" content="设置程序 安装最新版本的 TensorFlow 1!pip install -q --upgrade tensorflow 配置导入和 Eager Execution 123456789101112from __future__ import absolute_import, division, print_functionimport osimport matplotlib.pyplot as">
-<meta name="keywords" content="TensorFlow,机器学习">
+<meta name="keywords" content="机器学习,TensorFlow">
 <meta property="og:type" content="article">
 <meta property="og:title" content="TensorFlow快速入门示例">
 <meta property="og:url" content="http://yoursite.com/2018/07/08/TensorFlow快速入门示例/index.html">
@@ -486,7 +486,7 @@ example label: tf.Tensor(1, shape=(), dtype=int32)</code></pre>
 </ol>
 <p>num_epochs 变量是遍历数据集集合的次数。与直觉恰恰相反的是，训练模型的时间越长，并不能保证模型就越好。</p>
 <p>num_epochs 是一个可以调整的超参数。选择正确的次数通常需要一定的经验和实验基础。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## <span class="doctag">Note:</span> Rerunning this cell uses the same model variables</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># keep results for plotting</span></span><br><span class="line">train_loss_results = []</span><br><span class="line">train_accuracy_results = []</span><br><span class="line"></span><br><span class="line">num_epochs = <span class="number">201</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> epoch <span class="keyword">in</span> range(num_epochs):</span><br><span class="line">  epoch_loss_avg = tfe.metrics.Mean()</span><br><span class="line">  epoch_accuracy = tfe.metrics.Accuracy()</span><br><span class="line"></span><br><span class="line">  <span class="comment"># Training loop - using batches of 32</span></span><br><span class="line">  <span class="keyword">for</span> x, y <span class="keyword">in</span> train_dataset:</span><br><span class="line">    <span class="comment"># Optimize the model</span></span><br><span class="line">    grads = grad(model, x, y)</span><br><span class="line">    optimizer.apply_gradients(zip(grads, model.variables),</span><br><span class="line">                              global_step=tf.train.get_or_create_global_step())</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Track progress</span></span><br><span class="line">    epoch_loss_avg(loss(model, x, y))  <span class="comment"># add current batch loss</span></span><br><span class="line">    <span class="comment"># compare predicted label to actual label</span></span><br><span class="line">    epoch_accuracy(tf.argmax(model(x), axis=<span class="number">1</span>, output_type=tf.int32), y)</span><br><span class="line"></span><br><span class="line">  <span class="comment"># end epoch</span></span><br><span class="line">  train_loss_results.append(epoch_loss_avg.result())</span><br><span class="line">  train_accuracy_results.append(epoch_accuracy.result())</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> epoch % <span class="number">50</span> == <span class="number">0</span>:</span><br><span class="line">    print(<span class="string">"Epoch &#123;:03d&#125;: Loss: &#123;:.3f&#125;, Accuracy: &#123;:.3%&#125;"</span>.format(epoch,</span><br><span class="line">                                                                epoch_loss_avg.result(),</span><br><span class="line">                                                                epoch_accuracy.result()))</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## Note: Rerunning this cell uses the same model variables</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># keep results for plotting</span></span><br><span class="line">train_loss_results = []</span><br><span class="line">train_accuracy_results = []</span><br><span class="line"></span><br><span class="line">num_epochs = <span class="number">201</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> epoch <span class="keyword">in</span> range(num_epochs):</span><br><span class="line">  epoch_loss_avg = tfe.metrics.Mean()</span><br><span class="line">  epoch_accuracy = tfe.metrics.Accuracy()</span><br><span class="line"></span><br><span class="line">  <span class="comment"># Training loop - using batches of 32</span></span><br><span class="line">  <span class="keyword">for</span> x, y <span class="keyword">in</span> train_dataset:</span><br><span class="line">    <span class="comment"># Optimize the model</span></span><br><span class="line">    grads = grad(model, x, y)</span><br><span class="line">    optimizer.apply_gradients(zip(grads, model.variables),</span><br><span class="line">                              global_step=tf.train.get_or_create_global_step())</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Track progress</span></span><br><span class="line">    epoch_loss_avg(loss(model, x, y))  <span class="comment"># add current batch loss</span></span><br><span class="line">    <span class="comment"># compare predicted label to actual label</span></span><br><span class="line">    epoch_accuracy(tf.argmax(model(x), axis=<span class="number">1</span>, output_type=tf.int32), y)</span><br><span class="line"></span><br><span class="line">  <span class="comment"># end epoch</span></span><br><span class="line">  train_loss_results.append(epoch_loss_avg.result())</span><br><span class="line">  train_accuracy_results.append(epoch_accuracy.result())</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> epoch % <span class="number">50</span> == <span class="number">0</span>:</span><br><span class="line">    print(<span class="string">"Epoch &#123;:03d&#125;: Loss: &#123;:.3f&#125;, Accuracy: &#123;:.3%&#125;"</span>.format(epoch,</span><br><span class="line">                                                                epoch_loss_avg.result(),</span><br><span class="line">                                                                epoch_accuracy.result()))</span><br></pre></td></tr></table></figure>
 <pre><code>Epoch 000: Loss: 1.433, Accuracy: 34.167%
 Epoch 050: Loss: 0.636, Accuracy: 70.000%
 Epoch 100: Loss: 0.417, Accuracy: 71.667%
@@ -556,9 +556,9 @@ Example 2 prediction: Iris virginica</code></pre>
       
         <div class="post-tags">
           
-            <a href="/tags/TensorFlow/" rel="tag"># TensorFlow</a>
-          
             <a href="/tags/机器学习/" rel="tag"># 机器学习</a>
+          
+            <a href="/tags/TensorFlow/" rel="tag"># TensorFlow</a>
           
         </div>
       
@@ -680,7 +680,7 @@ Example 2 prediction: Iris virginica</code></pre>
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -691,7 +691,7 @@ Example 2 prediction: Iris virginica</code></pre>
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-count">24</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

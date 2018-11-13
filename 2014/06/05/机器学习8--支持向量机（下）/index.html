@@ -1,0 +1,1453 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="机器学习,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="技术博客" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="机器学习8--支持向量机（下）  上节回顾：从逻辑回归引出支持向量机--&amp;gt;定义函数间隔和几何间隔--&amp;gt;最优间隔分类器（通过最大化间隔，得到最优）--&amp;gt;引出拉格朗日对偶（作用：通过对偶将算法变得更高效；处理高维）--&amp;gt;将对偶用到最优间隔分类器 本节内容：核函数（升维）--&amp;gt;判定是否是有效的核函数--&amp;gt;L1 norm 软间隔SVM（针对不可分的情况）--&amp;gt;第三">
+<meta name="keywords" content="机器学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器学习8--支持向量机（下）">
+<meta property="og:url" content="http://yoursite.com/2014/06/05/机器学习8--支持向量机（下）/index.html">
+<meta property="og:site_name" content="技术博客">
+<meta property="og:description" content="机器学习8--支持向量机（下）  上节回顾：从逻辑回归引出支持向量机--&amp;gt;定义函数间隔和几何间隔--&amp;gt;最优间隔分类器（通过最大化间隔，得到最优）--&amp;gt;引出拉格朗日对偶（作用：通过对偶将算法变得更高效；处理高维）--&amp;gt;将对偶用到最优间隔分类器 本节内容：核函数（升维）--&amp;gt;判定是否是有效的核函数--&amp;gt;L1 norm 软间隔SVM（针对不可分的情况）--&amp;gt;第三">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/img/1401589792400.png">
+<meta property="og:image" content="http://yoursite.com/img/1401589996693.png">
+<meta property="og:image" content="http://yoursite.com/img/1401590011818.png">
+<meta property="og:image" content="http://yoursite.com/img/1401590126082.png">
+<meta property="og:image" content="http://yoursite.com/img/1401590208271.png">
+<meta property="og:image" content="http://yoursite.com/img/1401590470703.png">
+<meta property="og:image" content="http://yoursite.com/img/1401590532017.png">
+<meta property="og:image" content="http://yoursite.com/img/1401590627850.png">
+<meta property="og:image" content="http://yoursite.com/img/1401590742752.png">
+<meta property="og:image" content="http://yoursite.com/img/1401591458911.png">
+<meta property="og:image" content="http://yoursite.com/img/1401591999936.png">
+<meta property="og:image" content="http://yoursite.com/img/1401591501740.png">
+<meta property="og:image" content="http://yoursite.com/img/1401591562176.png">
+<meta property="og:image" content="http://yoursite.com/img/1401592399557.png">
+<meta property="og:image" content="http://yoursite.com/img/1401592240525.png">
+<meta property="og:image" content="http://yoursite.com/img/1401592589750.png">
+<meta property="og:image" content="http://yoursite.com/img/1401592830611.png">
+<meta property="og:image" content="http://yoursite.com/img/1401592929690.png">
+<meta property="og:image" content="http://yoursite.com/img/1401593088183.png">
+<meta property="og:image" content="http://yoursite.com/img/1401593108069.png">
+<meta property="og:image" content="http://yoursite.com/img/1401592399557.png">
+<meta property="og:image" content="http://yoursite.com/img/1401593370616.png">
+<meta property="og:image" content="http://yoursite.com/img/1401593529971.png">
+<meta property="og:image" content="http://yoursite.com/img/1401593550357.png">
+<meta property="og:image" content="http://yoursite.com/img/1401593529971.png">
+<meta property="og:image" content="http://yoursite.com/img/1401593654090.png">
+<meta property="og:image" content="http://yoursite.com/img/1401593901295.png">
+<meta property="og:image" content="http://yoursite.com/img/1401593977721.png">
+<meta property="og:image" content="http://yoursite.com/img/1401593749701.png">
+<meta property="og:image" content="http://yoursite.com/img/1401593773158.png">
+<meta property="og:image" content="http://yoursite.com/img/1401593811665.png">
+<meta property="og:image" content="http://yoursite.com/img/1401594617028.png">
+<meta property="og:image" content="http://yoursite.com/img/1401594674995.png">
+<meta property="og:image" content="http://yoursite.com/img/1401594696380.png">
+<meta property="og:image" content="http://yoursite.com/img/1401595192630.png">
+<meta property="og:image" content="http://yoursite.com/img/1401595320429.png">
+<meta property="og:image" content="http://yoursite.com/img/1401595417198.png">
+<meta property="og:image" content="http://yoursite.com/img/1401595488545.png">
+<meta property="og:image" content="http://yoursite.com/img/1401595811976.png">
+<meta property="og:image" content="http://yoursite.com/img/1401595827675.png">
+<meta property="og:image" content="http://yoursite.com/img/1401595900489.png">
+<meta property="og:image" content="http://yoursite.com/img/1401596593534.png">
+<meta property="og:image" content="http://yoursite.com/img/1401596884593.png">
+<meta property="og:image" content="http://yoursite.com/img/1401596939257.png">
+<meta property="og:image" content="http://yoursite.com/img/1401596616059.png">
+<meta property="og:image" content="http://yoursite.com/img/1401596062693.png">
+<meta property="og:image" content="http://yoursite.com/img/1401596318573.png">
+<meta property="og:image" content="http://yoursite.com/img/1401596439772.png">
+<meta property="og:image" content="http://yoursite.com/img/1401596460479.png">
+<meta property="og:image" content="http://yoursite.com/img/1401596488661.png">
+<meta property="og:image" content="http://yoursite.com/img/1401596500584.png">
+<meta property="og:image" content="http://yoursite.com/img/1401597230916.png">
+<meta property="og:updated_time" content="2018-11-13T13:51:27.625Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="机器学习8--支持向量机（下）">
+<meta name="twitter:description" content="机器学习8--支持向量机（下）  上节回顾：从逻辑回归引出支持向量机--&amp;gt;定义函数间隔和几何间隔--&amp;gt;最优间隔分类器（通过最大化间隔，得到最优）--&amp;gt;引出拉格朗日对偶（作用：通过对偶将算法变得更高效；处理高维）--&amp;gt;将对偶用到最优间隔分类器 本节内容：核函数（升维）--&amp;gt;判定是否是有效的核函数--&amp;gt;L1 norm 软间隔SVM（针对不可分的情况）--&amp;gt;第三">
+<meta name="twitter:image" content="http://yoursite.com/img/1401589792400.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2014/06/05/机器学习8--支持向量机（下）/">
+
+
+
+
+
+  <title>机器学习8--支持向量机（下） | 技术博客</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?416c0f5a580537e8280c2f78b135e762";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">技术博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2014/06/05/机器学习8--支持向量机（下）/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="DanielJyc">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="技术博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">机器学习8--支持向量机（下）</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-06-05T16:55:37+08:00">
+                2014-06-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2014/06/05/机器学习8--支持向量机（下）/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2014/06/05/机器学习8--支持向量机（下）/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2014/06/05/机器学习8--支持向量机（下）/" class="leancloud_visitors" data-flag-title="机器学习8--支持向量机（下）">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  3
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="机器学习8--支持向量机下">机器学习8--支持向量机（下）</h1>
+<blockquote>
+<p><strong>上节回顾：</strong>从逻辑回归引出支持向量机--&gt;定义函数间隔和几何间隔--&gt;最优间隔分类器（通过最大化间隔，得到最优）--&gt;引出拉格朗日对偶（作用：通过对偶将算法变得更高效；处理高维）--&gt;将对偶用到最优间隔分类器 <strong>本节内容：</strong>核函数（升维）--&gt;判定是否是有效的核函数--&gt;L1 norm 软间隔SVM（针对不可分的情况）--&gt;<strong>第三种求解最优化的方法：坐标上升法</strong>--&gt;SMO优化算法（最快的二次规划优化算法）</p>
+</blockquote>
+<h2 id="核函数">核函数</h2>
+<p>1、定义 &gt; <img src="/img/1401589792400.png"></p>
+<p>2、核函数的作用 &gt; a、低维映射到高维，从而更好的拟合； b、将不可分的情况变为可分</p>
+<p>3、举例： &gt; 例一： <img src="/img/1401589996693.png"> <img src="/img/1401590011818.png"> 说明：时间复杂度由<img src="/img/1401590126082.png"> 例二： 高斯核（把原始特征映射到无穷维）：<img src="/img/1401590208271.png"> 映射后的优点： <img src="/img/1401590470703.png"></p>
+<p>4、映射后怎样进行<strong>预测</strong>： &gt; 预测函数：<img src="/img/1401590532017.png"> 映射后：将<img src="/img/1401590627850.png"> <strong>问题：</strong>怎样<strong><em>求取</em></strong>和判断核函数？下面将会介绍。</p>
+<h2 id="核函数的判定">核函数的判定</h2>
+<p>1、符号说明 &gt; K：核函数矩阵$K={K_{ij}} $ 第i,j个样本 <span class="math inline">\(K_{ij}\)</span> 或者$K(x<sup>{(i)},x</sup>{(j)}) $ ：核函数$K_{ij}=K(x<sup>{(i)},x</sup>{(j)}) $</p>
+<p>2、利用<strong>Mercer定理</strong> &gt; <img src="/img/1401590742752.png"> 简而言之，<strong>K是一个有效的核函数&lt;--&gt;核函数矩阵是对称半正定</strong></p>
+<h2 id="l1-norm-软间隔svm">L1 norm 软间隔SVM</h2>
+<p>当不可分时，利用<strong>L1 软间隔</strong>进行分离 1、 加入软间隔后的模型： &gt; <strong>（1）凸规划</strong>： <img src="/img/1401591458911.png"> 其中，C是离群点的权重（我们预定的，为已知数），越大表明对目标函数影响越大，也就是月不希望看到离群点。引入非负参数<img src="/img/1401591999936.png">（称为松弛变量） ， 就允许某些样本点的函数间隔小于1，即在最大间隔区间里面，或者函数间隔是负数，即样本点在对方的区域中。 <strong>（2）拉格朗日算子：</strong> <img src="/img/1401591501740.png"> 其中，<img src="/img/1401591562176.png"> <strong>（3）推导结果</strong> 跟前面模型类似：先写出拉格朗日公式 （如上） ，然后将其看作是变量 w 和 b的函数，分别对其求偏导，得到 w 和 b 的表达式。然后代入公式中，求带入后公式的极大值。得到： <img src="/img/1401592399557.png"> &gt;&gt; KTT条件： <img src="/img/1401592240525.png"></p>
+<h2 id="第三种求解最优化的方法坐标上升法">第三种求解最优化的方法：坐标上升法</h2>
+<p>1、三种求解最优化的方法： &gt; <strong>（1）梯度上升法</strong>(求解最小值问题时，称作梯度下降法) <strong>（2）牛顿法</strong>（求解最值） <strong>（3）坐标上升法</strong>（求解最小值问题时，称作坐标下降法）</p>
+<p>2、假设求解下面问题： &gt; <img src="/img/1401592589750.png"> 其中，<img src="/img/1401592830611.png"></p>
+<p>3、算法过程： &gt; <img src="/img/1401592929690.png"> &gt;&gt; <img src="/img/1401593088183.png"> <img src="/img/1401593108069.png"></p>
+<h2 id="smo优化算法">SMO优化算法</h2>
+<p>最快的二次规划优化算法，特别针对线性 SVM 和数据稀疏时性能更优。 1、前面得到的结果 &gt; 首先，先看前面的到的结果，如下图： <img src="/img/1401592399557.png"> &gt;&gt; 这个问题中： <img src="/img/1401593370616.png"> 按照坐标上升法的思路，只固定一个<img src="/img/1401593529971.png">的话，由于限制条件中存在<img src="/img/1401593550357.png">，将导致<img src="/img/1401593529971.png">不再是变量。 因此，我们一次选取两个参数做优化。</p>
+<p><strong>2、SMO的主要步骤</strong> &gt; <img src="/img/1401593654090.png"> 注：第一步，利用启发式方法选取<img src="/img/1401593901295.png">。第二步，固定其他参数，<img src="/img/1401593977721.png"></p>
+<p><strong>3、 具体步骤</strong> &gt; （1）固定除<img src="/img/1401593749701.png">以外的参数，得： <img src="/img/1401593773158.png"> （2）为了方便: <img src="/img/1401593811665.png"> &gt;&gt; 如下图： <img src="/img/1401594617028.png"> 其中，满足：<img src="/img/1401594674995.png">和<img src="/img/1401594696380.png"> L和H的范围： <img src="/img/1401595192630.png"></p>
+<blockquote>
+<p>（3）将<img src="/img/1401595320429.png">带入W中： <img src="/img/1401595417198.png"> 展开，得： <img src="/img/1401595488545.png"> （4）这就是二次函数的最小值问题，容易求得（在纸上画图很容易看出来）： <img src="/img/1401595811976.png"> 其中，<img src="/img/1401595827675.png">为最终结果。<img src="/img/1401595900489.png">为求导得到的结果。 同理，求得<img src="/img/1401596593534.png">的最优解。</p>
+</blockquote>
+<h2 id="总结">总结</h2>
+<p>1、本章的系统结构： &gt; 至此，我们得到： 预测问题只需要求解<img src="/img/1401596884593.png">，即： <img src="/img/1401596939257.png"> &lt;--&gt;上面的过程（SMO）求得<img src="/img/1401596616059.png">为<img src="/img/1401596062693.png">的最优解 &lt;--&gt;<img src="/img/1401596318573.png"> &lt;--&gt;<img src="/img/1401596439772.png"> &lt;--&gt;<img src="/img/1401596460479.png"> &lt;--&gt;<img src="/img/1401596488661.png"> &lt;--&gt;<img src="/img/1401596500584.png">（最大化几何间隔问题）</p>
+<p>2、关于核问题（升维）的说明 &gt; 核问题用来替换第一步中的部分： <img src="/img/1401597230916.png"></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpeg" alt="DanielJyc 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpeg" alt="DanielJyc 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/机器学习/" rel="tag"># 机器学习</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2014/05/30/机器学习7-支持向量机（上）/" rel="next" title="机器学习7--支持向量机（上）">
+                <i class="fa fa-chevron-left"></i> 机器学习7--支持向量机（上）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2014/06/05/机器学习9--学习理论的基础知识/" rel="prev" title="机器学习9--学习理论的基础知识">
+                机器学习9--学习理论的基础知识 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="DanielJyc">
+            
+              <p class="site-author-name" itemprop="name">DanielJyc</p>
+              <p class="site-description motion-element" itemprop="description">数据驱动 Java 大数据 算法</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">36</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://danieljyc.github.io/" title="Danieljyc blog" target="_blank">Danieljyc blog</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#机器学习8--支持向量机下"><span class="nav-number">1.</span> <span class="nav-text">机器学习8--支持向量机（下）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#核函数"><span class="nav-number">1.1.</span> <span class="nav-text">核函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#核函数的判定"><span class="nav-number">1.2.</span> <span class="nav-text">核函数的判定</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#l1-norm-软间隔svm"><span class="nav-number">1.3.</span> <span class="nav-text">L1 norm 软间隔SVM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第三种求解最优化的方法坐标上升法"><span class="nav-number">1.4.</span> <span class="nav-text">第三种求解最优化的方法：坐标上升法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#smo优化算法"><span class="nav-number">1.5.</span> <span class="nav-text">SMO优化算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">1.6.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2014 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">DanielJyc</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">42.3k</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: window.location.pathname, 
+            owner: 'DanielJyc',
+            repo: 'gitment',
+            
+            lang: "zh-Hans" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: '807aa1205dbd6cf2f4cf1a56c5a05243d89f8f10',
+            
+                client_id: '8f44940851c869479ac9'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
+    
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("zYEWmF1a0i8uGTxvDClNekjd-gzGzoHsz", "STn158ECLfhmmqrEq5VEkRsb");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,1580 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="区块链,以太坊,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="技术博客" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="以太坊白皮书笔记 比特币的两个创新：  一种去中心化的点对点的网上货币 基于工作量证明的区块链概念使得人们可以就交易顺序达成共识。  “智能合约”：  根据事先任意制订的规则来自动转移数字资产的系统。  以太坊的目标：  就是提供一个带有内置的成熟的图灵完备语言的区块链，用这种语言可以创建合约来编码任意状态转换功能，用户只要简单地用几行代码来实现逻辑，就能够创建以上提及的所有系统以及许多我们还想象">
+<meta name="keywords" content="区块链,以太坊">
+<meta property="og:type" content="article">
+<meta property="og:title" content="以太坊白皮书笔记">
+<meta property="og:url" content="http://yoursite.com/2018/04/11/以太坊白皮书笔记/index.html">
+<meta property="og:site_name" content="技术博客">
+<meta property="og:description" content="以太坊白皮书笔记 比特币的两个创新：  一种去中心化的点对点的网上货币 基于工作量证明的区块链概念使得人们可以就交易顺序达成共识。  “智能合约”：  根据事先任意制订的规则来自动转移数字资产的系统。  以太坊的目标：  就是提供一个带有内置的成熟的图灵完备语言的区块链，用这种语言可以创建合约来编码任意状态转换功能，用户只要简单地用几行代码来实现逻辑，就能够创建以上提及的所有系统以及许多我们还想象">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/images/15192743757568/15192753695524.jpg">
+<meta property="og:image" content="http://yoursite.com/images/15192743757568/15197327486094.jpg">
+<meta property="og:image" content="http://yoursite.com/images/15192743757568/15197330359160.jpg">
+<meta property="og:image" content="http://yoursite.com/images/15192743757568/15197350638427.jpg">
+<meta property="og:image" content="http://yoursite.com/images/15192743757568/15197367362645.jpg">
+<meta property="og:updated_time" content="2018-11-13T13:49:35.020Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="以太坊白皮书笔记">
+<meta name="twitter:description" content="以太坊白皮书笔记 比特币的两个创新：  一种去中心化的点对点的网上货币 基于工作量证明的区块链概念使得人们可以就交易顺序达成共识。  “智能合约”：  根据事先任意制订的规则来自动转移数字资产的系统。  以太坊的目标：  就是提供一个带有内置的成熟的图灵完备语言的区块链，用这种语言可以创建合约来编码任意状态转换功能，用户只要简单地用几行代码来实现逻辑，就能够创建以上提及的所有系统以及许多我们还想象">
+<meta name="twitter:image" content="http://yoursite.com/images/15192743757568/15192753695524.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/04/11/以太坊白皮书笔记/">
+
+
+
+
+
+  <title>以太坊白皮书笔记 | 技术博客</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?416c0f5a580537e8280c2f78b135e762";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">技术博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/11/以太坊白皮书笔记/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="DanielJyc">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="技术博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">以太坊白皮书笔记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-11T15:06:25+08:00">
+                2018-04-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/大数据/" itemprop="url" rel="index">
+                    <span itemprop="name">大数据</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/04/11/以太坊白皮书笔记/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/04/11/以太坊白皮书笔记/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/04/11/以太坊白皮书笔记/" class="leancloud_visitors" data-flag-title="以太坊白皮书笔记">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  4.8k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  16
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="以太坊白皮书笔记">以太坊白皮书笔记</h1>
+<p>比特币的两个创新：</p>
+<ul>
+<li>一种去中心化的点对点的网上货币</li>
+<li>基于工作量证明的区块链概念使得人们可以就交易顺序达成共识。</li>
+</ul>
+<p>“智能合约”：</p>
+<ul>
+<li>根据事先任意制订的规则来自动转移数字资产的系统。</li>
+</ul>
+<p>以太坊的目标：</p>
+<ul>
+<li>就是提供一个带有内置的成熟的图灵完备语言的区块链，用这种语言可以创建合约来编码任意状态转换功能，用户只要简单地用几行代码来实现逻辑，就能够创建以上提及的所有系统以及许多我们还想象不到的的其它系统。从而，将区块链应用于货币以外的领域。</li>
+</ul>
+<h1 id="历史">历史</h1>
+<p>中本聪的创新是引入这样一个理念：将一个非常简单的基于节点的去中心化共识协议与工作量证明机制结合在一起。节点通过工作量证明机制获得参与到系统的权利，每十分钟将交易打包到“区块”中，从而创建出不断增长的区块链。</p>
+<h2 id="作为状态转换系统的比特币">作为状态转换系统的比特币</h2>
+<p>从技术角度讲，比特币账本可以被认为是一个状态转换系统，该系统包括所有现存的比特币所有权状态和“状态转换函数”。状态转换函数以当前状态和交易为输入，输出新的状态。</p>
+<p><img src="/images/15192743757568/15192753695524.jpg"></p>
+<ul>
+<li>UTXO:所有已经被挖出的、没有花费的比特币（技术上称为“未花费的交易输出，unspent transaction outputs)。每个UTXO都有一个面值和所有者。</li>
+<li>一笔交易：包括一个或多个输入和一个或多个输出。</li>
+<li>每个输入包含一个对现有UTXO的引用和由与所有者地址相对应的私钥创建的密码学签名。</li>
+<li>每个输出包含一个新的加入到状态中的UTXO。</li>
+</ul>
+<p>在比特币系统中，状态转换函数<code>APPLY(S,TX)-&gt;S’</code>大体上可以如下定义：</p>
+<ul>
+<li>交易的每个输入：
+<ul>
+<li>如果引用的UTXO不存在于现在的状态中（S），返回错误提示</li>
+<li>如果签名与UTXO所有者的签名不一致，返回错误提示</li>
+</ul></li>
+<li>如果所有的UTXO输入面值总额小于所有的UTXO输出面值总额，返回错误提示</li>
+<li>返回新状态<code>S’</code>,新状态S中移除了所有的输入UTXO，增加了所有的输出UTXO。</li>
+</ul>
+<h2 id="挖矿">挖矿</h2>
+<p><img src="/images/15192743757568/15197327486094.jpg"> 每个区块包含一个时间戳、一个随机数、一个对上一个区块的引用（即哈希）和上一区块生成以来发生的所有交易列表。</p>
+<ul>
+<li>区块验证算法,即“工作量证明”：</li>
+<li>防止攻击：利用交易顺序攻击时，在发生区块链分叉时，区块链长的分支被认为是诚实的区块链。</li>
+</ul>
+<h2 id="默克尔树">默克尔树</h2>
+<p><img src="/images/15192743757568/15197330359160.jpg"></p>
+<p>左：仅提供默克尔树（Merkle tree）上的少量节点已经足够给出分支的合法证明。 右：任何对于默克尔树的任何部分进行改变的尝试都会最终导致链上某处的不一致。</p>
+<ul>
+<li>默克尔树是一种二叉树，由一组叶节点、一组中间节点和一个根节点构成。最下面的大量的叶节点包含基础数据，每个中间节点是它的两个子节点的哈希，根节点也是由它的两个子节点的哈希，代表了默克尔树的顶部。</li>
+<li>默克尔树的目的是允许区块的数据可以零散地传送：节点可以从一个源下载区块头，从另外的源下载与其有关的树的其它部分，而依然能够确认所有的数据都是正确的。</li>
+</ul>
+<p>节点：</p>
+<ul>
+<li>轻节点”，它下载区块头，使用区块头确认工作量证明，然后只下载与其交易相关的默克尔树“分支”。</li>
+<li>全量节点：存储和处理所有区块的全部数据的节点。</li>
+</ul>
+<h2 id="其他区块链应用">其他区块链应用</h2>
+<p>去中心化共识技术的应用将会服从幂律分布，大多数的应用太小不足以保证自由区块链的安全，我们还注意到大量的去中心化应用，尤其是去中心化自治组织，需要进行应用之间的交互。</p>
+<h2 id="脚本">脚本</h2>
+<p>本质上，比特币系统允许不同的密码学货币进行去中心化的兑换。然而，比特币系统的脚本语言存在一些严重的限制：</p>
+<ul>
+<li>缺少图灵完备性：不支持循环语句。</li>
+<li>价值盲（Value-blindness）。UTXO脚本不能为账户的取款额度提供精细的的控制。</li>
+<li>缺少状态 – UTXO只能是已花费或者未花费状态，这就没有给需要任何其它内部状态的多阶段合约或者脚本留出生存空间。</li>
+<li>区块链盲（Blockchain-blindness）- UTXO看不到区块链的数据，例如随机数和上一个区块的哈希。这一缺陷剥夺了脚本语言所拥有的基于随机性的潜在价值，严重地限制了博彩等其它领域应用。</li>
+</ul>
+<h1 id="以太坊">以太坊</h1>
+<ul>
+<li>以太坊的目的是基于脚本、竞争币和链上元协议（on-chain meta-protocol）概念进行整合和提高，使得开发者能够创建任意的基于共识的、可扩展的、标准化的、特性完备的、易于开发的和协同的应用。</li>
+<li>以太坊通过建立终极的抽象的基础层-内置有图灵完备编程语言的区块链-使得任何人都能够创建合约和去中心化应用并在其中设立他们自由定义的所有权规则、交易方式和状态转换函数。</li>
+</ul>
+<h2 id="以太坊账户">以太坊账户</h2>
+<p>以太坊的账户包含四个部分：</p>
+<ul>
+<li>随机数，用于确定每笔交易只能被处理一次的计数器</li>
+<li>账户目前的以太币余额</li>
+<li>账户的合约代码，如果有的话</li>
+<li>账户的存储（默认为空）</li>
+</ul>
+<p>以太币（Ether）：</p>
+<ul>
+<li>是以太坊内部的主要加密燃料，用于支付交易费用。</li>
+</ul>
+<p>两类账户：外部所有的账户（由私钥控制的）和合约账户（由合约代码控制）。</p>
+<ul>
+<li>外部所有的账户没有代码，人们可以通过创建和签名一笔交易从一个外部账户发送消息。</li>
+<li>每当合约账户收到一条消息，合约内部的代码就会被激活，允许它对内部存储进行读取和写入，和发送其它消息或者创建合约。</li>
+</ul>
+<h2 id="消息和交易">消息和交易</h2>
+<p>以太坊的消息在某种程度上类似于比特币的交易，但是两者之间存在三点重要的不同。</p>
+<ul>
+<li>第一，以太坊的消息可以由外部实体或者合约创建，然而比特币的交易只能从外部创建。</li>
+<li>第二，以太坊消息可以选择包含数据。</li>
+<li>第三，如果以太坊消息的接受者是合约账户，可以选择进行回应，这意味着以太坊消息也包含函数概念。</li>
+</ul>
+<p>以太坊中“交易”是指存储从外部账户发出的消息的签名数据包。交易包含消息的接收者、用于确认发送者的签名、以太币账户余额、要发送的数据和两个被称为STARTGAS和GASPRICE的数值。</p>
+<ul>
+<li>STARTGAS就是限制，GASPRICE是每一计算步骤需要支付矿工的费用。</li>
+<li>创建合约有单独的交易类型和相应的消息类型；合约的地址是基于账号随机数和交易数据的哈希计算出来的。</li>
+</ul>
+<h2 id="以太坊状态转换函数">以太坊状态转换函数</h2>
+<p><img src="/images/15192743757568/15197350638427.jpg"> 以太坊的状态转换函数：<code>APPLY(S,TX) -&gt; S'</code>，可以定义如下：</p>
+<ul>
+<li>检查交易的格式是否正确（即有正确数值）、签名是否有效和随机数是否与发送者账户的随机数匹配。如否，返回错误。</li>
+<li>计算交易费用:fee=STARTGAS * GASPRICE，并从签名中确定发送者的地址。从发送者的账户中减去交易费用和增加发送者的随机数。如果账户余额不足，返回错误。</li>
+<li>设定初值GAS = STARTGAS，并根据交易中的字节数减去一定量的瓦斯值。</li>
+<li>从发送者的账户转移价值到接收者账户。如果接收账户还不存在，创建此账户。如果接收账户是一个合约，运行合约的代码，直到代码运行结束或者瓦斯用完。</li>
+<li>如果因为发送者账户没有足够的钱或者代码执行耗尽瓦斯导致价值转移失败，恢复原来的状态，但是还需要支付交易费用，交易费用加至矿工账户。</li>
+<li>否则，将所有剩余的瓦斯归还给发送者，消耗掉的瓦斯作为交易费用发送给矿工。</li>
+</ul>
+<h2 id="代码执行">代码执行</h2>
+<p>EVM代码（以太坊虚拟机代码）：使用低级的基于堆栈的字节码的语言写成。代码由一系列字节构成，每一个字节代表一种操作。操作可以访问三种存储数据的空间：</p>
+<ul>
+<li><strong>堆栈</strong>，一种后进先出的数据存储，32字节的数值可以入栈，出栈。</li>
+<li><strong>内存</strong>，可无限扩展的字节队列。</li>
+<li><strong>合约的长期存储</strong>，一个秘钥/数值的存储，其中秘钥和数值都是32字节大小，与计算结束即重置的堆栈和内存不同，存储内容将长期保持。</li>
+</ul>
+<h2 id="区块链和挖矿">区块链和挖矿</h2>
+<p><img src="/images/15192743757568/15197367362645.jpg"></p>
+<p>以太坊区块不仅包含交易记录和最近的状态，还包含区块序号和难度值。以太坊中的区块确认算法如下：</p>
+<ul>
+<li>检查区块引用的上一个区块是否存在和有效。</li>
+<li>检查区块的时间戳是否比引用的上一个区块大，而且小于15分钟。</li>
+<li>检查区块序号、难度值、 交易根，叔根和瓦斯限额（许多以太坊特有的底层概念）是否有效。</li>
+<li>检查区块的工作量证明是否有效。</li>
+<li>将<code>S[0]</code>赋值为上一个区块的<code>STATE_ROOT</code>。</li>
+<li>将TX赋值为区块的交易列表，一共有n笔交易。对于属于<code>0……n-1</code>的i，进行状态转换<code>S[i+1] = APPLY(S[i],TX[i])</code>。如果任何一个转换发生错误，或者程序执行到此处所花费的瓦斯（gas）超过了GASLIMIT，返回错误。</li>
+<li>用<code>S[n]</code>给<code>S_FINAL</code>赋值, 向矿工支付区块奖励。</li>
+<li>检查S-FINAL是否与<code>STATE_ROOT</code>相同。如果相同，区块是有效的。否则，区块是无效的。</li>
+</ul>
+<h1 id="应用">应用</h1>
+<p>三种应用:</p>
+<ul>
+<li>第一类是金融应用，为用户提供更强大的用他们的钱管理和参与合约的方法。包括子货币，金融衍生品，对冲合约，储蓄钱包，遗嘱，甚至一些种类的全面的雇佣合约。</li>
+<li>第二类是半金融应用，这里有钱的存在但也有很重的非金钱的方面，一个完美的例子是为解决计算问题而设的自我强制悬赏。</li>
+<li>还有在线投票和去中心化治理这样的完全的非金融应用。</li>
+</ul>
+<h2 id="令牌系统">令牌系统</h2>
+<p>链上令牌系统有很多应用，如美元或黄金等资产的子货币、公司股票、不可伪造的优惠券、积分奖励， 所有的货币或者令牌系统，从根本上来说是一个带有如下操作的数据库：从A中减去X单位并把X单位加到B上，前提条件是(1)A在交易之前有至少X单位以及(2)交易被A批准。实施一个令牌系统就是把这样一个逻辑实施到一个合约中去。</p>
+<h2 id="金融衍生品">金融衍生品</h2>
+<p>金融衍生品是“智能合约”的最普遍的应用，也是最易于用代码实现的之一。</p>
+<p>实现金融合约的主要挑战是它们中的大部分需要参照一个外部的价格发布器。最简单地方法是通过由某特定机构（例如纳斯达克）维护的“数据提供“合约进行，该合约的设计使得该机构能够根据需要更新合约，并提供一个接口使得其它合约能够通过发送一个消息给该合约以获取包含价格信息的回复。 ## 身份和信誉系统</p>
+<h2 id="去中心化文件存储">去中心化文件存储</h2>
+<p>以太坊合约允许去中心化存储生态的开发，这样用户通过将他们自己的硬盘或未用的网络空间租出去以获得少量收益，从而降低了文件存储的成本。当一个用户想重新下载他的文件，他可以使用微支付通道协议（例如每32k字节支付1萨博）恢复文件。</p>
+<h2 id="去中心化自治组织">去中心化自治组织</h2>
+<ul>
+<li>去中心化自治组织（<code>DAO</code>, decentralized autonomous organization）”的概念指的是一个拥有一定数量成员或股东的虚拟实体，依靠比如67%多数来决定花钱以及修改代码。</li>
+<li>中心化组织（DO）</li>
+<li>去中心化自治公司（DAC，decentralized autonomous corporation）</li>
+</ul>
+<h2 id="进一步的应用">进一步的应用</h2>
+<ul>
+<li>储蓄钱包。类似银行。</li>
+<li>作物保险</li>
+<li>一个去中心化的数据发布器。</li>
+<li>云计算。</li>
+<li><strong>点对点赌博。</strong></li>
+<li>预测市场。</li>
+</ul>
+<h1 id="杂项和关注">杂项和关注</h1>
+<h2 id="改进版幽灵协议的实施">改进版幽灵协议的实施</h2>
+<p>如果矿工A挖出了一个区块然后矿工B碰巧在A的区块扩散至B之前挖出了另外一个区块，矿工B的区块就会作废并且没有对网络安全作出贡献。此外，这里还有中心化问题：如果A是一个拥有全网30%算力的矿池而B拥有10%的算力，A将面临70%的时间都在产生作废区块的风险而B在90%的时间里都在产生作废区块。</p>
+<h2 id="费用">费用</h2>
+<p>比特币使用的默认方法是纯自愿的交易费用，依靠矿工担当守门人并设定动态的最低费用。因为这种方法是“基于市场的”，使得矿工和交易发送者能够按供需来决定价格，所以这种方法在比特币社区被很顺利地接受了。然而，这个逻辑的问题在于，交易处理并非一个市场；虽然根据直觉把交易处理解释成矿工给发送者提供的服务是很有吸引力的，但事实上一个矿工收录的交易是需要网络中每个节点处理的，所以交易处理中最大部分的成本是由第三方而不是决定是否收录交易的矿工承担的。于是，非常有可能发生公地悲剧。</p>
+<h2 id="计算和图灵完备">计算和图灵完备</h2>
+<p>以太坊虚拟机是图灵完备的。防止恶意循环：每一个交易设定运行执行的最大计算步数来解决问题，如果超过则计算被恢复原状但依然要支付费用。</p>
+<h2 id="货币和发行">货币和发行</h2>
+<p>发行模式如下：</p>
+<ul>
+<li>通过发售活动，以太币将以每BTC 1337-2000以太的价格发售，一个旨在为以太坊组织筹资并且为开发者支付报酬的机制已经在其它一些密码学货币平台上成功使用。早期购买者会享受较大的折扣，发售所得的BTC将完全用来支付开发者和研究者的工资和悬赏，以及投入密码学货币生态系统的项目。</li>
+<li>0.099x （x为发售总量）将被分配给BTC融资或其它的确定性融资成功之前参与开发的早期贡献者，另外一个0.099x将分配给长期研究项目。</li>
+<li>自上线时起每年都将有0.26x（x为发售总量）被矿工挖出。</li>
+</ul>
+<p>除了线性的发行方式外，和比特币一样以太币的的供应量增长率长期来看也趋于零。</p>
+<h2 id="挖矿的中心化">挖矿的中心化</h2>
+<ul>
+<li>以太坊使用一个基于为每1000个随机数随机产生唯一哈希的函数的挖矿算法，用足够宽的计算域，去除专用硬件的优势。</li>
+</ul>
+<h2 id="扩展性">扩展性</h2>
+<ul>
+<li>如果比特币网络处理Visa级的2000tps的交易，它将以每三秒1MB的速度增长（1GB每小时，8TB每年）。太坊全节点只需存储状态而不是完整的区块链，从而得到改善。</li>
+<li>因为基于区块链的挖矿算法，至少每个矿工会被迫成为一个全节点，这保证了一定数量的全节点。</li>
+</ul>
+<h1 id="综述去中心化应用">综述：去中心化应用</h1>
+<p>从“传统”网页的角度看来，这些网页是完全静态的内容，因为区块链和其它去中心化协议将完全代替服务器来处理用户发起的请求。</p>
+<h1 id="结论">结论</h1>
+<ul>
+<li>以太坊协议最初是作为一个通过高度通用的语言，提供链上契约、提现限制、金融合约、赌博市场等高级功能，作为升级版密码学货币。</li>
+<li>作为图灵完备编程语言，理论上任意的合约创建出来。</li>
+<li>以太坊协议比单纯的货币走得更远，可以创建金融和非金融应用。</li>
+<li>提供了一个具有独特潜力的平台</li>
+</ul>
+<h1 id="通俗理解">通俗理解</h1>
+<ol type="1">
+<li>是区块链的结构？区块链就是很多块数据的存储，形成链式结构。你可以这样理解，一个区块就是一个Word文件，每分钟产生一个Word文档；如果创世区块链式001.doc，第二分钟就是002.doc,后面依次产生下去003.doc 004.doc ... xxN.doc， 这就像链条一样，所以才叫区块链。总之一句话，每分钟产生的Word文档用链条连接起来，就是区块链。</li>
+<li>第二点就是，所有的文档存储在哪里？先说下，传统的金融行业，农业银行的系统，那就农行自己的机器上面。如果农行想修改的数据，可以随便修改。 这种情况，农行就是中心。区块链的存储是网上所有的挖矿机器上面， 任何人都没有权限修改你的数据，也就是Word文档的内容，任何人都不能修改。这也是为什么，区块链是去中心化的，没有中心，没有人能篡改。</li>
+<li>区块里面放了什么？ 每个Word文档里面放的就是这一分钟的交易信息。比如，我给你转账1个比特币，就放在当前分钟的Word文档里面。</li>
+<li>谁来把这些信息放到Word文档里面 矿工。 每个矿工（也就是计算机）都在抢打包交易信息去权限，抢到了就是挖到了矿，就会得到比特币的奖励。</li>
+</ol>
+<h1 id="参考文档">参考文档</h1>
+<ul>
+<li><a href="http://ethfans.org/wikis/以太坊白皮书" target="_blank" rel="noopener">以太坊白皮书</a></li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpeg" alt="DanielJyc 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpeg" alt="DanielJyc 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/区块链/" rel="tag"># 区块链</a>
+          
+            <a href="/tags/以太坊/" rel="tag"># 以太坊</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/09/设计模式/" rel="next" title="设计模式">
+                <i class="fa fa-chevron-left"></i> 设计模式
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/07/08/TensorFlow快速入门示例/" rel="prev" title="TensorFlow快速入门示例">
+                TensorFlow快速入门示例 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="DanielJyc">
+            
+              <p class="site-author-name" itemprop="name">DanielJyc</p>
+              <p class="site-description motion-element" itemprop="description">数据驱动 Java 大数据 算法</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">36</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://danieljyc.github.io/" title="Danieljyc blog" target="_blank">Danieljyc blog</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#以太坊白皮书笔记"><span class="nav-number">1.</span> <span class="nav-text">以太坊白皮书笔记</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#历史"><span class="nav-number">2.</span> <span class="nav-text">历史</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#作为状态转换系统的比特币"><span class="nav-number">2.1.</span> <span class="nav-text">作为状态转换系统的比特币</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#挖矿"><span class="nav-number">2.2.</span> <span class="nav-text">挖矿</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#默克尔树"><span class="nav-number">2.3.</span> <span class="nav-text">默克尔树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他区块链应用"><span class="nav-number">2.4.</span> <span class="nav-text">其他区块链应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#脚本"><span class="nav-number">2.5.</span> <span class="nav-text">脚本</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#以太坊"><span class="nav-number">3.</span> <span class="nav-text">以太坊</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#以太坊账户"><span class="nav-number">3.1.</span> <span class="nav-text">以太坊账户</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#消息和交易"><span class="nav-number">3.2.</span> <span class="nav-text">消息和交易</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#以太坊状态转换函数"><span class="nav-number">3.3.</span> <span class="nav-text">以太坊状态转换函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码执行"><span class="nav-number">3.4.</span> <span class="nav-text">代码执行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#区块链和挖矿"><span class="nav-number">3.5.</span> <span class="nav-text">区块链和挖矿</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#应用"><span class="nav-number">4.</span> <span class="nav-text">应用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#令牌系统"><span class="nav-number">4.1.</span> <span class="nav-text">令牌系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#金融衍生品"><span class="nav-number">4.2.</span> <span class="nav-text">金融衍生品</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#去中心化文件存储"><span class="nav-number">4.3.</span> <span class="nav-text">去中心化文件存储</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#去中心化自治组织"><span class="nav-number">4.4.</span> <span class="nav-text">去中心化自治组织</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#进一步的应用"><span class="nav-number">4.5.</span> <span class="nav-text">进一步的应用</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#杂项和关注"><span class="nav-number">5.</span> <span class="nav-text">杂项和关注</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#改进版幽灵协议的实施"><span class="nav-number">5.1.</span> <span class="nav-text">改进版幽灵协议的实施</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#费用"><span class="nav-number">5.2.</span> <span class="nav-text">费用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#计算和图灵完备"><span class="nav-number">5.3.</span> <span class="nav-text">计算和图灵完备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#货币和发行"><span class="nav-number">5.4.</span> <span class="nav-text">货币和发行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#挖矿的中心化"><span class="nav-number">5.5.</span> <span class="nav-text">挖矿的中心化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#扩展性"><span class="nav-number">5.6.</span> <span class="nav-text">扩展性</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#综述去中心化应用"><span class="nav-number">6.</span> <span class="nav-text">综述：去中心化应用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#结论"><span class="nav-number">7.</span> <span class="nav-text">结论</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#通俗理解"><span class="nav-number">8.</span> <span class="nav-text">通俗理解</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考文档"><span class="nav-number">9.</span> <span class="nav-text">参考文档</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2014 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">DanielJyc</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">42.3k</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: window.location.pathname, 
+            owner: 'DanielJyc',
+            repo: 'gitment',
+            
+            lang: "zh-Hans" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: '807aa1205dbd6cf2f4cf1a56c5a05243d89f8f10',
+            
+                client_id: '8f44940851c869479ac9'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
+    
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("zYEWmF1a0i8uGTxvDClNekjd-gzGzoHsz", "STn158ECLfhmmqrEq5VEkRsb");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>

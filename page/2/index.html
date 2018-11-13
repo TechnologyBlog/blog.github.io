@@ -1,0 +1,2198 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="技术博客" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="数据驱动 Java 大数据 算法">
+<meta property="og:type" content="website">
+<meta property="og:title" content="技术博客">
+<meta property="og:url" content="http://yoursite.com/page/2/index.html">
+<meta property="og:site_name" content="技术博客">
+<meta property="og:description" content="数据驱动 Java 大数据 算法">
+<meta property="og:locale" content="zh-Hans">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="技术博客">
+<meta name="twitter:description" content="数据驱动 Java 大数据 算法">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/page/2/">
+
+
+
+
+
+  <title>技术博客</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?416c0f5a580537e8280c2f78b135e762";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left 
+  page-home">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">技术博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+  <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/11/mybatis-generator使用方式及实例/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="DanielJyc">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="技术博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/02/11/mybatis-generator使用方式及实例/" itemprop="url">mybatis-generator使用方式及实例</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-11T20:09:26+08:00">
+                2018-02-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/研发技能/" itemprop="url" rel="index">
+                    <span itemprop="name">研发技能</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/02/11/mybatis-generator使用方式及实例/" class="leancloud_visitors" data-flag-title="mybatis-generator使用方式及实例">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  527
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  2
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="mybatis-generator使用方式及实例">mybatis-generator使用方式及实例</h1>
+<p>MyBatis Generator (MBG) 是一个Mybatis的代码生成器，它可以帮助我们根据数据库中表的设计生成对应的实体类，xml Mapper文件，接口以及帮助类，也就是我们可以借助该类来进行简单的CRUD操作。这样就避免了我们每使用到一张表的数据就需要手动去创建对应的类和xml文件，这就帮我们节约了大量的时间去开发和业务逻辑有关的功能。下面我主要介绍基于Maven和普通的Java工程两种方式来生成相应的文件。</p>
+<blockquote>
+<p>注：如果对联合查询和存储过程您仍然需要手写SQL和对象。</p>
+</blockquote>
+<h2 id="mysql环境准备">MySQL环境准备</h2>
+<ul>
+<li>安装：brew install mysql</li>
+<li>启动：mysql.server start</li>
+<li>运行：mysql_secure_installation</li>
+<li>新建库manager--表tasks</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="keyword">IF</span> <span class="keyword">NOT</span> <span class="keyword">EXISTS</span> tasks (</span><br><span class="line">  task_id <span class="built_in">INT</span>(<span class="number">11</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> AUTO_INCREMENT,</span><br><span class="line">  subject <span class="built_in">VARCHAR</span>(<span class="number">45</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</span><br><span class="line">  start_date <span class="built_in">DATE</span> <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</span><br><span class="line">  end_date <span class="built_in">DATE</span> <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</span><br><span class="line">  description <span class="built_in">VARCHAR</span>(<span class="number">200</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</span><br><span class="line">  PRIMARY <span class="keyword">KEY</span> (task_id)</span><br><span class="line">) <span class="keyword">ENGINE</span>=<span class="keyword">InnoDB</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="配置">配置</h2>
+<p>mybatis-generator有三种用法：命令行、eclipse插件、maven插件。本文使用maven插件方式，原因：该方式可以直接集成到项目中，从而方便后续其他人迭代新增表后，自动生成。</p>
+<p>参考文档中有详细说明，如果不想细看，可以直接clone代码 https://github.com/DanielJyc/mybatis-generator 。然后：</p>
+<ul>
+<li>更改<code>generatorConfig.xml</code>中，jar路径：<code>/Users/daniel/gitworkspace/JavaEETest/Test27-mybatis2/lib/mysql-connector-java-5.1.40.jar</code>为自己的真实路径。</li>
+<li>更改表配置信息：</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">table</span> <span class="attr">tableName</span>=<span class="string">"tasks"</span> <span class="attr">enableCountByExample</span>=<span class="string">"false"</span> <span class="attr">enableUpdateByExample</span>=<span class="string">"false"</span> <span class="attr">enableDeleteByExample</span>=<span class="string">"false"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">enableSelectByExample</span>=<span class="string">"false"</span> <span class="attr">selectByExampleQueryId</span>=<span class="string">"false"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>更改数据库连接信息</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">db.driver=com.mysql.jdbc.Driver</span><br><span class="line">db.url= jdbc:mysql://localhost:3306/manager</span><br><span class="line">db.username=root</span><br><span class="line">db.password=****</span><br></pre></td></tr></table></figure>
+<ul>
+<li>根目录<code>generator</code>下，直接执行<code>mvn mybatis-generator:generate</code>即可。</li>
+</ul>
+<h2 id="集成到项目中">集成到项目中</h2>
+<p>可以集成到项目中，两种方式：</p>
+<ul>
+<li>作为单独的mvn模块。</li>
+<li>直接集成到dal层。</li>
+</ul>
+<p>新建子mvn模块后，把代码拷贝过去即可。</p>
+<h1 id="参考文档">参考文档</h1>
+<ul>
+<li><a href="https://www.yiibai.com/mysql/create-table.html" target="_blank" rel="noopener">sql教程</a></li>
+<li><a href="http://blog.csdn.net/lkxlaz/article/details/54580735" target="_blank" rel="noopener">Mac下记录使用Homebrew安装Mysql全过程</a></li>
+<li><a href="http://blog.csdn.net/testcs_dn/article/details/77881776" target="_blank" rel="noopener">Mybatis Generator最完整配置详解</a></li>
+<li><a href="https://www.cnblogs.com/yjmyzz/p/4210554.html" target="_blank" rel="noopener">利用mybatis-generator自动生成代码</a></li>
+<li><a href="https://www.cnblogs.com/Erma-king/p/6694516.html" target="_blank" rel="noopener">idea + mybatis generator + maven 插件使用</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/04/shell脚本使用和总结/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="DanielJyc">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="技术博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/02/04/shell脚本使用和总结/" itemprop="url">shell脚本使用和总结</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-04T22:23:38+08:00">
+                2018-02-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/工具/" itemprop="url" rel="index">
+                    <span itemprop="name">工具</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/02/04/shell脚本使用和总结/" class="leancloud_visitors" data-flag-title="shell脚本使用和总结">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.1k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  4
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="shell脚本使用和总结">shell脚本使用和总结</h1>
+<h2 id="hello-world">hello world</h2>
+<ul>
+<li>新建<code>test1.sh</code></li>
+<li>内容<code>echo Hello world!</code></li>
+</ul>
+<blockquote>
+<p>如果需要的话，赋予可执行权限<code>chmod +x test1.sh</code></p>
+</blockquote>
+<h2 id="执行指令">执行指令</h2>
+<p>可以在脚本中写入更多的命令，比如：启动app，编译、运行java文件，链接服务器等等；只要你能想到的，基本都可以。在此，我仅以一个简单的例子来说明：通过脚本编译运行一个java文件。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /Users/daniel/Documents/tmp</span><br><span class="line">javac Test2.java</span><br><span class="line">java Test2</span><br></pre></td></tr></table></figure>
+<h2 id="匹配规则---的使用路径处理">匹配规则${}，##, %% , ：- ，：+， ？ 的使用（路径处理）</h2>
+<p>假设我们定义了一个变量为：<code>file=/dir1/dir2/dir3/my.file.txt</code></p>
+<ul>
+<li>1.可以用${ }分别替换得到不同的值：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$&#123;file#*/&#125;：删掉第一个/ 及其左边的字符串：dir1/dir2/dir3/my.file.txt</span><br><span class="line">$&#123;file##*/&#125;：删掉最后一个/  及其左边的字符串：my.file.txt</span><br><span class="line">$&#123;file#*.&#125;：删掉第一个.  及其左边的字符串：file.txt</span><br><span class="line">$&#123;file##*.&#125;：删掉最后一个.  及其左边的字符串：txt</span><br><span class="line">$&#123;file%/*&#125;：删掉最后一个 /  及其右边的字符串：/dir1/dir2/dir3</span><br><span class="line">$&#123;file%%/*&#125;：删掉第一个/  及其右边的字符串：(空值)</span><br><span class="line">$&#123;file%.*&#125;：删掉最后一个 .  及其右边的字符串：/dir1/dir2/dir3/my.file</span><br><span class="line">$&#123;file%%.*&#125;：删掉第一个 .   及其右边的字符串：/dir1/dir2/dir3/my</span><br></pre></td></tr></table></figure>
+<ul>
+<li>2.记忆的方法为：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 是 去掉左边（键盘上#在 $ 的左边）</span><br><span class="line">%是去掉右边（键盘上% 在$ 的右边）</span><br><span class="line">单一符号是最小匹配；两个符号是最大匹配</span><br><span class="line">$&#123;file:0:5&#125;：提取最左边的5 个字节：/dir1</span><br><span class="line">$&#123;file:5:5&#125;：提取第5 个字节右边的连续5个字节：/dir2</span><br><span class="line">也可以对变量值里的字符串作替换：</span><br><span class="line">$&#123;file/dir/path&#125;：将第一个dir 替换为path：/path1/dir2/dir3/my.file.txt</span><br><span class="line">$&#123;file//dir/path&#125;：将全部dir 替换为path：/path1/path2/path3/my.file.txt</span><br></pre></td></tr></table></figure>
+<ul>
+<li>3.利用${ } 还可针对不同的变数状态赋值(沒设定、空值、非空值)：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$&#123;file-my.file.txt&#125; ：假如$file 沒有设定，則使用my.file.txt 作传回值。(空值及非空值時不作处理) </span><br><span class="line">$&#123;file:-my.file.txt&#125; ：假如$file 沒有設定或為空值，則使用my.file.txt 作傳回值。(非空值時不作处理)</span><br><span class="line">$&#123;file+my.file.txt&#125; ：假如$file 設為空值或非空值，均使用my.file.txt 作傳回值。(沒設定時不作处理)</span><br><span class="line">$&#123;file:+my.file.txt&#125; ：若$file 為非空值，則使用my.file.txt 作傳回值。(沒設定及空值時不作处理)</span><br><span class="line">$&#123;file=my.file.txt&#125; ：若$file 沒設定，則使用my.file.txt 作傳回值，同時將$file 賦值為my.file.txt 。(空值及非空值時不作处理)</span><br><span class="line">$&#123;file:=my.file.txt&#125; ：若$file 沒設定或為空值，則使用my.file.txt 作傳回值，同時將$file 賦值為my.file.txt 。(非空值時不作处理)</span><br><span class="line">$&#123;file?my.file.txt&#125; ：若$file 沒設定，則將my.file.txt 輸出至STDERR。(空值及非空值時不作处理)</span><br><span class="line"></span><br><span class="line">$&#123;file:?my.file.txt&#125; ：若$file 没设定或为空值，则将my.file.txt 输出至STDERR。(非空值時不作处理)</span><br><span class="line"></span><br><span class="line">$&#123;#var&#125; 可计算出变量值的长度：</span><br><span class="line"></span><br><span class="line">$&#123;#file&#125; 可得到27 ，因为/dir1/dir2/dir3/my.file.txt 是27个字节</span><br></pre></td></tr></table></figure>
+<h2 id="分割字符串">分割字符串</h2>
+<p>比如，要分割<code>test=&quot;aaa,bbb,cc cc,dd dd&quot;</code>，可以这样:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1.分割</span></span><br><span class="line">OLD_IFS=<span class="string">"<span class="variable">$IFS</span>"</span> </span><br><span class="line">IFS=<span class="string">"-"</span> </span><br><span class="line">arr=(<span class="variable">$filename</span>) </span><br><span class="line">IFS=<span class="string">"<span class="variable">$OLD_IFS</span>"</span> </span><br><span class="line"></span><br><span class="line"><span class="comment"># 2.获取</span></span><br><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> <span class="variable">$arr</span>; <span class="keyword">do</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="variable">$x</span></span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$&#123;arr[0]&#125;</span></span><br></pre></td></tr></table></figure>
+<h2 id="实例">实例</h2>
+<p>取出照片，按照日期创建文件夹，并将文件放到指定文件夹中。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> filePath <span class="keyword">in</span> /Users/***/DCIM/*.jpg; <span class="keyword">do</span></span><br><span class="line">	<span class="comment"># 1.获取文件名，eg: P70827-165946.jpg</span></span><br><span class="line">	filename=<span class="variable">$&#123;filePath##*/&#125;</span> </span><br><span class="line">	<span class="built_in">echo</span> <span class="variable">$&#123;filename&#125;</span></span><br><span class="line"></span><br><span class="line">	<span class="comment"># 2.获取日期标识部分P70827：从头开始取6位</span></span><br><span class="line">	dirName=<span class="string">"/Users/***/DCIM/"</span><span class="variable">$&#123;filename:0:6&#125;</span></span><br><span class="line">	<span class="built_in">echo</span> <span class="variable">$dirName</span><span class="string">"\n"</span></span><br><span class="line"></span><br><span class="line">	<span class="comment"># 3.根据日期创建文件夹</span></span><br><span class="line">	mkdir -p <span class="variable">$&#123;dirName&#125;</span> </span><br><span class="line"></span><br><span class="line">	<span class="comment"># 4.将文件移入该文件夹</span></span><br><span class="line">	mv  <span class="variable">$&#123;filePath&#125;</span>  <span class="variable">$&#123;dirName&#125;</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+<h2 id="注意事项">注意事项</h2>
+<ul>
+<li>等号<code>=</code>两边不能有空格:空格对于linux的shell是一种很典型的分隔符，所以给变量赋值的时候中间不能够有空格。</li>
+</ul>
+<h1 id="参考文档">参考文档</h1>
+<ul>
+<li><a href="http://bbs.chinaunix.net/thread-4082007-1-1.html" target="_blank" rel="noopener">求助linux下批量建立文件夹和移动文件</a></li>
+<li><a href="http://www.runoob.com/linux/linux-shell.html" target="_blank" rel="noopener">Shell 教程</a></li>
+<li><a href="https://www.cnblogs.com/kaituorensheng/archive/2012/12/19/2825376.html" target="_blank" rel="noopener">shell编程--遍历目录下的文件</a></li>
+<li><a href="https://www.douban.com/note/498011007/?type=rec" target="_blank" rel="noopener">shell中的${}，##和%%的使用</a></li>
+<li><a href="https://www.cnblogs.com/gaochsh/p/6901809.html" target="_blank" rel="noopener">linux shell 字符串操作详解 （长度，读取，替换，截取，连接，对比，删除，位置 ）</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/03/表达式引擎性能比较/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="DanielJyc">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="技术博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/02/03/表达式引擎性能比较/" itemprop="url">表达式引擎性能比较</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-03T17:19:00+08:00">
+                2018-02-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/研发技能/" itemprop="url" rel="index">
+                    <span itemprop="name">研发技能</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/02/03/表达式引擎性能比较/" class="leancloud_visitors" data-flag-title="表达式引擎性能比较">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  934
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  4
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="表达式引擎性能比较">表达式引擎性能比较</h1>
+<h2 id="表达式引擎选型">表达式引擎选型</h2>
+<p>选择3种主要的表达式引擎进行性能对比，从而选择最优表达式引擎和最优方案。常用的3中规则引擎：QLExpress、MEVL、JUEL。</p>
+<h2 id="性能测试">性能测试</h2>
+<p>性能测试维度：</p>
+<ul>
+<li>表达式引擎维度：主要采用了3种引擎的5种实现方式，即<code>QLExpress 使用缓存</code>; <code>mvel 不编译</code>; <code>mvel 先编译</code>; <code>mvel 先编译，且指定输入值类型</code>; <code>juel 指定输入值类型</code>。注：<code>QLExpress 不使用缓存</code>的话，性能非常低，就不再进行对比测试。</li>
+<li>表达式维度：主要采用了3种类型的表达式，后续的大多数需求，都属于这3种方式。即：
+<ul>
+<li>最常见的场景（多个条件进行and操作）： <code>a&lt;100 &amp;&amp; b&gt;=100 &amp;&amp; c&lt;=123</code>,</li>
+<li>包含特殊的操作（contains）：<code>a&lt;100 &amp;&amp; b&gt;=100 &amp;&amp; c&lt;=123 &amp;&amp; stringList.contains(str)</code></li>
+<li>一个稍微复杂一点的语法树：<code>a&gt;1 &amp;&amp; ((b&gt;1 || c&lt;1) || (a&gt;1 &amp;&amp; b&lt;1 &amp;&amp; c&gt;1))</code></li>
+</ul></li>
+</ul>
+<h2 id="测试方式">测试方式</h2>
+<p>10次循环，每次循环执行这5种方式10万次，即每种方式执行100万次。为了保证一定的差异性，变量赋值的时候，采用变化的值。代码详见附录。</p>
+<p>执行结果：</p>
+<p>对结果进行可视化，很显然<code>Mvel不编译</code>方式耗时最高。</p>
+<p><img src="/images/15172803326811/15176458278896.jpg"></p>
+<p>为了方便查看，将<code>Mvel不编译</code>方式过滤掉，得到下图。得到以下结论：</p>
+<ul>
+<li>性能高低顺序为：<code>mvel 先编译，且指定输入值类型</code> &gt; <code>mvel 先编译</code> &gt; <code>juel 指定输入值类型</code> &gt; <code>QLExpress 使用缓存</code> &gt; <code>mvel 不编译</code>。</li>
+<li><code>juel 指定输入值类型</code>性能也可以接受，但是在使用了<code>contains</code>操作后，性能明显降低很多。</li>
+</ul>
+<p><img src="/images/15172803326811/15176457169158.jpg"></p>
+<h2 id="结论">结论</h2>
+<p><code>mvel 先编译，且指定输入值类型</code>方式性能为最优，采用该方式作为表达式引擎的实现方式。但是，采用自己实现一层缓存：用来缓存预编译的结果，同时，采用2小时无访问，则更新缓存的策略。缓存使用Guava Cache实现。</p>
+<blockquote>
+<p>注： 1. QLExpress自身实现了缓存机制，如果性能要求没那么高的话，也可以采用该方式。 2. 如果规则非常多，比如到了亿级别的规模，并且基本不复用规则的话，就没有必要先编译并缓存了。或者调整缓存策略。</p>
+</blockquote>
+<h1 id="附录">附录</h1>
+<h2 id="机器配置">机器配置</h2>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">MacBook Pro (13-inch, 2017, Two Thunderbolt 3 ports)</span><br><span class="line">处理器 2.3 GHz Intel Core i5</span><br><span class="line">内存 8 GB 2133 MHz LPDDR3</span><br><span class="line">图形卡 Intel Iris Plus Graphics 640 1536 MB</span><br></pre></td></tr></table></figure>
+<h2 id="表达式引擎版本">表达式引擎版本：</h2>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- https://mvnrepository.com/artifact/org.mvel/mvel2 --&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.mvel<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mvel2<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.4.0.Final<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">       <span class="comment">&lt;!-- https://mvnrepository.com/artifact/ognl/ognl --&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>ognl<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>ognl<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.2.4<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">       <span class="comment">&lt;!-- https://mvnrepository.com/artifact/de.odysseus.juel/juel-api --&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>de.odysseus.juel<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>juel-api<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.2.7<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">       <span class="comment">&lt;!-- https://mvnrepository.com/artifact/de.odysseus.juel/juel-impl --&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>de.odysseus.juel<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>juel-impl<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.2.7<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="java代码">Java代码</h2>
+<p>详见： https://github.com/DanielJyc/expression-language-compare/blob/master/java/src/Test.java</p>
+<h1 id="参考文档">参考文档</h1>
+<ul>
+<li><a href="https://github.com/mvel/mvel" target="_blank" rel="noopener">mvel github</a></li>
+<li><a href="https://github.com/alibaba/QLExpress" target="_blank" rel="noopener">QLExpress</a></li>
+<li><a href="http://mvel.documentnode.com/" target="_blank" rel="noopener">MVEL 2.0 官方文档</a></li>
+<li><a href="https://en.wikibooks.org/wiki/Transwiki:MVEL_Language_Guide" target="_blank" rel="noopener">Transwiki:MVEL Language Guide</a></li>
+<li><a href="http://blog.csdn.net/sunnyyoona/article/details/75244442" target="_blank" rel="noopener">Mvel2.0使用指南一 基础</a></li>
+<li><a href="http://blog.csdn.net/fhm727/article/details/6543152" target="_blank" rel="noopener">mvel2.0语法指南</a></li>
+<li><a href="http://www.iteye.com/topic/732354" target="_blank" rel="noopener">Ognl/MVEL/Aviator/JSEL 四种表达式引擎执行效率对比</a></li>
+<li><a href="http://www.officezhushou.com/excel2013jiqiao/5149.html" target="_blank" rel="noopener">在Excel图表中制作三维立体图表的方法</a></li>
+<li><a href="http://juel.sourceforge.net/guide/start.html" target="_blank" rel="noopener">juel Quickstart</a></li>
+<li><a href="http://artexpressive.blogspot.com/" target="_blank" rel="noopener">THE ART OF BEING EXPRESSIVE</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/19/Storm+kafka/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="DanielJyc">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="技术博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/19/Storm+kafka/" itemprop="url">Storm+kafka</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-19T21:25:26+08:00">
+                2018-01-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/大数据/" itemprop="url" rel="index">
+                    <span itemprop="name">大数据</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/01/19/Storm+kafka/" class="leancloud_visitors" data-flag-title="Storm+kafka">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  42
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="stormkafka">Storm+kafka</h1>
+<h2 id="stormkafka-1">Storm+kafka</h2>
+<p>flume实时收集日志，kafka消息队列源源不断生产数据，然后由storm进行实时消费。</p>
+<p><img src="/images/15152262382414/15154048911883.png"></p>
+<h2 id="参考">参考</h2>
+<ul>
+<li><a href="https://www.cnblogs.com/quchunhui/p/5380260.html" target="_blank" rel="noopener">Storm+kafka的HelloWorld初体验</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/17/Apache Superset/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="DanielJyc">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="技术博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/17/Apache Superset/" itemprop="url">Apache Superset</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-17T20:41:00+08:00">
+                2018-01-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/大数据/" itemprop="url" rel="index">
+                    <span itemprop="name">大数据</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/01/17/Apache Superset/" class="leancloud_visitors" data-flag-title="Apache Superset">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  510
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="apache-superset">Apache Superset</h1>
+<p>Superset其实是一个自助式数据分析工具，它的主要目标是简化我们的数据探索分析操作。</p>
+<h2 id="相似产品对比">相似产品对比</h2>
+<table>
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>name</th>
+<th>描述</th>
+<th>实现</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>grafana</td>
+<td>grafana的druid插件，比较简陋，github一年不更新了<span class="Apple-tab-span" style="white-space:pre"></span></td>
+<td>js</td>
+</tr>
+<tr class="even">
+<td>Metabase<span class="Apple-tab-span" style="white-space:pre"></span></td>
+<td>支持数据库种类多，启动方便，支持json查询。图形化查询，只能有一个聚合字段，两个维度<span class="Apple-tab-span" style="white-space:pre"></span></td>
+<td>Clojure<span class="Apple-tab-span" style="white-space:pre"></span></td>
+</tr>
+<tr class="odd">
+<td>imply-pivot<span class="Apple-tab-span" style="white-space:pre"></span></td>
+<td>基于Plywood，部署方便，能构造复杂的查询。目前已经闭源了，没法二次开发<span class="Apple-tab-span" style="white-space:pre"></span></td>
+<td>Js</td>
+</tr>
+<tr class="even">
+<td>airbnb/superset<span class="Apple-tab-span" style="white-space:pre"></span></td>
+<td>权限管理完善，图形可定制性也比较高，github持续更新,集合了metabase的Dashboard和pivot的查询可定制性优点，部署相对麻烦<span class="Apple-tab-span" style="white-space:pre"></span></td>
+<td>python+js<span class="Apple-tab-span" style="white-space:pre"></span></td>
+</tr>
+</tbody>
+</table>
+<h2 id="数据库支持">数据库支持</h2>
+<p>Superset 是基于 Druid.io 设计的，但是又支持横向到像 SQLAlchemy 这样的常见Python ORM框架上面。</p>
+<p>Druid 是一个基于分布式的快速列式存储，也是一个为BI设计的开源数据存储查询工具。Druid提供了一种实时数据低延迟的插入、灵活的数据探索和快速数据聚合。现有的Druid已经可以支持扩展到TB级别的事件和PB级的数据了，Druid是BI应用的最佳搭档。</p>
+<p>跟类似产品Hive相比，速度快了很多。</p>
+<h2 id="架构">架构</h2>
+<p>整个项目的后端是基于Python的，用到了Flask、Pandas、SqlAlchemy。</p>
+<p><strong>后端：</strong></p>
+<ul>
+<li>Flask AppBuilder(鉴权、CRUD、规则）</li>
+<li>Pandas（分析）</li>
+<li>SqlAlchemy（数据库ORM）</li>
+</ul>
+<p><strong>前端：</strong></p>
+<p>用到了npm、react、webpack,这意味着你可以在手机也可以流畅使用。</p>
+<ul>
+<li>d3 (数据可视化)</li>
+<li>nvd3.org(可重用图表)</li>
+</ul>
+<h2 id="局限性">局限性</h2>
+<ul>
+<li>Superset的可视化，目前只支持每次可视化一张表，对于多表join的情况还无能为力</li>
+<li>依赖于数据库的快速响应，如果数据库本身太慢Superset也没什么办法</li>
+<li>语义层的封装还需要完善，因为druid原生只支持部分sql。</li>
+</ul>
+<h2 id="参考">参考</h2>
+<ul>
+<li><a href="https://segmentfault.com/a/1190000005083953" target="_blank" rel="noopener">解密Airbnb 自助BI神器：Superset 颠覆 Tableau</a></li>
+<li><a href="http://airbnb.io/projects/superset/" target="_blank" rel="noopener">superset官网</a></li>
+<li><a href="https://fangyeqing.github.io/2016/11/04/druid.io%E5%8F%AF%E8%A7%86%E5%8C%96%E8%B0%83%E7%A0%94/" target="_blank" rel="noopener">druid.io可视化调研</a></li>
+<li><a href="https://siftery.com/product-comparison/grafana-vs-superset" target="_blank" rel="noopener">Grafana vs Superset</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+  </section>
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+
+          
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="DanielJyc">
+            
+              <p class="site-author-name" itemprop="name">DanielJyc</p>
+              <p class="site-description motion-element" itemprop="description">数据驱动 Java 大数据 算法</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">36</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://danieljyc.github.io/" title="Danieljyc blog" target="_blank">Danieljyc blog</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2014 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">DanielJyc</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">42.3k</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("zYEWmF1a0i8uGTxvDClNekjd-gzGzoHsz", "STn158ECLfhmmqrEq5VEkRsb");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>

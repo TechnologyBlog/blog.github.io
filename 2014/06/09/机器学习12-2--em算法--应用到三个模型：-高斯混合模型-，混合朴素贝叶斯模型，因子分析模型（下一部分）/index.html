@@ -1,0 +1,1463 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="机器学习,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="技术博客" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="#机器学习12-2--EM算法--应用到三个模型： 高斯混合模型 ，混合朴素贝叶斯模型，因子分析模型（下一部分）  判别模型求的是条件概率p(y|x)。常见的判别模型有线性回归、对数回归、线性判别分析、支持向量机、boosting、条件随机场、神经网络等。 生成模型求的是联合概率p(x,y)，即 = p(x|y) ∗ p(y) 。常见的生成模型有隐马尔科夫模型、朴素贝叶斯模型、高斯混合模型、LDA">
+<meta name="keywords" content="机器学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器学习12-2--EM算法--应用到三个模型： 高斯混合模型 ，混合朴素贝叶斯模型，因子分析模型（下一部分）">
+<meta property="og:url" content="http://yoursite.com/2014/06/09/机器学习12-2--em算法--应用到三个模型：-高斯混合模型-，混合朴素贝叶斯模型，因子分析模型（下一部分）/index.html">
+<meta property="og:site_name" content="技术博客">
+<meta property="og:description" content="#机器学习12-2--EM算法--应用到三个模型： 高斯混合模型 ，混合朴素贝叶斯模型，因子分析模型（下一部分）  判别模型求的是条件概率p(y|x)。常见的判别模型有线性回归、对数回归、线性判别分析、支持向量机、boosting、条件随机场、神经网络等。 生成模型求的是联合概率p(x,y)，即 = p(x|y) ∗ p(y) 。常见的生成模型有隐马尔科夫模型、朴素贝叶斯模型、高斯混合模型、LDA">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/img/1402209306815.png">
+<meta property="og:image" content="http://yoursite.com/img/1402209470955.png">
+<meta property="og:image" content="http://yoursite.com/img/1402209356776.png">
+<meta property="og:image" content="http://yoursite.com/img/1402209396541.png">
+<meta property="og:image" content="http://yoursite.com/img/1402209551145.png">
+<meta property="og:image" content="http://yoursite.com/img/1402209667241.png">
+<meta property="og:image" content="http://yoursite.com/img/1402209950866.png">
+<meta property="og:image" content="http://yoursite.com/img/1402209950866.png">
+<meta property="og:image" content="http://yoursite.com/img/1402210751052.png">
+<meta property="og:image" content="http://yoursite.com/img/1402210847527.png">
+<meta property="og:image" content="http://yoursite.com/img/1402210885721.png">
+<meta property="og:image" content="http://yoursite.com/img/1402210998845.png">
+<meta property="og:image" content="http://yoursite.com/img/1402211256855.png">
+<meta property="og:image" content="http://yoursite.com/img/1402218278971.png">
+<meta property="og:image" content="http://yoursite.com/img/1402211272750.png">
+<meta property="og:image" content="http://yoursite.com/img/1402211420552.png">
+<meta property="og:image" content="http://yoursite.com/img/1402211849880.png">
+<meta property="og:image" content="http://yoursite.com/img/1402212387115.png">
+<meta property="og:image" content="http://yoursite.com/img/1402213406548.png">
+<meta property="og:image" content="http://yoursite.com/img/1402213247571.png">
+<meta property="og:image" content="http://yoursite.com/img/1402213361821.png">
+<meta property="og:image" content="http://yoursite.com/img/1402213296446.png">
+<meta property="og:image" content="http://yoursite.com/img/1402214657363.png">
+<meta property="og:image" content="http://yoursite.com/img/1402216219272.png">
+<meta property="og:image" content="http://yoursite.com/img/1402216173819.png">
+<meta property="og:image" content="http://yoursite.com/img/1402216056931.png">
+<meta property="og:image" content="http://yoursite.com/img/1402216309591.png">
+<meta property="og:image" content="http://yoursite.com/img/1402216826863.png">
+<meta property="og:image" content="http://yoursite.com/img/1402216790246.png">
+<meta property="og:image" content="http://yoursite.com/img/1402216927482.png">
+<meta property="og:image" content="http://yoursite.com/img/1402217031911.png">
+<meta property="og:image" content="http://yoursite.com/img/1402217102533.png">
+<meta property="og:image" content="http://yoursite.com/img/1402217299555.png">
+<meta property="og:image" content="http://yoursite.com/img/1402217352304.png">
+<meta property="og:image" content="http://yoursite.com/img/1402218031354.png">
+<meta property="og:image" content="http://yoursite.com/img/1402223138154.png">
+<meta property="og:image" content="http://yoursite.com/img/1402223213118.png">
+<meta property="og:image" content="http://yoursite.com/img/1402223403871.png">
+<meta property="og:image" content="http://yoursite.com/img/1402223616086.png">
+<meta property="og:image" content="http://yoursite.com/img/1402223867190.png">
+<meta property="og:image" content="http://yoursite.com/img/1402223904636.png">
+<meta property="og:image" content="http://yoursite.com/img/1402223914984.png">
+<meta property="og:image" content="http://yoursite.com/img/1402224163545.png">
+<meta property="og:image" content="http://yoursite.com/img/1402224330898.png">
+<meta property="og:image" content="http://yoursite.com/img/1402224309001.png">
+<meta property="og:image" content="http://yoursite.com/img/1402224297069.png">
+<meta property="og:updated_time" content="2018-11-13T13:50:34.923Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="机器学习12-2--EM算法--应用到三个模型： 高斯混合模型 ，混合朴素贝叶斯模型，因子分析模型（下一部分）">
+<meta name="twitter:description" content="#机器学习12-2--EM算法--应用到三个模型： 高斯混合模型 ，混合朴素贝叶斯模型，因子分析模型（下一部分）  判别模型求的是条件概率p(y|x)。常见的判别模型有线性回归、对数回归、线性判别分析、支持向量机、boosting、条件随机场、神经网络等。 生成模型求的是联合概率p(x,y)，即 = p(x|y) ∗ p(y) 。常见的生成模型有隐马尔科夫模型、朴素贝叶斯模型、高斯混合模型、LDA">
+<meta name="twitter:image" content="http://yoursite.com/img/1402209306815.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2014/06/09/机器学习12-2--em算法--应用到三个模型：-高斯混合模型-，混合朴素贝叶斯模型，因子分析模型（下一部分）/">
+
+
+
+
+
+  <title>机器学习12-2--EM算法--应用到三个模型： 高斯混合模型 ，混合朴素贝叶斯模型，因子分析模型（下一部分） | 技术博客</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?416c0f5a580537e8280c2f78b135e762";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">技术博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2014/06/09/机器学习12-2--em算法--应用到三个模型：-高斯混合模型-，混合朴素贝叶斯模型，因子分析模型（下一部分）/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="DanielJyc">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="技术博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">机器学习12-2--EM算法--应用到三个模型： 高斯混合模型 ，混合朴素贝叶斯模型，因子分析模型（下一部分）</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-06-09T11:24:47+08:00">
+                2014-06-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2014/06/09/机器学习12-2--em算法--应用到三个模型：-高斯混合模型-，混合朴素贝叶斯模型，因子分析模型（下一部分）/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2014/06/09/机器学习12-2--em算法--应用到三个模型：-高斯混合模型-，混合朴素贝叶斯模型，因子分析模型（下一部分）/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2014/06/09/机器学习12-2--em算法--应用到三个模型：-高斯混合模型-，混合朴素贝叶斯模型，因子分析模型（下一部分）/" class="leancloud_visitors" data-flag-title="机器学习12-2--EM算法--应用到三个模型： 高斯混合模型 ，混合朴素贝叶斯模型，因子分析模型（下一部分）">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.8k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  6
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>#机器学习12-2--EM算法--应用到三个模型： 高斯混合模型 ，混合朴素贝叶斯模型，因子分析模型（下一部分）</p>
+<ul>
+<li>判别模型求的是条件概率p(y|x)。常见的判别模型有线性回归、对数回归、线性判别分析、支持向量机、boosting、条件随机场、神经网络等。</li>
+<li>生成模型求的是联合概率p(x,y)，即 = p(x|y) ∗ p(y) 。常见的生成模型有隐马尔科夫模型、朴素贝叶斯模型、高斯混合模型、LDA、Restricted Boltzmann Machine等。</li>
+</ul>
+<p>所以这里说的<strong>高斯混合模型，混合朴素贝叶斯模型</strong>都是求p(x,y)联合概率的。(下面推导会见原因) &gt; 总结：凡是生成模型，目的都是求出联合概率表达式，然后对联合概率表达式里的各个参数再进行估计，求出其表达式。</p>
+<p>下面的EM算法，GMM等三个模型都是做这同一件事：设法求出联合概率，然后对出现的参数进行估计。 ## EM算法 ### Jensen不等式 Jensen不等式表述如下： <strong>如果 f 是凸函数，X 是随机变量，那么</strong> <img src="/img/1402209306815.png"> &gt; - 凸函数：<img src="/img/1402209470955.png"> - 如果 f 是严格凸函数，那<img src="/img/1402209356776.png"> <strong>当且仅当</strong><img src="/img/1402209396541.png">。即：也就是说 X 是常量（后面会用到这个结论）。𞀊- Jensen 不等式应用于凹函数时，不等号方向反向，也就是<img src="/img/1402209551145.png">。后面的log函数就是凹函数。</p>
+<h3 id="回顾函数的期望的求取">回顾：函数的期望的求取</h3>
+<p><img src="/img/1402209667241.png"></p>
+<h3 id="em算法推导步骤">EM算法推导步骤</h3>
+<ul>
+<li>EM算法的作用：进行参数估计。</li>
+<li>应用：（因为是无监督，所以一般应用在聚类上，也用在HMM参数估计上）所以凡是有EM算法的，一定是无监督学习.因为EM是对参数聚集</li>
+<li>我们的目的：找到每个样例隐含的类别 z，能使得 p(x,z)最大。（即 如果将样本x(i)看作观察值，隐含类别z看作是隐藏变量， 则x可能是类别z， 那么聚类问题也就是参数估计问题） &gt; p(x,z)最大似然估计是： <img src="/img/1402209950866.png"> 所以可见用<strong>EM算法的模型（高斯混合模型，朴素贝叶斯模型）都是求p(x,y)联合概率，为生成模型</strong>。</li>
+<li>对上面公式，直接求θ一般比较困难，因为有隐藏变量z存在，但是一般确定了z后，求解就容易了。</li>
+</ul>
+<ol type="1">
+<li>p(x,z)最大似然估计是： <img src="/img/1402209950866.png"></li>
+<li>EM是一种解决存在隐含变量优化问题的有效方法。既然不能直接最大化ℓ(θ)，我们可建立ℓ的下界（E步），再优化下界（M步），见下图第三步，取的就是下界 <img src="/img/1402210751052.png"> &gt; 其中，<img src="/img/1402210847527.png"> 如果 z 是连续性的，那么 <img src="/img/1402210885721.png">是概率密度函数，需要将求和符号换做积分符号（因子分析模型是如此），即： <img src="/img/1402210998845.png"></li>
+<li>对Q(z)进行推导： <img src="/img/1402211256855.png"> &gt; - <img src="/img/1402218278971.png"> &gt; - z只受参数θ影响：<img src="/img/1402211272750.png"></li>
+</ol>
+<h3 id="一般的em算法步骤">一般的EM算法步骤</h3>
+<p><img src="/img/1402211420552.png"> &gt; - 注：在m步中，最终是对参数θ进行估计，而这一步具体到高斯混合模型，则θ有三个参数：<span class="math inline">\(\mu,\phi, \sigma\)</span> 代替，即高斯混合模型要推导三个参数，下面会讲。 - <strong>最终，我们得到的是每个样例属于哪个类(k个类)，以及参数θ(k组)。</strong></p>
+<p>至此，这就是EM算法所有推导，EM算法推导也只能推导这些步，具体再将这些公式推导下去，就要结合模型了。</p>
+<h3 id="em算法的另外一种解释坐标上升算法">EM算法的另外一种解释——坐标上升算法</h3>
+<p>如果我们定义 <img src="/img/1402211849880.png"> 从前面的推导中我们知道ℓ(θ) ≥ J(Q, θ)，<strong>EM 可以看作是 J 的坐标上升法，E 步固定θ，优化Q；M 步固定Q优化θ。</strong></p>
+<h3 id="em算法的图形解释">EM算法的图形解释</h3>
+<p><img src="/img/1402212387115.png"> &gt; 其中，红色线表示每一步的J(Q, θ)。<strong>E步:确定红线部分。M步：确定当前红线部分J(Q, θ)的极值点。</strong>最终得到局部最优解。</p>
+<p>##混合高斯模型 将EM算法融到高斯混合模型，将上面EM算法的E步、M步的公式再具体推导下去。 <strong>混合高斯模型定义：</strong>对于每个样例<span class="math inline">\(x^{(i)}\)</span> ，我们先从k个类别中按多项式分布抽取一个<span class="math inline">\(z^{(i)}\)</span>(隐含随机变量) ，然后根据所对应的 k 个多值高斯分布中的一个，生成样例<span class="math inline">\(x^{(i)}\)</span>，整个过程称作混合高斯模型。</p>
+<h3 id="条件和符号说明">条件和符号说明</h3>
+<ul>
+<li>训练样本： <img src="/img/1402213406548.png"></li>
+<li><span class="math inline">\(x^{(i)}\)</span> ：满足多值高斯分布，即： <img src="/img/1402213247571.png">。由此可以得到联合分布：<img src="/img/1402213361821.png">。</li>
+<li>隐含类别：<img src="/img/1402213296446.png">有 k 个值{1,…,k} 可以选取。</li>
+</ul>
+<h3 id="混合高斯模型步骤">混合高斯模型步骤</h3>
+<p><strong>E步</strong> 1、由EM公式得 <img src="/img/1402214657363.png"> <strong>M步</strong> 2、我们需要在固定 <img src="/img/1402216219272.png">后最大化最大似然估计，求解<img src="/img/1402216173819.png"> <img src="/img/1402216056931.png"> &gt; <img src="/img/1402216309591.png"></p>
+<p>3、 求解三个参数 &gt; 1. <img src="/img/1402216826863.png"> <img src="/img/1402216790246.png"> 2. <img src="/img/1402216927482.png"> 在∅和μ确定后，分子上面的一串都是常数了，实际上需要优化的公式是： <img src="/img/1402217031911.png"> <img src="/img/1402217102533.png"> 显然这是一个，<strong>有约束条件的规划问题</strong>。我们采用前面的拉格朗日方法： <img src="/img/1402217299555.png"> 3. Σ的推导也类似，不过稍微复杂一些，毕竟是矩阵。 <img src="/img/1402217352304.png"></p>
+<p>4、<strong>混合高斯模型与前面的高斯判别模型的对比</strong> - 最大似然估计就近似于高斯判别分析模型 - GDA 中类别 y 是伯努利分布，而这里的 z是多项式分布 - 这里的每个样例都有不同的协方差矩阵，而 GDA 中认为只有一个。 5、<strong>总结：</strong> 最终，我们得到隐含类别的具体值。还有，参数∅μΣ。 <img src="/img/1402218031354.png"></p>
+<p>##混合朴素贝叶斯模型 混合高斯的例子：文本聚类: 要对一系列的文本聚类成若干主题。（用svm写文本分类是最好的）news.google.com就是文本聚类一个应用。垃圾邮件过滤（不知道那一封是垃圾邮件）。 ###模型描述 给定m个样本的训练集合是 <img src="/img/1402223138154.png">， 每个文本<span class="math inline">\(x^{(i)}\)</span>属于<span class="math inline">\((0,1)^n\)</span>。即每个文本是n维 0或1的向量。 故<img src="/img/1402223213118.png">= { wordj 是否出现在文本i 里} 我们要对<span class="math inline">\(z^{i}\)</span>(值是0或1) 进行建模，<span class="math inline">\(z^{i}\)</span>是隐含随机变量，这里取两个值：2个聚类。所以对混合贝叶斯模型，假设<span class="math inline">\(z^{i}\)</span>服从参数∅有伯努利分布。 ### 步骤 1、同高斯混合模型，混合贝叶斯模型的联合概率是： <img src="/img/1402223403871.png"> 2、由贝叶斯公式可知： <img src="/img/1402223616086.png"> 3、<strong>E步：</strong> <img src="/img/1402223867190.png"> &gt; 注：这里三个参数phi,mu,sigma,改成，<img src="/img/1402223904636.png">，<img src="/img/1402223914984.png">与<span class="math inline">\(∅_{j|z}\)</span></p>
+<p>4、<strong>M步：</strong> <img src="/img/1402224163545.png"> 得到： <img src="/img/1402224330898.png"> &gt; 这里Wi表示文本来自于类1，分子Σ表示：类1且包含词j的文档个数，分布表示类1的文档总数。所以全式表示：类1包含词j的比率。 EM算法不能做出绝对的假设0或者1，所以只能用Wi表示，最终Wi的值会靠近0或1，在数值上与0或1无分别。</p>
+<p><img src="/img/1402224309001.png"> &gt; 　全式表示：类0包含词j的比率</p>
+<p><img src="/img/1402224297069.png"></p>
+<p>5、迭代上面12步骤，收敛，得到参数估计。<strong>然后，带回联合概率，将联合概率排序，由联合概率最高值 ，可得知哪个文本是输入哪个类了。</strong></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpeg" alt="DanielJyc 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpeg" alt="DanielJyc 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/机器学习/" rel="tag"># 机器学习</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2014/06/09/机器学习12-1--k-means算法(无监督)/" rel="next" title="机器学习12-1--K-means算法(无监督)">
+                <i class="fa fa-chevron-left"></i> 机器学习12-1--K-means算法(无监督)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2014/06/13/机器学习13--em算法--应用到三个模型：-1,2,3因子分析模型/" rel="prev" title="机器学习13--EM算法--应用到三个模型： 1,2,3因子分析模型">
+                机器学习13--EM算法--应用到三个模型： 1,2,3因子分析模型 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="DanielJyc">
+            
+              <p class="site-author-name" itemprop="name">DanielJyc</p>
+              <p class="site-description motion-element" itemprop="description">数据驱动 Java 大数据 算法</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">36</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://danieljyc.github.io/" title="Danieljyc blog" target="_blank">Danieljyc blog</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#回顾函数的期望的求取"><span class="nav-number">1.</span> <span class="nav-text">回顾：函数的期望的求取</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#em算法推导步骤"><span class="nav-number">2.</span> <span class="nav-text">EM算法推导步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一般的em算法步骤"><span class="nav-number">3.</span> <span class="nav-text">一般的EM算法步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#em算法的另外一种解释坐标上升算法"><span class="nav-number">4.</span> <span class="nav-text">EM算法的另外一种解释——坐标上升算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#em算法的图形解释"><span class="nav-number">5.</span> <span class="nav-text">EM算法的图形解释</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#条件和符号说明"><span class="nav-number">6.</span> <span class="nav-text">条件和符号说明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#混合高斯模型步骤"><span class="nav-number">7.</span> <span class="nav-text">混合高斯模型步骤</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2014 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">DanielJyc</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">42.3k</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: window.location.pathname, 
+            owner: 'DanielJyc',
+            repo: 'gitment',
+            
+            lang: "zh-Hans" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: '807aa1205dbd6cf2f4cf1a56c5a05243d89f8f10',
+            
+                client_id: '8f44940851c869479ac9'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
+    
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("zYEWmF1a0i8uGTxvDClNekjd-gzGzoHsz", "STn158ECLfhmmqrEq5VEkRsb");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>

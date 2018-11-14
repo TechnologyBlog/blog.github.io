@@ -1175,7 +1175,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://technologyblog.github.io/2018/01/17/Apache Ambari/">
+    <link itemprop="mainEntityOfPage" href="https://technologyblog.github.io/2018/01/17/Apache Superset/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="DanielJyc">
@@ -1194,7 +1194,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/01/17/Apache Ambari/" itemprop="url">Apache Ambari</a></h1>
+                <a class="post-title-link" href="/2018/01/17/Apache Superset/" itemprop="url">Apache Superset</a></h1>
         
 
         <div class="post-meta">
@@ -1246,7 +1246,7 @@
 
           
           
-             <span id="/2018/01/17/Apache Ambari/" class="leancloud_visitors" data-flag-title="Apache Ambari">
+             <span id="/2018/01/17/Apache Superset/" class="leancloud_visitors" data-flag-title="Apache Superset">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1271,7 +1271,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  202
+                  510
                 </span>
               
 
@@ -1310,12 +1310,75 @@
       
         
           
-            <h1 id="apache-ambari">Apache Ambari</h1>
-<p>用来创建、管理、监视 Hadoop 的集群，但是这里的 Hadoop 是广义，指的是 Hadoop 整个生态圈（例如 Hive，Hbase，Sqoop，Zookeeper 等），而并不仅是特指 Hadoop。用一句话来说，Ambari 就是为了让 Hadoop 以及相关的大数据软件更容易使用的一个工具。</p>
-<p>Ambari 自身也是一个分布式架构的软件，主要由两部分组成：Ambari Server 和 Ambari Agent。简单来说，用户通过 Ambari Server 通知 Ambari Agent 安装对应的软件；Agent 会定时地发送各个机器每个软件模块的状态给 Ambari Server，最终这些状态信息会呈现在 Ambari 的 GUI，方便用户了解到集群的各种状态，并进行相应的维护。</p>
+            <h1 id="apache-superset">Apache Superset</h1>
+<p>Superset其实是一个自助式数据分析工具，它的主要目标是简化我们的数据探索分析操作。</p>
+<h2 id="相似产品对比">相似产品对比</h2>
+<table>
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>name</th>
+<th>描述</th>
+<th>实现</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>grafana</td>
+<td>grafana的druid插件，比较简陋，github一年不更新了<span class="Apple-tab-span" style="white-space:pre"></span></td>
+<td>js</td>
+</tr>
+<tr class="even">
+<td>Metabase<span class="Apple-tab-span" style="white-space:pre"></span></td>
+<td>支持数据库种类多，启动方便，支持json查询。图形化查询，只能有一个聚合字段，两个维度<span class="Apple-tab-span" style="white-space:pre"></span></td>
+<td>Clojure<span class="Apple-tab-span" style="white-space:pre"></span></td>
+</tr>
+<tr class="odd">
+<td>imply-pivot<span class="Apple-tab-span" style="white-space:pre"></span></td>
+<td>基于Plywood，部署方便，能构造复杂的查询。目前已经闭源了，没法二次开发<span class="Apple-tab-span" style="white-space:pre"></span></td>
+<td>Js</td>
+</tr>
+<tr class="even">
+<td>airbnb/superset<span class="Apple-tab-span" style="white-space:pre"></span></td>
+<td>权限管理完善，图形可定制性也比较高，github持续更新,集合了metabase的Dashboard和pivot的查询可定制性优点，部署相对麻烦<span class="Apple-tab-span" style="white-space:pre"></span></td>
+<td>python+js<span class="Apple-tab-span" style="white-space:pre"></span></td>
+</tr>
+</tbody>
+</table>
+<h2 id="数据库支持">数据库支持</h2>
+<p>Superset 是基于 Druid.io 设计的，但是又支持横向到像 SQLAlchemy 这样的常见Python ORM框架上面。</p>
+<p>Druid 是一个基于分布式的快速列式存储，也是一个为BI设计的开源数据存储查询工具。Druid提供了一种实时数据低延迟的插入、灵活的数据探索和快速数据聚合。现有的Druid已经可以支持扩展到TB级别的事件和PB级的数据了，Druid是BI应用的最佳搭档。</p>
+<p>跟类似产品Hive相比，速度快了很多。</p>
+<h2 id="架构">架构</h2>
+<p>整个项目的后端是基于Python的，用到了Flask、Pandas、SqlAlchemy。</p>
+<p><strong>后端：</strong></p>
+<ul>
+<li>Flask AppBuilder(鉴权、CRUD、规则）</li>
+<li>Pandas（分析）</li>
+<li>SqlAlchemy（数据库ORM）</li>
+</ul>
+<p><strong>前端：</strong></p>
+<p>用到了npm、react、webpack,这意味着你可以在手机也可以流畅使用。</p>
+<ul>
+<li>d3 (数据可视化)</li>
+<li>nvd3.org(可重用图表)</li>
+</ul>
+<h2 id="局限性">局限性</h2>
+<ul>
+<li>Superset的可视化，目前只支持每次可视化一张表，对于多表join的情况还无能为力</li>
+<li>依赖于数据库的快速响应，如果数据库本身太慢Superset也没什么办法</li>
+<li>语义层的封装还需要完善，因为druid原生只支持部分sql。</li>
+</ul>
 <h2 id="参考">参考</h2>
 <ul>
-<li><a href="https://www.ibm.com/developerworks/cn/opensource/os-cn-bigdata-ambari/" target="_blank" rel="noopener">Ambari——大数据平台的搭建利器</a></li>
+<li><a href="https://segmentfault.com/a/1190000005083953" target="_blank" rel="noopener">解密Airbnb 自助BI神器：Superset 颠覆 Tableau</a></li>
+<li><a href="http://airbnb.io/projects/superset/" target="_blank" rel="noopener">superset官网</a></li>
+<li><a href="https://fangyeqing.github.io/2016/11/04/druid.io%E5%8F%AF%E8%A7%86%E5%8C%96%E8%B0%83%E7%A0%94/" target="_blank" rel="noopener">druid.io可视化调研</a></li>
+<li><a href="https://siftery.com/product-comparison/grafana-vs-superset" target="_blank" rel="noopener">Grafana vs Superset</a></li>
 </ul>
 
           

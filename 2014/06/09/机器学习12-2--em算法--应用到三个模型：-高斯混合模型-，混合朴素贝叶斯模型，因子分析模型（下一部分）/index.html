@@ -17,8 +17,9 @@
 
 
 
-<meta name="google-site-verification" content="s3I-bHdh4daNg4kjtcJIHgit_zkLKux7mSfWNl6m6oQ">
 
+<meta name="google-site-verification" content="s3I-bHdh4daNg4kjtcJIHgit_zkLKux7mSfWNl6m6oQ">
+<meta name="baidu-site-verification" content="PjBALlzELE">
 
 
 <meta http-equiv="Cache-Control" content="no-transform">
@@ -86,61 +87,61 @@
 <meta name="keywords" content="机器学习">
 <meta property="og:type" content="article">
 <meta property="og:title" content="机器学习12-2--EM算法--应用到三个模型： 高斯混合模型 ，混合朴素贝叶斯模型，因子分析模型（下一部分）">
-<meta property="og:url" content="http://yoursite.com/2014/06/09/机器学习12-2--em算法--应用到三个模型：-高斯混合模型-，混合朴素贝叶斯模型，因子分析模型（下一部分）/index.html">
+<meta property="og:url" content="https://technologyblog.github.io/2014/06/09/机器学习12-2--em算法--应用到三个模型：-高斯混合模型-，混合朴素贝叶斯模型，因子分析模型（下一部分）/index.html">
 <meta property="og:site_name" content="技术博客">
 <meta property="og:description" content="#机器学习12-2--EM算法--应用到三个模型： 高斯混合模型 ，混合朴素贝叶斯模型，因子分析模型（下一部分）  判别模型求的是条件概率p(y|x)。常见的判别模型有线性回归、对数回归、线性判别分析、支持向量机、boosting、条件随机场、神经网络等。 生成模型求的是联合概率p(x,y)，即 = p(x|y) ∗ p(y) 。常见的生成模型有隐马尔科夫模型、朴素贝叶斯模型、高斯混合模型、LDA">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/img/1402209306815.png">
-<meta property="og:image" content="http://yoursite.com/img/1402209470955.png">
-<meta property="og:image" content="http://yoursite.com/img/1402209356776.png">
-<meta property="og:image" content="http://yoursite.com/img/1402209396541.png">
-<meta property="og:image" content="http://yoursite.com/img/1402209551145.png">
-<meta property="og:image" content="http://yoursite.com/img/1402209667241.png">
-<meta property="og:image" content="http://yoursite.com/img/1402209950866.png">
-<meta property="og:image" content="http://yoursite.com/img/1402209950866.png">
-<meta property="og:image" content="http://yoursite.com/img/1402210751052.png">
-<meta property="og:image" content="http://yoursite.com/img/1402210847527.png">
-<meta property="og:image" content="http://yoursite.com/img/1402210885721.png">
-<meta property="og:image" content="http://yoursite.com/img/1402210998845.png">
-<meta property="og:image" content="http://yoursite.com/img/1402211256855.png">
-<meta property="og:image" content="http://yoursite.com/img/1402218278971.png">
-<meta property="og:image" content="http://yoursite.com/img/1402211272750.png">
-<meta property="og:image" content="http://yoursite.com/img/1402211420552.png">
-<meta property="og:image" content="http://yoursite.com/img/1402211849880.png">
-<meta property="og:image" content="http://yoursite.com/img/1402212387115.png">
-<meta property="og:image" content="http://yoursite.com/img/1402213406548.png">
-<meta property="og:image" content="http://yoursite.com/img/1402213247571.png">
-<meta property="og:image" content="http://yoursite.com/img/1402213361821.png">
-<meta property="og:image" content="http://yoursite.com/img/1402213296446.png">
-<meta property="og:image" content="http://yoursite.com/img/1402214657363.png">
-<meta property="og:image" content="http://yoursite.com/img/1402216219272.png">
-<meta property="og:image" content="http://yoursite.com/img/1402216173819.png">
-<meta property="og:image" content="http://yoursite.com/img/1402216056931.png">
-<meta property="og:image" content="http://yoursite.com/img/1402216309591.png">
-<meta property="og:image" content="http://yoursite.com/img/1402216826863.png">
-<meta property="og:image" content="http://yoursite.com/img/1402216790246.png">
-<meta property="og:image" content="http://yoursite.com/img/1402216927482.png">
-<meta property="og:image" content="http://yoursite.com/img/1402217031911.png">
-<meta property="og:image" content="http://yoursite.com/img/1402217102533.png">
-<meta property="og:image" content="http://yoursite.com/img/1402217299555.png">
-<meta property="og:image" content="http://yoursite.com/img/1402217352304.png">
-<meta property="og:image" content="http://yoursite.com/img/1402218031354.png">
-<meta property="og:image" content="http://yoursite.com/img/1402223138154.png">
-<meta property="og:image" content="http://yoursite.com/img/1402223213118.png">
-<meta property="og:image" content="http://yoursite.com/img/1402223403871.png">
-<meta property="og:image" content="http://yoursite.com/img/1402223616086.png">
-<meta property="og:image" content="http://yoursite.com/img/1402223867190.png">
-<meta property="og:image" content="http://yoursite.com/img/1402223904636.png">
-<meta property="og:image" content="http://yoursite.com/img/1402223914984.png">
-<meta property="og:image" content="http://yoursite.com/img/1402224163545.png">
-<meta property="og:image" content="http://yoursite.com/img/1402224330898.png">
-<meta property="og:image" content="http://yoursite.com/img/1402224309001.png">
-<meta property="og:image" content="http://yoursite.com/img/1402224297069.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1402209306815.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1402209470955.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1402209356776.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1402209396541.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1402209551145.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1402209667241.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1402209950866.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1402209950866.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1402210751052.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1402210847527.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1402210885721.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1402210998845.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1402211256855.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1402218278971.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1402211272750.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1402211420552.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1402211849880.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1402212387115.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1402213406548.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1402213247571.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1402213361821.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1402213296446.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1402214657363.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1402216219272.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1402216173819.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1402216056931.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1402216309591.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1402216826863.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1402216790246.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1402216927482.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1402217031911.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1402217102533.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1402217299555.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1402217352304.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1402218031354.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1402223138154.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1402223213118.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1402223403871.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1402223616086.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1402223867190.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1402223904636.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1402223914984.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1402224163545.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1402224330898.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1402224309001.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1402224297069.png">
 <meta property="og:updated_time" content="2018-11-13T13:50:34.923Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器学习12-2--EM算法--应用到三个模型： 高斯混合模型 ，混合朴素贝叶斯模型，因子分析模型（下一部分）">
 <meta name="twitter:description" content="#机器学习12-2--EM算法--应用到三个模型： 高斯混合模型 ，混合朴素贝叶斯模型，因子分析模型（下一部分）  判别模型求的是条件概率p(y|x)。常见的判别模型有线性回归、对数回归、线性判别分析、支持向量机、boosting、条件随机场、神经网络等。 生成模型求的是联合概率p(x,y)，即 = p(x|y) ∗ p(y) 。常见的生成模型有隐马尔科夫模型、朴素贝叶斯模型、高斯混合模型、LDA">
-<meta name="twitter:image" content="http://yoursite.com/img/1402209306815.png">
+<meta name="twitter:image" content="https://technologyblog.github.io/img/1402209306815.png">
 
 
 
@@ -170,7 +171,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2014/06/09/机器学习12-2--em算法--应用到三个模型：-高斯混合模型-，混合朴素贝叶斯模型，因子分析模型（下一部分）/">
+  <link rel="canonical" href="https://technologyblog.github.io/2014/06/09/机器学习12-2--em算法--应用到三个模型：-高斯混合模型-，混合朴素贝叶斯模型，因子分析模型（下一部分）/">
 
 
 
@@ -345,7 +346,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2014/06/09/机器学习12-2--em算法--应用到三个模型：-高斯混合模型-，混合朴素贝叶斯模型，因子分析模型（下一部分）/">
+    <link itemprop="mainEntityOfPage" href="https://technologyblog.github.io/2014/06/09/机器学习12-2--em算法--应用到三个模型：-高斯混合模型-，混合朴素贝叶斯模型，因子分析模型（下一部分）/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="DanielJyc">
@@ -698,7 +699,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -709,7 +710,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-count">24</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

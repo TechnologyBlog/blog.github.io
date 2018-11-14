@@ -17,8 +17,9 @@
 
 
 
-<meta name="google-site-verification" content="s3I-bHdh4daNg4kjtcJIHgit_zkLKux7mSfWNl6m6oQ">
 
+<meta name="google-site-verification" content="s3I-bHdh4daNg4kjtcJIHgit_zkLKux7mSfWNl6m6oQ">
+<meta name="baidu-site-verification" content="PjBALlzELE">
 
 
 <meta http-equiv="Cache-Control" content="no-transform">
@@ -86,66 +87,66 @@
 <meta name="keywords" content="机器学习">
 <meta property="og:type" content="article">
 <meta property="og:title" content="机器学习7--支持向量机（上）">
-<meta property="og:url" content="http://yoursite.com/2014/05/30/机器学习7-支持向量机（上）/index.html">
+<meta property="og:url" content="https://technologyblog.github.io/2014/05/30/机器学习7-支持向量机（上）/index.html">
 <meta property="og:site_name" content="技术博客">
 <meta property="og:description" content="本节：从逻辑回归引出支持向量机--&amp;gt;定义函数间隔和几何间隔--&amp;gt;最优间隔分类器（通过最大化间隔，得到最优）--&amp;gt;引出拉格朗日对偶（作用：通过对偶将算法变得更高效；处理高维）--&amp;gt;将对偶用到最优间隔分类器 本节都是针对很明显的分类&apos;good&apos;，如下图。   逻辑回归和支持向量机关系 两者关系 两者都可以实现分类。LR考虑全局（几经远离的点，通过调节中间线使其更远）；SV">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/img/1401413075318.png">
-<meta property="og:image" content="http://yoursite.com/img/1401413701601.png">
-<meta property="og:image" content="http://yoursite.com/img/1401413727942.png">
-<meta property="og:image" content="http://yoursite.com/img/1401413990360.png">
-<meta property="og:image" content="http://yoursite.com/img/1401414030946.png">
-<meta property="og:image" content="http://yoursite.com/img/1401414126627.png">
-<meta property="og:image" content="http://yoursite.com/img/1401414136951.png">
-<meta property="og:image" content="http://yoursite.com/img/1401414173123.png">
-<meta property="og:image" content="http://yoursite.com/img/1401414627849.png">
-<meta property="og:image" content="http://yoursite.com/img/1401414643134.png">
-<meta property="og:image" content="http://yoursite.com/img/1401414739683.png">
-<meta property="og:image" content="http://yoursite.com/img/1401414848436.png">
-<meta property="og:image" content="http://yoursite.com/img/1401414904554.png">
-<meta property="og:image" content="http://yoursite.com/img/1401414657876.png">
-<meta property="og:image" content="http://yoursite.com/img/1401415019283.png">
-<meta property="og:image" content="http://yoursite.com/img/1401415070328.png">
-<meta property="og:image" content="http://yoursite.com/img/1401415151617.png">
-<meta property="og:image" content="http://yoursite.com/img/1401415247674.png">
-<meta property="og:image" content="http://yoursite.com/img/1401415259408.png">
-<meta property="og:image" content="http://yoursite.com/img/1401415324361.png">
-<meta property="og:image" content="http://yoursite.com/img/1401415353328.png">
-<meta property="og:image" content="http://yoursite.com/img/1401415683097.png">
-<meta property="og:image" content="http://yoursite.com/img/1401415657129.png">
-<meta property="og:image" content="http://yoursite.com/img/1401415727047.png">
-<meta property="og:image" content="http://yoursite.com/img/1401415781557.png">
-<meta property="og:image" content="http://yoursite.com/img/1401416121113.png">
-<meta property="og:image" content="http://yoursite.com/img/1401415977743.png">
-<meta property="og:image" content="http://yoursite.com/img/1401416100848.png">
-<meta property="og:image" content="http://yoursite.com/img/1401416160802.png">
-<meta property="og:image" content="http://yoursite.com/img/1401416215315.png">
-<meta property="og:image" content="http://yoursite.com/img/1401416417346.png">
-<meta property="og:image" content="http://yoursite.com/img/1401416445523.png">
-<meta property="og:image" content="http://yoursite.com/img/1401416477011.png">
-<meta property="og:image" content="http://yoursite.com/img/1401416691302.png">
-<meta property="og:image" content="http://yoursite.com/img/1401417232731.png">
-<meta property="og:image" content="http://yoursite.com/img/1401417252656.png">
-<meta property="og:image" content="http://yoursite.com/img/1401417819167.png">
-<meta property="og:image" content="http://yoursite.com/img/1401417445083.png">
-<meta property="og:image" content="http://yoursite.com/img/1401417745474.png">
-<meta property="og:image" content="http://yoursite.com/img/1401418081844.png">
-<meta property="og:image" content="http://yoursite.com/img/1401418177089.png">
-<meta property="og:image" content="http://yoursite.com/img/1401418208766.png">
-<meta property="og:image" content="http://yoursite.com/img/1401418251955.png">
-<meta property="og:image" content="http://yoursite.com/img/1401418402946.png">
-<meta property="og:image" content="http://yoursite.com/img/1401418527912.png">
-<meta property="og:image" content="http://yoursite.com/img/1401418707592.png">
-<meta property="og:image" content="http://yoursite.com/img/1401418685006.png">
-<meta property="og:image" content="http://yoursite.com/img/1401418527912.png">
-<meta property="og:image" content="http://yoursite.com/img/1401418208766.png">
-<meta property="og:image" content="http://yoursite.com/img/1401418939304.png">
-<meta property="og:image" content="http://yoursite.com/img/1401419097015.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1401413075318.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1401413701601.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1401413727942.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1401413990360.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1401414030946.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1401414126627.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1401414136951.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1401414173123.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1401414627849.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1401414643134.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1401414739683.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1401414848436.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1401414904554.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1401414657876.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1401415019283.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1401415070328.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1401415151617.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1401415247674.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1401415259408.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1401415324361.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1401415353328.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1401415683097.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1401415657129.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1401415727047.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1401415781557.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1401416121113.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1401415977743.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1401416100848.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1401416160802.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1401416215315.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1401416417346.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1401416445523.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1401416477011.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1401416691302.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1401417232731.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1401417252656.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1401417819167.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1401417445083.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1401417745474.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1401418081844.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1401418177089.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1401418208766.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1401418251955.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1401418402946.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1401418527912.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1401418707592.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1401418685006.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1401418527912.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1401418208766.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1401418939304.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1401419097015.png">
 <meta property="og:updated_time" content="2018-11-13T13:51:22.538Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器学习7--支持向量机（上）">
 <meta name="twitter:description" content="本节：从逻辑回归引出支持向量机--&amp;gt;定义函数间隔和几何间隔--&amp;gt;最优间隔分类器（通过最大化间隔，得到最优）--&amp;gt;引出拉格朗日对偶（作用：通过对偶将算法变得更高效；处理高维）--&amp;gt;将对偶用到最优间隔分类器 本节都是针对很明显的分类&apos;good&apos;，如下图。   逻辑回归和支持向量机关系 两者关系 两者都可以实现分类。LR考虑全局（几经远离的点，通过调节中间线使其更远）；SV">
-<meta name="twitter:image" content="http://yoursite.com/img/1401413075318.png">
+<meta name="twitter:image" content="https://technologyblog.github.io/img/1401413075318.png">
 
 
 
@@ -175,7 +176,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2014/05/30/机器学习7-支持向量机（上）/">
+  <link rel="canonical" href="https://technologyblog.github.io/2014/05/30/机器学习7-支持向量机（上）/">
 
 
 
@@ -350,7 +351,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2014/05/30/机器学习7-支持向量机（上）/">
+    <link itemprop="mainEntityOfPage" href="https://technologyblog.github.io/2014/05/30/机器学习7-支持向量机（上）/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="DanielJyc">
@@ -692,7 +693,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -703,7 +704,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-count">24</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

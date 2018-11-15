@@ -18,7 +18,6 @@
 
 
 
-<meta name="google-site-verification" content="xrvFo-xMhGUVW9MlINVghBe-xALQ7rRE3fePMwYEUZo">
 <meta name="google-site-verification" content="s3I-bHdh4daNg4kjtcJIHgit_zkLKux7mSfWNl6m6oQ">
 <meta name="baidu-site-verification" content="PjBALlzELE">
 
@@ -88,30 +87,30 @@
 <meta name="keywords" content="机器学习">
 <meta property="og:type" content="article">
 <meta property="og:title" content="机器学习5_6--生成学习算法(高斯判别分析GDA和朴素贝叶斯NB)">
-<meta property="og:url" content="http://www.datadriven.top/2014/05/29/机器学习5_6--生成学习算法（高斯、nb）/index.html">
+<meta property="og:url" content="https://technologyblog.github.io/2014/05/29/机器学习5_6--生成学习算法（高斯、nb）/index.html">
 <meta property="og:site_name" content="技术博客">
 <meta property="og:description" content="#生成学习算法 说明： - m为样本数目，i为第i个样本数目； - joint likelihood ：联合似然估计 ## 判别学习算法和生成学习算法的区别：    算法 Learn 说明 概率类型     判别学习算法 \(P(y/x)\) 特征x下，输出y的概率 先验概率（经验为x）   生成学习算法 \(P(x/y)和P(y)\) 在模型y（为良性肿瘤）下，特征x发生的概率 后验概率（投‘果">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://www.datadriven.top/img/1401326363187.png">
-<meta property="og:image" content="http://www.datadriven.top/img/1401326348207.png">
-<meta property="og:image" content="http://www.datadriven.top/img/1401331060832.png">
-<meta property="og:image" content="http://www.datadriven.top/img/1401331521750.png">
-<meta property="og:image" content="http://www.datadriven.top/img/1401332946851.png">
-<meta property="og:image" content="http://www.datadriven.top/img/1401333156438.png">
-<meta property="og:image" content="http://www.datadriven.top/img/1401333180922.png">
-<meta property="og:image" content="http://www.datadriven.top/img/1401333778810.png">
-<meta property="og:image" content="http://www.datadriven.top/img/1401333804435.png">
-<meta property="og:image" content="http://www.datadriven.top/img/1401334073894.png">
-<meta property="og:image" content="http://www.datadriven.top/img/1401334120865.png">
-<meta property="og:image" content="http://www.datadriven.top/img/1401334169041.png">
-<meta property="og:image" content="http://www.datadriven.top/img/1401334507161.png">
-<meta property="og:image" content="http://www.datadriven.top/img/1401334227585.png">
-<meta property="og:image" content="http://www.datadriven.top/img/1401334828825.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1401326363187.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1401326348207.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1401331060832.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1401331521750.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1401332946851.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1401333156438.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1401333180922.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1401333778810.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1401333804435.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1401334073894.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1401334120865.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1401334169041.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1401334507161.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1401334227585.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1401334828825.png">
 <meta property="og:updated_time" content="2018-11-13T13:51:18.194Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器学习5_6--生成学习算法(高斯判别分析GDA和朴素贝叶斯NB)">
 <meta name="twitter:description" content="#生成学习算法 说明： - m为样本数目，i为第i个样本数目； - joint likelihood ：联合似然估计 ## 判别学习算法和生成学习算法的区别：    算法 Learn 说明 概率类型     判别学习算法 \(P(y/x)\) 特征x下，输出y的概率 先验概率（经验为x）   生成学习算法 \(P(x/y)和P(y)\) 在模型y（为良性肿瘤）下，特征x发生的概率 后验概率（投‘果">
-<meta name="twitter:image" content="http://www.datadriven.top/img/1401326363187.png">
+<meta name="twitter:image" content="https://technologyblog.github.io/img/1401326363187.png">
 
 
 
@@ -141,7 +140,7 @@
 
 
 
-  <link rel="canonical" href="http://www.datadriven.top/2014/05/29/机器学习5_6--生成学习算法（高斯、nb）/">
+  <link rel="canonical" href="https://technologyblog.github.io/2014/05/29/机器学习5_6--生成学习算法（高斯、nb）/">
 
 
 
@@ -316,7 +315,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.datadriven.top/2014/05/29/机器学习5_6--生成学习算法（高斯、nb）/">
+    <link itemprop="mainEntityOfPage" href="https://technologyblog.github.io/2014/05/29/机器学习5_6--生成学习算法（高斯、nb）/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="DanielJyc">

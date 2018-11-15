@@ -5,9 +5,9 @@
   
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://www.datadriven.top/"/>
+  <link href="https://technologyblog.github.io/"/>
   <updated>2018-11-13T11:36:26.267Z</updated>
-  <id>http://www.datadriven.top/</id>
+  <id>https://technologyblog.github.io/</id>
   
   <author>
     <name>DanielJyc</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>基于时间序列数据的异常识别模型</title>
-    <link href="http://www.datadriven.top/2018/11/09/%E5%9F%BA%E4%BA%8E%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97%E6%95%B0%E6%8D%AE%E7%9A%84%E5%BC%82%E5%B8%B8%E8%AF%86%E5%88%AB%E6%A8%A1%E5%9E%8B/"/>
-    <id>http://www.datadriven.top/2018/11/09/基于时间序列数据的异常识别模型/</id>
+    <link href="https://technologyblog.github.io/2018/11/09/%E5%9F%BA%E4%BA%8E%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97%E6%95%B0%E6%8D%AE%E7%9A%84%E5%BC%82%E5%B8%B8%E8%AF%86%E5%88%AB%E6%A8%A1%E5%9E%8B/"/>
+    <id>https://technologyblog.github.io/2018/11/09/基于时间序列数据的异常识别模型/</id>
     <published>2018-11-09T14:31:44.000Z</published>
     <updated>2018-11-13T11:36:26.267Z</updated>
     
@@ -35,23 +35,23 @@
     
     </summary>
     
-      <category term="数据驱动" scheme="http://www.datadriven.top/categories/%E6%95%B0%E6%8D%AE%E9%A9%B1%E5%8A%A8/"/>
+      <category term="数据驱动" scheme="https://technologyblog.github.io/categories/%E6%95%B0%E6%8D%AE%E9%A9%B1%E5%8A%A8/"/>
     
     
-      <category term="数据驱动" scheme="http://www.datadriven.top/tags/%E6%95%B0%E6%8D%AE%E9%A9%B1%E5%8A%A8/"/>
+      <category term="数据驱动" scheme="https://technologyblog.github.io/tags/%E6%95%B0%E6%8D%AE%E9%A9%B1%E5%8A%A8/"/>
     
-      <category term="时间序列" scheme="http://www.datadriven.top/tags/%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97/"/>
+      <category term="时间序列" scheme="https://technologyblog.github.io/tags/%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97/"/>
     
-      <category term="异常识别" scheme="http://www.datadriven.top/tags/%E5%BC%82%E5%B8%B8%E8%AF%86%E5%88%AB/"/>
+      <category term="异常识别" scheme="https://technologyblog.github.io/tags/%E5%BC%82%E5%B8%B8%E8%AF%86%E5%88%AB/"/>
     
-      <category term="模型" scheme="http://www.datadriven.top/tags/%E6%A8%A1%E5%9E%8B/"/>
+      <category term="模型" scheme="https://technologyblog.github.io/tags/%E6%A8%A1%E5%9E%8B/"/>
     
   </entry>
   
   <entry>
     <title>各公司智能运维 AIOPs架构分析和对比</title>
-    <link href="http://www.datadriven.top/2018/07/08/%E5%90%84%E5%85%AC%E5%8F%B8%E6%99%BA%E8%83%BD%E8%BF%90%E7%BB%B4-AIOPs%E6%9E%B6%E6%9E%84%E5%88%86%E6%9E%90%E5%92%8C%E5%AF%B9%E6%AF%94/"/>
-    <id>http://www.datadriven.top/2018/07/08/各公司智能运维-AIOPs架构分析和对比/</id>
+    <link href="https://technologyblog.github.io/2018/07/08/%E5%90%84%E5%85%AC%E5%8F%B8%E6%99%BA%E8%83%BD%E8%BF%90%E7%BB%B4-AIOPs%E6%9E%B6%E6%9E%84%E5%88%86%E6%9E%90%E5%92%8C%E5%AF%B9%E6%AF%94/"/>
+    <id>https://technologyblog.github.io/2018/07/08/各公司智能运维-AIOPs架构分析和对比/</id>
     <published>2018-07-08T12:35:06.000Z</published>
     <updated>2018-11-13T13:49:52.784Z</updated>
     
@@ -68,29 +68,29 @@
     
     </summary>
     
-      <category term="数据驱动" scheme="http://www.datadriven.top/categories/%E6%95%B0%E6%8D%AE%E9%A9%B1%E5%8A%A8/"/>
+      <category term="数据驱动" scheme="https://technologyblog.github.io/categories/%E6%95%B0%E6%8D%AE%E9%A9%B1%E5%8A%A8/"/>
     
     
-      <category term="数据驱动" scheme="http://www.datadriven.top/tags/%E6%95%B0%E6%8D%AE%E9%A9%B1%E5%8A%A8/"/>
+      <category term="数据驱动" scheme="https://technologyblog.github.io/tags/%E6%95%B0%E6%8D%AE%E9%A9%B1%E5%8A%A8/"/>
     
-      <category term="AIOPs" scheme="http://www.datadriven.top/tags/AIOPs/"/>
+      <category term="AIOPs" scheme="https://technologyblog.github.io/tags/AIOPs/"/>
     
-      <category term="智能运维" scheme="http://www.datadriven.top/tags/%E6%99%BA%E8%83%BD%E8%BF%90%E7%BB%B4/"/>
+      <category term="智能运维" scheme="https://technologyblog.github.io/tags/%E6%99%BA%E8%83%BD%E8%BF%90%E7%BB%B4/"/>
     
-      <category term="算法" scheme="http://www.datadriven.top/tags/%E7%AE%97%E6%B3%95/"/>
+      <category term="算法" scheme="https://technologyblog.github.io/tags/%E7%AE%97%E6%B3%95/"/>
     
-      <category term="人工智能" scheme="http://www.datadriven.top/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/"/>
+      <category term="人工智能" scheme="https://technologyblog.github.io/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/"/>
     
-      <category term="异常检测" scheme="http://www.datadriven.top/tags/%E5%BC%82%E5%B8%B8%E6%A3%80%E6%B5%8B/"/>
+      <category term="异常检测" scheme="https://technologyblog.github.io/tags/%E5%BC%82%E5%B8%B8%E6%A3%80%E6%B5%8B/"/>
     
-      <category term="架构" scheme="http://www.datadriven.top/tags/%E6%9E%B6%E6%9E%84/"/>
+      <category term="架构" scheme="https://technologyblog.github.io/tags/%E6%9E%B6%E6%9E%84/"/>
     
   </entry>
   
   <entry>
     <title>TensorFlow快速入门示例</title>
-    <link href="http://www.datadriven.top/2018/07/08/TensorFlow%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8%E7%A4%BA%E4%BE%8B/"/>
-    <id>http://www.datadriven.top/2018/07/08/TensorFlow快速入门示例/</id>
+    <link href="https://technologyblog.github.io/2018/07/08/TensorFlow%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8%E7%A4%BA%E4%BE%8B/"/>
+    <id>https://technologyblog.github.io/2018/07/08/TensorFlow快速入门示例/</id>
     <published>2018-07-08T12:27:59.000Z</published>
     <updated>2018-11-13T13:49:19.207Z</updated>
     
@@ -107,19 +107,19 @@
     
     </summary>
     
-      <category term="大数据" scheme="http://www.datadriven.top/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
+      <category term="大数据" scheme="https://technologyblog.github.io/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
     
     
-      <category term="TensorFlow" scheme="http://www.datadriven.top/tags/TensorFlow/"/>
+      <category term="机器学习" scheme="https://technologyblog.github.io/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
     
-      <category term="机器学习" scheme="http://www.datadriven.top/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+      <category term="TensorFlow" scheme="https://technologyblog.github.io/tags/TensorFlow/"/>
     
   </entry>
   
   <entry>
     <title>以太坊白皮书笔记</title>
-    <link href="http://www.datadriven.top/2018/04/11/%E4%BB%A5%E5%A4%AA%E5%9D%8A%E7%99%BD%E7%9A%AE%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
-    <id>http://www.datadriven.top/2018/04/11/以太坊白皮书笔记/</id>
+    <link href="https://technologyblog.github.io/2018/04/11/%E4%BB%A5%E5%A4%AA%E5%9D%8A%E7%99%BD%E7%9A%AE%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+    <id>https://technologyblog.github.io/2018/04/11/以太坊白皮书笔记/</id>
     <published>2018-04-11T07:06:25.000Z</published>
     <updated>2018-11-13T13:49:35.020Z</updated>
     
@@ -141,19 +141,19 @@
     
     </summary>
     
-      <category term="大数据" scheme="http://www.datadriven.top/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
+      <category term="大数据" scheme="https://technologyblog.github.io/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
     
     
-      <category term="区块链" scheme="http://www.datadriven.top/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
+      <category term="区块链" scheme="https://technologyblog.github.io/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
     
-      <category term="以太坊" scheme="http://www.datadriven.top/tags/%E4%BB%A5%E5%A4%AA%E5%9D%8A/"/>
+      <category term="以太坊" scheme="https://technologyblog.github.io/tags/%E4%BB%A5%E5%A4%AA%E5%9D%8A/"/>
     
   </entry>
   
   <entry>
     <title>设计模式</title>
-    <link href="http://www.datadriven.top/2018/04/09/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-    <id>http://www.datadriven.top/2018/04/09/设计模式/</id>
+    <link href="https://technologyblog.github.io/2018/04/09/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    <id>https://technologyblog.github.io/2018/04/09/设计模式/</id>
     <published>2018-04-09T12:30:41.000Z</published>
     <updated>2018-11-13T13:53:22.383Z</updated>
     
@@ -174,17 +174,17 @@
     
     </summary>
     
-      <category term="研发技能" scheme="http://www.datadriven.top/categories/%E7%A0%94%E5%8F%91%E6%8A%80%E8%83%BD/"/>
+      <category term="研发技能" scheme="https://technologyblog.github.io/categories/%E7%A0%94%E5%8F%91%E6%8A%80%E8%83%BD/"/>
     
     
-      <category term="设计模式" scheme="http://www.datadriven.top/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+      <category term="设计模式" scheme="https://technologyblog.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
   </entry>
   
   <entry>
     <title>mybatis-generator使用方式及实例</title>
-    <link href="http://www.datadriven.top/2018/02/11/mybatis-generator%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F%E5%8F%8A%E5%AE%9E%E4%BE%8B/"/>
-    <id>http://www.datadriven.top/2018/02/11/mybatis-generator使用方式及实例/</id>
+    <link href="https://technologyblog.github.io/2018/02/11/mybatis-generator%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F%E5%8F%8A%E5%AE%9E%E4%BE%8B/"/>
+    <id>https://technologyblog.github.io/2018/02/11/mybatis-generator使用方式及实例/</id>
     <published>2018-02-11T12:09:26.000Z</published>
     <updated>2018-11-13T13:48:06.657Z</updated>
     
@@ -200,17 +200,17 @@
     
     </summary>
     
-      <category term="研发技能" scheme="http://www.datadriven.top/categories/%E7%A0%94%E5%8F%91%E6%8A%80%E8%83%BD/"/>
+      <category term="研发技能" scheme="https://technologyblog.github.io/categories/%E7%A0%94%E5%8F%91%E6%8A%80%E8%83%BD/"/>
     
     
-      <category term="mybatis" scheme="http://www.datadriven.top/tags/mybatis/"/>
+      <category term="mybatis" scheme="https://technologyblog.github.io/tags/mybatis/"/>
     
   </entry>
   
   <entry>
     <title>shell脚本使用和总结</title>
-    <link href="http://www.datadriven.top/2018/02/04/shell%E8%84%9A%E6%9C%AC%E4%BD%BF%E7%94%A8%E5%92%8C%E6%80%BB%E7%BB%93/"/>
-    <id>http://www.datadriven.top/2018/02/04/shell脚本使用和总结/</id>
+    <link href="https://technologyblog.github.io/2018/02/04/shell%E8%84%9A%E6%9C%AC%E4%BD%BF%E7%94%A8%E5%92%8C%E6%80%BB%E7%BB%93/"/>
+    <id>https://technologyblog.github.io/2018/02/04/shell脚本使用和总结/</id>
     <published>2018-02-04T14:23:38.000Z</published>
     <updated>2018-11-13T13:48:36.351Z</updated>
     
@@ -229,17 +229,17 @@
     
     </summary>
     
-      <category term="工具" scheme="http://www.datadriven.top/categories/%E5%B7%A5%E5%85%B7/"/>
+      <category term="工具" scheme="https://technologyblog.github.io/categories/%E5%B7%A5%E5%85%B7/"/>
     
     
-      <category term="shell" scheme="http://www.datadriven.top/tags/shell/"/>
+      <category term="shell" scheme="https://technologyblog.github.io/tags/shell/"/>
     
   </entry>
   
   <entry>
     <title>表达式引擎性能比较</title>
-    <link href="http://www.datadriven.top/2018/02/03/%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%BC%95%E6%93%8E%E6%80%A7%E8%83%BD%E6%AF%94%E8%BE%83/"/>
-    <id>http://www.datadriven.top/2018/02/03/表达式引擎性能比较/</id>
+    <link href="https://technologyblog.github.io/2018/02/03/%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%BC%95%E6%93%8E%E6%80%A7%E8%83%BD%E6%AF%94%E8%BE%83/"/>
+    <id>https://technologyblog.github.io/2018/02/03/表达式引擎性能比较/</id>
     <published>2018-02-03T09:19:00.000Z</published>
     <updated>2018-11-13T13:52:24.090Z</updated>
     
@@ -257,23 +257,23 @@
     
     </summary>
     
-      <category term="研发技能" scheme="http://www.datadriven.top/categories/%E7%A0%94%E5%8F%91%E6%8A%80%E8%83%BD/"/>
+      <category term="研发技能" scheme="https://technologyblog.github.io/categories/%E7%A0%94%E5%8F%91%E6%8A%80%E8%83%BD/"/>
     
     
-      <category term="表达式引擎" scheme="http://www.datadriven.top/tags/%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%BC%95%E6%93%8E/"/>
+      <category term="表达式引擎" scheme="https://technologyblog.github.io/tags/%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%BC%95%E6%93%8E/"/>
     
-      <category term="QLExpress" scheme="http://www.datadriven.top/tags/QLExpress/"/>
+      <category term="QLExpress" scheme="https://technologyblog.github.io/tags/QLExpress/"/>
     
-      <category term="MEVL" scheme="http://www.datadriven.top/tags/MEVL/"/>
+      <category term="MEVL" scheme="https://technologyblog.github.io/tags/MEVL/"/>
     
-      <category term="JUEL" scheme="http://www.datadriven.top/tags/JUEL/"/>
+      <category term="JUEL" scheme="https://technologyblog.github.io/tags/JUEL/"/>
     
   </entry>
   
   <entry>
     <title>Storm+kafka</title>
-    <link href="http://www.datadriven.top/2018/01/19/Storm+kafka/"/>
-    <id>http://www.datadriven.top/2018/01/19/Storm+kafka/</id>
+    <link href="https://technologyblog.github.io/2018/01/19/Storm+kafka/"/>
+    <id>https://technologyblog.github.io/2018/01/19/Storm+kafka/</id>
     <published>2018-01-19T13:25:26.000Z</published>
     <updated>2018-11-13T13:48:50.452Z</updated>
     
@@ -291,17 +291,17 @@
     
     </summary>
     
-      <category term="大数据" scheme="http://www.datadriven.top/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
+      <category term="大数据" scheme="https://technologyblog.github.io/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
     
     
-      <category term="大数据" scheme="http://www.datadriven.top/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
+      <category term="大数据" scheme="https://technologyblog.github.io/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
     
   </entry>
   
   <entry>
     <title>Apache Ambari</title>
-    <link href="http://www.datadriven.top/2018/01/17/Apache%20Ambari/"/>
-    <id>http://www.datadriven.top/2018/01/17/Apache Ambari/</id>
+    <link href="https://technologyblog.github.io/2018/01/17/Apache%20Ambari/"/>
+    <id>https://technologyblog.github.io/2018/01/17/Apache Ambari/</id>
     <published>2018-01-17T12:41:00.000Z</published>
     <updated>2018-11-13T13:46:09.548Z</updated>
     
@@ -317,17 +317,17 @@
     
     </summary>
     
-      <category term="大数据" scheme="http://www.datadriven.top/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
+      <category term="大数据" scheme="https://technologyblog.github.io/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
     
     
-      <category term="大数据 - Ambari" scheme="http://www.datadriven.top/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE-Ambari/"/>
+      <category term="大数据 - Ambari" scheme="https://technologyblog.github.io/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE-Ambari/"/>
     
   </entry>
   
   <entry>
     <title>Apache Superset</title>
-    <link href="http://www.datadriven.top/2018/01/17/Apache%20Superset/"/>
-    <id>http://www.datadriven.top/2018/01/17/Apache Superset/</id>
+    <link href="https://technologyblog.github.io/2018/01/17/Apache%20Superset/"/>
+    <id>https://technologyblog.github.io/2018/01/17/Apache Superset/</id>
     <published>2018-01-17T12:41:00.000Z</published>
     <updated>2018-11-13T13:47:00.204Z</updated>
     
@@ -346,17 +346,17 @@
     
     </summary>
     
-      <category term="大数据" scheme="http://www.datadriven.top/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
+      <category term="大数据" scheme="https://technologyblog.github.io/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
     
     
-      <category term="大数据" scheme="http://www.datadriven.top/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
+      <category term="大数据" scheme="https://technologyblog.github.io/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
     
   </entry>
   
   <entry>
     <title>Apache flume</title>
-    <link href="http://www.datadriven.top/2018/01/17/Apache%20flume/"/>
-    <id>http://www.datadriven.top/2018/01/17/Apache flume/</id>
+    <link href="https://technologyblog.github.io/2018/01/17/Apache%20flume/"/>
+    <id>https://technologyblog.github.io/2018/01/17/Apache flume/</id>
     <published>2018-01-17T12:40:00.000Z</published>
     <updated>2018-11-13T13:46:43.960Z</updated>
     
@@ -372,19 +372,19 @@
     
     </summary>
     
-      <category term="大数据" scheme="http://www.datadriven.top/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
+      <category term="大数据" scheme="https://technologyblog.github.io/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
     
     
-      <category term="大数据" scheme="http://www.datadriven.top/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
+      <category term="大数据" scheme="https://technologyblog.github.io/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
     
-      <category term="flume" scheme="http://www.datadriven.top/tags/flume/"/>
+      <category term="flume" scheme="https://technologyblog.github.io/tags/flume/"/>
     
   </entry>
   
   <entry>
     <title>Siddhi</title>
-    <link href="http://www.datadriven.top/2018/01/17/Siddhi/"/>
-    <id>http://www.datadriven.top/2018/01/17/Siddhi/</id>
+    <link href="https://technologyblog.github.io/2018/01/17/Siddhi/"/>
+    <id>https://technologyblog.github.io/2018/01/17/Siddhi/</id>
     <published>2018-01-17T12:40:00.000Z</published>
     <updated>2018-11-13T13:48:44.028Z</updated>
     
@@ -400,17 +400,17 @@
     
     </summary>
     
-      <category term="大数据" scheme="http://www.datadriven.top/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
+      <category term="大数据" scheme="https://technologyblog.github.io/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
     
     
-      <category term="大数据" scheme="http://www.datadriven.top/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
+      <category term="大数据" scheme="https://technologyblog.github.io/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
     
   </entry>
   
   <entry>
     <title>kafka</title>
-    <link href="http://www.datadriven.top/2018/01/17/kafka/"/>
-    <id>http://www.datadriven.top/2018/01/17/kafka/</id>
+    <link href="https://technologyblog.github.io/2018/01/17/kafka/"/>
+    <id>https://technologyblog.github.io/2018/01/17/kafka/</id>
     <published>2018-01-17T12:40:00.000Z</published>
     <updated>2018-11-13T13:47:17.573Z</updated>
     
@@ -428,17 +428,17 @@
     
     </summary>
     
-      <category term="大数据" scheme="http://www.datadriven.top/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
+      <category term="大数据" scheme="https://technologyblog.github.io/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
     
     
-      <category term="大数据" scheme="http://www.datadriven.top/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
+      <category term="大数据" scheme="https://technologyblog.github.io/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
     
   </entry>
   
   <entry>
     <title>Apache Eagle</title>
-    <link href="http://www.datadriven.top/2018/01/17/Apache-Eagle/"/>
-    <id>http://www.datadriven.top/2018/01/17/Apache-Eagle/</id>
+    <link href="https://technologyblog.github.io/2018/01/17/Apache-Eagle/"/>
+    <id>https://technologyblog.github.io/2018/01/17/Apache-Eagle/</id>
     <published>2018-01-17T12:40:00.000Z</published>
     <updated>2018-11-13T13:47:09.880Z</updated>
     
@@ -454,17 +454,17 @@
     
     </summary>
     
-      <category term="大数据" scheme="http://www.datadriven.top/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
+      <category term="大数据" scheme="https://technologyblog.github.io/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
     
     
-      <category term="大数据" scheme="http://www.datadriven.top/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
+      <category term="大数据" scheme="https://technologyblog.github.io/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
     
   </entry>
   
   <entry>
     <title>storm学习</title>
-    <link href="http://www.datadriven.top/2018/01/17/storm%E5%AD%A6%E4%B9%A0/"/>
-    <id>http://www.datadriven.top/2018/01/17/storm学习/</id>
+    <link href="https://technologyblog.github.io/2018/01/17/storm%E5%AD%A6%E4%B9%A0/"/>
+    <id>https://technologyblog.github.io/2018/01/17/storm学习/</id>
     <published>2018-01-17T12:40:00.000Z</published>
     <updated>2018-11-13T13:48:56.280Z</updated>
     
@@ -482,17 +482,17 @@
     
     </summary>
     
-      <category term="大数据" scheme="http://www.datadriven.top/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
+      <category term="大数据" scheme="https://technologyblog.github.io/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
     
     
-      <category term="大数据" scheme="http://www.datadriven.top/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
+      <category term="大数据" scheme="https://technologyblog.github.io/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
     
   </entry>
   
   <entry>
     <title>Apache Ambari</title>
-    <link href="http://www.datadriven.top/2018/01/17/Apache-Ambari/"/>
-    <id>http://www.datadriven.top/2018/01/17/Apache-Ambari/</id>
+    <link href="https://technologyblog.github.io/2018/01/17/Apache-Ambari/"/>
+    <id>https://technologyblog.github.io/2018/01/17/Apache-Ambari/</id>
     <published>2018-01-17T12:36:34.000Z</published>
     <updated>2018-11-13T13:47:04.968Z</updated>
     
@@ -508,17 +508,17 @@
     
     </summary>
     
-      <category term="大数据" scheme="http://www.datadriven.top/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
+      <category term="大数据" scheme="https://technologyblog.github.io/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
     
     
-      <category term="大数据" scheme="http://www.datadriven.top/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
+      <category term="大数据" scheme="https://technologyblog.github.io/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
     
   </entry>
   
   <entry>
     <title>Hello World</title>
-    <link href="http://www.datadriven.top/2018/01/11/hello-world/"/>
-    <id>http://www.datadriven.top/2018/01/11/hello-world/</id>
+    <link href="https://technologyblog.github.io/2018/01/11/hello-world/"/>
+    <id>https://technologyblog.github.io/2018/01/11/hello-world/</id>
     <published>2018-01-11T13:13:01.000Z</published>
     <updated>2018-01-11T13:13:01.000Z</updated>
     
@@ -538,8 +538,8 @@
   
   <entry>
     <title>机器学习17--增强学习——拟合的值迭代法（fitted value iterator）</title>
-    <link href="http://www.datadriven.top/2014/06/14/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A017--%E5%A2%9E%E5%BC%BA%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%94%E6%8B%9F%E5%90%88%E7%9A%84%E5%80%BC%E8%BF%AD%E4%BB%A3%E6%B3%95%EF%BC%88fitted-value-iterator%EF%BC%89/"/>
-    <id>http://www.datadriven.top/2014/06/14/机器学习17--增强学习——拟合的值迭代法（fitted-value-iterator）/</id>
+    <link href="https://technologyblog.github.io/2014/06/14/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A017--%E5%A2%9E%E5%BC%BA%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%94%E6%8B%9F%E5%90%88%E7%9A%84%E5%80%BC%E8%BF%AD%E4%BB%A3%E6%B3%95%EF%BC%88fitted-value-iterator%EF%BC%89/"/>
+    <id>https://technologyblog.github.io/2014/06/14/机器学习17--增强学习——拟合的值迭代法（fitted-value-iterator）/</id>
     <published>2014-06-14T06:03:40.000Z</published>
     <updated>2018-11-13T13:51:04.520Z</updated>
     
@@ -554,17 +554,17 @@
     
     </summary>
     
-      <category term="机器学习" scheme="http://www.datadriven.top/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+      <category term="机器学习" scheme="https://technologyblog.github.io/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
     
     
-      <category term="机器学习" scheme="http://www.datadriven.top/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+      <category term="机器学习" scheme="https://technologyblog.github.io/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
     
   </entry>
   
   <entry>
     <title>机器学习16--增强学习——有限状态的马尔科夫决策过程MDP</title>
-    <link href="http://www.datadriven.top/2014/06/14/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A016--%E5%A2%9E%E5%BC%BA%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%94%E6%9C%89%E9%99%90%E7%8A%B6%E6%80%81%E7%9A%84%E9%A9%AC%E5%B0%94%E7%A7%91%E5%A4%AB%E5%86%B3%E7%AD%96%E8%BF%87%E7%A8%8Bmdp/"/>
-    <id>http://www.datadriven.top/2014/06/14/机器学习16--增强学习——有限状态的马尔科夫决策过程mdp/</id>
+    <link href="https://technologyblog.github.io/2014/06/14/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A016--%E5%A2%9E%E5%BC%BA%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%94%E6%9C%89%E9%99%90%E7%8A%B6%E6%80%81%E7%9A%84%E9%A9%AC%E5%B0%94%E7%A7%91%E5%A4%AB%E5%86%B3%E7%AD%96%E8%BF%87%E7%A8%8Bmdp/"/>
+    <id>https://technologyblog.github.io/2014/06/14/机器学习16--增强学习——有限状态的马尔科夫决策过程mdp/</id>
     <published>2014-06-14T06:03:21.000Z</published>
     <updated>2018-11-13T13:51:00.665Z</updated>
     
@@ -579,10 +579,10 @@
     
     </summary>
     
-      <category term="机器学习" scheme="http://www.datadriven.top/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+      <category term="机器学习" scheme="https://technologyblog.github.io/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
     
     
-      <category term="机器学习" scheme="http://www.datadriven.top/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+      <category term="机器学习" scheme="https://technologyblog.github.io/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
     
   </entry>
   

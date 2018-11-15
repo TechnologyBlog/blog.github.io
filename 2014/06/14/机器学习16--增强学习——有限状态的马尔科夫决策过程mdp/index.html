@@ -18,7 +18,6 @@
 
 
 
-<meta name="google-site-verification" content="xrvFo-xMhGUVW9MlINVghBe-xALQ7rRE3fePMwYEUZo">
 <meta name="google-site-verification" content="s3I-bHdh4daNg4kjtcJIHgit_zkLKux7mSfWNl6m6oQ">
 <meta name="baidu-site-verification" content="PjBALlzELE">
 
@@ -88,46 +87,46 @@
 <meta name="keywords" content="机器学习">
 <meta property="og:type" content="article">
 <meta property="og:title" content="机器学习16--增强学习——有限状态的马尔科夫决策过程MDP">
-<meta property="og:url" content="http://www.datadriven.top/2014/06/14/机器学习16--增强学习——有限状态的马尔科夫决策过程mdp/index.html">
+<meta property="og:url" content="https://technologyblog.github.io/2014/06/14/机器学习16--增强学习——有限状态的马尔科夫决策过程mdp/index.html">
 <meta property="og:site_name" content="技术博客">
 <meta property="og:description" content="#机器学习16--增强学习——有限状态的马尔科夫决策过程MDP 16-20讲均为增强学习相关知识。暂时，只对16、17进行总结。 增强学习：找到一条回报值最大的路径（每步的回报之和最大），就认为是最佳的路径。eg：四足机器人、象棋 AI 程序、机器人控制，手机网络路由，市场决策，工业控制，高效网页索引等。 马尔科夫决策过程——MDP ###基本概念 1. 一个马尔科夫决策过程由一个五元组构成  2">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://www.datadriven.top/img/1402710068772.png">
-<meta property="og:image" content="http://www.datadriven.top/img/1402710078322.png">
-<meta property="og:image" content="http://www.datadriven.top/img/1402710949853.png">
-<meta property="og:image" content="http://www.datadriven.top/img/1402710858178.png">
-<meta property="og:image" content="http://www.datadriven.top/img/1402710372896.png">
-<meta property="og:image" content="http://www.datadriven.top/img/1402710507486.png">
-<meta property="og:image" content="http://www.datadriven.top/img/1402710588064.png">
-<meta property="og:image" content="http://www.datadriven.top/img/1402710711280.png">
-<meta property="og:image" content="http://www.datadriven.top/img/1402711107534.png">
-<meta property="og:image" content="http://www.datadriven.top/img/1402711134218.png">
-<meta property="og:image" content="http://www.datadriven.top/img/1402711174970.png">
-<meta property="og:image" content="http://www.datadriven.top/img/1402711486695.png">
-<meta property="og:image" content="http://www.datadriven.top/img/1402711545140.png">
-<meta property="og:image" content="http://www.datadriven.top/img/1402711554173.png">
-<meta property="og:image" content="http://www.datadriven.top/img/1402711695076.png">
-<meta property="og:image" content="http://www.datadriven.top/img/1402711718439.png">
-<meta property="og:image" content="http://www.datadriven.top/img/1402711724320.png">
-<meta property="og:image" content="http://www.datadriven.top/img/1402712009762.png">
-<meta property="og:image" content="http://www.datadriven.top/img/1402712329090.png">
-<meta property="og:image" content="http://www.datadriven.top/img/1402712357916.png">
-<meta property="og:image" content="http://www.datadriven.top/img/1402712418667.png">
-<meta property="og:image" content="http://www.datadriven.top/img/1402711554173.png">
-<meta property="og:image" content="http://www.datadriven.top/img/1402712676239.png">
-<meta property="og:image" content="http://www.datadriven.top/img/1402712218305.png">
-<meta property="og:image" content="http://www.datadriven.top/img/1402712850142.png">
-<meta property="og:image" content="http://www.datadriven.top/img/1402713281165.png">
-<meta property="og:image" content="http://www.datadriven.top/img/1402713339591.png">
-<meta property="og:image" content="http://www.datadriven.top/img/1402713428679.png">
-<meta property="og:image" content="http://www.datadriven.top/img/1402713654890.png">
-<meta property="og:image" content="http://www.datadriven.top/img/1402469025434.png">
-<meta property="og:image" content="http://www.datadriven.top/img/1402471158800.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1402710068772.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1402710078322.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1402710949853.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1402710858178.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1402710372896.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1402710507486.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1402710588064.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1402710711280.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1402711107534.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1402711134218.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1402711174970.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1402711486695.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1402711545140.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1402711554173.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1402711695076.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1402711718439.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1402711724320.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1402712009762.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1402712329090.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1402712357916.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1402712418667.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1402711554173.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1402712676239.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1402712218305.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1402712850142.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1402713281165.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1402713339591.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1402713428679.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1402713654890.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1402469025434.png">
+<meta property="og:image" content="https://technologyblog.github.io/img/1402471158800.png">
 <meta property="og:updated_time" content="2018-11-13T13:51:00.665Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器学习16--增强学习——有限状态的马尔科夫决策过程MDP">
 <meta name="twitter:description" content="#机器学习16--增强学习——有限状态的马尔科夫决策过程MDP 16-20讲均为增强学习相关知识。暂时，只对16、17进行总结。 增强学习：找到一条回报值最大的路径（每步的回报之和最大），就认为是最佳的路径。eg：四足机器人、象棋 AI 程序、机器人控制，手机网络路由，市场决策，工业控制，高效网页索引等。 马尔科夫决策过程——MDP ###基本概念 1. 一个马尔科夫决策过程由一个五元组构成  2">
-<meta name="twitter:image" content="http://www.datadriven.top/img/1402710068772.png">
+<meta name="twitter:image" content="https://technologyblog.github.io/img/1402710068772.png">
 
 
 
@@ -157,7 +156,7 @@
 
 
 
-  <link rel="canonical" href="http://www.datadriven.top/2014/06/14/机器学习16--增强学习——有限状态的马尔科夫决策过程mdp/">
+  <link rel="canonical" href="https://technologyblog.github.io/2014/06/14/机器学习16--增强学习——有限状态的马尔科夫决策过程mdp/">
 
 
 
@@ -332,7 +331,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.datadriven.top/2014/06/14/机器学习16--增强学习——有限状态的马尔科夫决策过程mdp/">
+    <link itemprop="mainEntityOfPage" href="https://technologyblog.github.io/2014/06/14/机器学习16--增强学习——有限状态的马尔科夫决策过程mdp/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="DanielJyc">

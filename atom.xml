@@ -110,9 +110,9 @@
       <category term="大数据" scheme="http://www.datadriven.top/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
     
     
-      <category term="机器学习" scheme="http://www.datadriven.top/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
-    
       <category term="TensorFlow" scheme="http://www.datadriven.top/tags/TensorFlow/"/>
+    
+      <category term="机器学习" scheme="http://www.datadriven.top/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
     
   </entry>
   

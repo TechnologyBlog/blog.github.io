@@ -87,67 +87,67 @@
 <meta name="keywords" content="机器学习">
 <meta property="og:type" content="article">
 <meta property="og:title" content="机器学习8--支持向量机（下）">
-<meta property="og:url" content="https://technologyblog.github.io/2014/06/05/机器学习8--支持向量机（下）/index.html">
+<meta property="og:url" content="http://www.datadriven.top/2014/06/05/机器学习8--支持向量机（下）/index.html">
 <meta property="og:site_name" content="技术博客">
 <meta property="og:description" content="机器学习8--支持向量机（下）  上节回顾：从逻辑回归引出支持向量机--&amp;gt;定义函数间隔和几何间隔--&amp;gt;最优间隔分类器（通过最大化间隔，得到最优）--&amp;gt;引出拉格朗日对偶（作用：通过对偶将算法变得更高效；处理高维）--&amp;gt;将对偶用到最优间隔分类器 本节内容：核函数（升维）--&amp;gt;判定是否是有效的核函数--&amp;gt;L1 norm 软间隔SVM（针对不可分的情况）--&amp;gt;第三">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://technologyblog.github.io/img/1401589792400.png">
-<meta property="og:image" content="https://technologyblog.github.io/img/1401589996693.png">
-<meta property="og:image" content="https://technologyblog.github.io/img/1401590011818.png">
-<meta property="og:image" content="https://technologyblog.github.io/img/1401590126082.png">
-<meta property="og:image" content="https://technologyblog.github.io/img/1401590208271.png">
-<meta property="og:image" content="https://technologyblog.github.io/img/1401590470703.png">
-<meta property="og:image" content="https://technologyblog.github.io/img/1401590532017.png">
-<meta property="og:image" content="https://technologyblog.github.io/img/1401590627850.png">
-<meta property="og:image" content="https://technologyblog.github.io/img/1401590742752.png">
-<meta property="og:image" content="https://technologyblog.github.io/img/1401591458911.png">
-<meta property="og:image" content="https://technologyblog.github.io/img/1401591999936.png">
-<meta property="og:image" content="https://technologyblog.github.io/img/1401591501740.png">
-<meta property="og:image" content="https://technologyblog.github.io/img/1401591562176.png">
-<meta property="og:image" content="https://technologyblog.github.io/img/1401592399557.png">
-<meta property="og:image" content="https://technologyblog.github.io/img/1401592240525.png">
-<meta property="og:image" content="https://technologyblog.github.io/img/1401592589750.png">
-<meta property="og:image" content="https://technologyblog.github.io/img/1401592830611.png">
-<meta property="og:image" content="https://technologyblog.github.io/img/1401592929690.png">
-<meta property="og:image" content="https://technologyblog.github.io/img/1401593088183.png">
-<meta property="og:image" content="https://technologyblog.github.io/img/1401593108069.png">
-<meta property="og:image" content="https://technologyblog.github.io/img/1401592399557.png">
-<meta property="og:image" content="https://technologyblog.github.io/img/1401593370616.png">
-<meta property="og:image" content="https://technologyblog.github.io/img/1401593529971.png">
-<meta property="og:image" content="https://technologyblog.github.io/img/1401593550357.png">
-<meta property="og:image" content="https://technologyblog.github.io/img/1401593529971.png">
-<meta property="og:image" content="https://technologyblog.github.io/img/1401593654090.png">
-<meta property="og:image" content="https://technologyblog.github.io/img/1401593901295.png">
-<meta property="og:image" content="https://technologyblog.github.io/img/1401593977721.png">
-<meta property="og:image" content="https://technologyblog.github.io/img/1401593749701.png">
-<meta property="og:image" content="https://technologyblog.github.io/img/1401593773158.png">
-<meta property="og:image" content="https://technologyblog.github.io/img/1401593811665.png">
-<meta property="og:image" content="https://technologyblog.github.io/img/1401594617028.png">
-<meta property="og:image" content="https://technologyblog.github.io/img/1401594674995.png">
-<meta property="og:image" content="https://technologyblog.github.io/img/1401594696380.png">
-<meta property="og:image" content="https://technologyblog.github.io/img/1401595192630.png">
-<meta property="og:image" content="https://technologyblog.github.io/img/1401595320429.png">
-<meta property="og:image" content="https://technologyblog.github.io/img/1401595417198.png">
-<meta property="og:image" content="https://technologyblog.github.io/img/1401595488545.png">
-<meta property="og:image" content="https://technologyblog.github.io/img/1401595811976.png">
-<meta property="og:image" content="https://technologyblog.github.io/img/1401595827675.png">
-<meta property="og:image" content="https://technologyblog.github.io/img/1401595900489.png">
-<meta property="og:image" content="https://technologyblog.github.io/img/1401596593534.png">
-<meta property="og:image" content="https://technologyblog.github.io/img/1401596884593.png">
-<meta property="og:image" content="https://technologyblog.github.io/img/1401596939257.png">
-<meta property="og:image" content="https://technologyblog.github.io/img/1401596616059.png">
-<meta property="og:image" content="https://technologyblog.github.io/img/1401596062693.png">
-<meta property="og:image" content="https://technologyblog.github.io/img/1401596318573.png">
-<meta property="og:image" content="https://technologyblog.github.io/img/1401596439772.png">
-<meta property="og:image" content="https://technologyblog.github.io/img/1401596460479.png">
-<meta property="og:image" content="https://technologyblog.github.io/img/1401596488661.png">
-<meta property="og:image" content="https://technologyblog.github.io/img/1401596500584.png">
-<meta property="og:image" content="https://technologyblog.github.io/img/1401597230916.png">
+<meta property="og:image" content="http://www.datadriven.top/img/1401589792400.png">
+<meta property="og:image" content="http://www.datadriven.top/img/1401589996693.png">
+<meta property="og:image" content="http://www.datadriven.top/img/1401590011818.png">
+<meta property="og:image" content="http://www.datadriven.top/img/1401590126082.png">
+<meta property="og:image" content="http://www.datadriven.top/img/1401590208271.png">
+<meta property="og:image" content="http://www.datadriven.top/img/1401590470703.png">
+<meta property="og:image" content="http://www.datadriven.top/img/1401590532017.png">
+<meta property="og:image" content="http://www.datadriven.top/img/1401590627850.png">
+<meta property="og:image" content="http://www.datadriven.top/img/1401590742752.png">
+<meta property="og:image" content="http://www.datadriven.top/img/1401591458911.png">
+<meta property="og:image" content="http://www.datadriven.top/img/1401591999936.png">
+<meta property="og:image" content="http://www.datadriven.top/img/1401591501740.png">
+<meta property="og:image" content="http://www.datadriven.top/img/1401591562176.png">
+<meta property="og:image" content="http://www.datadriven.top/img/1401592399557.png">
+<meta property="og:image" content="http://www.datadriven.top/img/1401592240525.png">
+<meta property="og:image" content="http://www.datadriven.top/img/1401592589750.png">
+<meta property="og:image" content="http://www.datadriven.top/img/1401592830611.png">
+<meta property="og:image" content="http://www.datadriven.top/img/1401592929690.png">
+<meta property="og:image" content="http://www.datadriven.top/img/1401593088183.png">
+<meta property="og:image" content="http://www.datadriven.top/img/1401593108069.png">
+<meta property="og:image" content="http://www.datadriven.top/img/1401592399557.png">
+<meta property="og:image" content="http://www.datadriven.top/img/1401593370616.png">
+<meta property="og:image" content="http://www.datadriven.top/img/1401593529971.png">
+<meta property="og:image" content="http://www.datadriven.top/img/1401593550357.png">
+<meta property="og:image" content="http://www.datadriven.top/img/1401593529971.png">
+<meta property="og:image" content="http://www.datadriven.top/img/1401593654090.png">
+<meta property="og:image" content="http://www.datadriven.top/img/1401593901295.png">
+<meta property="og:image" content="http://www.datadriven.top/img/1401593977721.png">
+<meta property="og:image" content="http://www.datadriven.top/img/1401593749701.png">
+<meta property="og:image" content="http://www.datadriven.top/img/1401593773158.png">
+<meta property="og:image" content="http://www.datadriven.top/img/1401593811665.png">
+<meta property="og:image" content="http://www.datadriven.top/img/1401594617028.png">
+<meta property="og:image" content="http://www.datadriven.top/img/1401594674995.png">
+<meta property="og:image" content="http://www.datadriven.top/img/1401594696380.png">
+<meta property="og:image" content="http://www.datadriven.top/img/1401595192630.png">
+<meta property="og:image" content="http://www.datadriven.top/img/1401595320429.png">
+<meta property="og:image" content="http://www.datadriven.top/img/1401595417198.png">
+<meta property="og:image" content="http://www.datadriven.top/img/1401595488545.png">
+<meta property="og:image" content="http://www.datadriven.top/img/1401595811976.png">
+<meta property="og:image" content="http://www.datadriven.top/img/1401595827675.png">
+<meta property="og:image" content="http://www.datadriven.top/img/1401595900489.png">
+<meta property="og:image" content="http://www.datadriven.top/img/1401596593534.png">
+<meta property="og:image" content="http://www.datadriven.top/img/1401596884593.png">
+<meta property="og:image" content="http://www.datadriven.top/img/1401596939257.png">
+<meta property="og:image" content="http://www.datadriven.top/img/1401596616059.png">
+<meta property="og:image" content="http://www.datadriven.top/img/1401596062693.png">
+<meta property="og:image" content="http://www.datadriven.top/img/1401596318573.png">
+<meta property="og:image" content="http://www.datadriven.top/img/1401596439772.png">
+<meta property="og:image" content="http://www.datadriven.top/img/1401596460479.png">
+<meta property="og:image" content="http://www.datadriven.top/img/1401596488661.png">
+<meta property="og:image" content="http://www.datadriven.top/img/1401596500584.png">
+<meta property="og:image" content="http://www.datadriven.top/img/1401597230916.png">
 <meta property="og:updated_time" content="2018-11-13T13:51:27.625Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器学习8--支持向量机（下）">
 <meta name="twitter:description" content="机器学习8--支持向量机（下）  上节回顾：从逻辑回归引出支持向量机--&amp;gt;定义函数间隔和几何间隔--&amp;gt;最优间隔分类器（通过最大化间隔，得到最优）--&amp;gt;引出拉格朗日对偶（作用：通过对偶将算法变得更高效；处理高维）--&amp;gt;将对偶用到最优间隔分类器 本节内容：核函数（升维）--&amp;gt;判定是否是有效的核函数--&amp;gt;L1 norm 软间隔SVM（针对不可分的情况）--&amp;gt;第三">
-<meta name="twitter:image" content="https://technologyblog.github.io/img/1401589792400.png">
+<meta name="twitter:image" content="http://www.datadriven.top/img/1401589792400.png">
 
 
 
@@ -177,7 +177,7 @@
 
 
 
-  <link rel="canonical" href="https://technologyblog.github.io/2014/06/05/机器学习8--支持向量机（下）/">
+  <link rel="canonical" href="http://www.datadriven.top/2014/06/05/机器学习8--支持向量机（下）/">
 
 
 
@@ -352,7 +352,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://technologyblog.github.io/2014/06/05/机器学习8--支持向量机（下）/">
+    <link itemprop="mainEntityOfPage" href="http://www.datadriven.top/2014/06/05/机器学习8--支持向量机（下）/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="DanielJyc">

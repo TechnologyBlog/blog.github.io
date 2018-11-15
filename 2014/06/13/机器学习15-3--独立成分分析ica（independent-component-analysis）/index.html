@@ -87,34 +87,34 @@
 <meta name="keywords" content="机器学习">
 <meta property="og:type" content="article">
 <meta property="og:title" content="机器学习15-3--独立成分分析ICA（Independent Component Analysis）">
-<meta property="og:url" content="https://technologyblog.github.io/2014/06/13/机器学习15-3--独立成分分析ica（independent-component-analysis）/index.html">
+<meta property="og:url" content="http://www.datadriven.top/2014/06/13/机器学习15-3--独立成分分析ica（independent-component-analysis）/index.html">
 <meta property="og:site_name" content="技术博客">
 <meta property="og:description" content="#机器学习15-3--独立成分分析ICA（Independent Component Analysis）  每个人发出的信号\(s\)独立。且信号不能是高斯分布。 用于信号的分离（鸡尾酒宴会问题）。  ICA问题 鸡尾酒宴会问题 - n个人，n个麦克风。从n个麦克风得到一组数据：。其中：i 表示采样的时间顺序，也就是说共得到了 m 组采样，每一组采样都是 n 维的。 - 我们的目标是单单从这 m">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://technologyblog.github.io/img/1402665034566.png">
-<meta property="og:image" content="https://technologyblog.github.io/img/1402665183196.png">
-<meta property="og:image" content="https://technologyblog.github.io/img/1402665269996.png">
-<meta property="og:image" content="https://technologyblog.github.io/img/1402665319894.png">
-<meta property="og:image" content="https://technologyblog.github.io/img/1402665355695.png">
-<meta property="og:image" content="https://technologyblog.github.io/img/1402665589103.png">
-<meta property="og:image" content="https://technologyblog.github.io/img/1402665596364.png">
-<meta property="og:image" content="https://technologyblog.github.io/img/1402665627938.png">
-<meta property="og:image" content="https://technologyblog.github.io/img/1402667574504.png">
-<meta property="og:image" content="https://technologyblog.github.io/img/1402667667616.png">
-<meta property="og:image" content="https://technologyblog.github.io/img/1402667709919.png">
-<meta property="og:image" content="https://technologyblog.github.io/img/1402667761686.png">
-<meta property="og:image" content="https://technologyblog.github.io/img/1402666306377.png">
-<meta property="og:image" content="https://technologyblog.github.io/img/1402666370959.png">
-<meta property="og:image" content="https://technologyblog.github.io/img/1402666520656.png">
-<meta property="og:image" content="https://technologyblog.github.io/img/1402666734641.png">
-<meta property="og:image" content="https://technologyblog.github.io/img/1402666874964.png">
-<meta property="og:image" content="https://technologyblog.github.io/img/1402666911972.png">
-<meta property="og:image" content="https://technologyblog.github.io/img/1402667810691.png">
+<meta property="og:image" content="http://www.datadriven.top/img/1402665034566.png">
+<meta property="og:image" content="http://www.datadriven.top/img/1402665183196.png">
+<meta property="og:image" content="http://www.datadriven.top/img/1402665269996.png">
+<meta property="og:image" content="http://www.datadriven.top/img/1402665319894.png">
+<meta property="og:image" content="http://www.datadriven.top/img/1402665355695.png">
+<meta property="og:image" content="http://www.datadriven.top/img/1402665589103.png">
+<meta property="og:image" content="http://www.datadriven.top/img/1402665596364.png">
+<meta property="og:image" content="http://www.datadriven.top/img/1402665627938.png">
+<meta property="og:image" content="http://www.datadriven.top/img/1402667574504.png">
+<meta property="og:image" content="http://www.datadriven.top/img/1402667667616.png">
+<meta property="og:image" content="http://www.datadriven.top/img/1402667709919.png">
+<meta property="og:image" content="http://www.datadriven.top/img/1402667761686.png">
+<meta property="og:image" content="http://www.datadriven.top/img/1402666306377.png">
+<meta property="og:image" content="http://www.datadriven.top/img/1402666370959.png">
+<meta property="og:image" content="http://www.datadriven.top/img/1402666520656.png">
+<meta property="og:image" content="http://www.datadriven.top/img/1402666734641.png">
+<meta property="og:image" content="http://www.datadriven.top/img/1402666874964.png">
+<meta property="og:image" content="http://www.datadriven.top/img/1402666911972.png">
+<meta property="og:image" content="http://www.datadriven.top/img/1402667810691.png">
 <meta property="og:updated_time" content="2018-11-13T13:50:55.843Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器学习15-3--独立成分分析ICA（Independent Component Analysis）">
 <meta name="twitter:description" content="#机器学习15-3--独立成分分析ICA（Independent Component Analysis）  每个人发出的信号\(s\)独立。且信号不能是高斯分布。 用于信号的分离（鸡尾酒宴会问题）。  ICA问题 鸡尾酒宴会问题 - n个人，n个麦克风。从n个麦克风得到一组数据：。其中：i 表示采样的时间顺序，也就是说共得到了 m 组采样，每一组采样都是 n 维的。 - 我们的目标是单单从这 m">
-<meta name="twitter:image" content="https://technologyblog.github.io/img/1402665034566.png">
+<meta name="twitter:image" content="http://www.datadriven.top/img/1402665034566.png">
 
 
 
@@ -144,7 +144,7 @@
 
 
 
-  <link rel="canonical" href="https://technologyblog.github.io/2014/06/13/机器学习15-3--独立成分分析ica（independent-component-analysis）/">
+  <link rel="canonical" href="http://www.datadriven.top/2014/06/13/机器学习15-3--独立成分分析ica（independent-component-analysis）/">
 
 
 
@@ -319,7 +319,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://technologyblog.github.io/2014/06/13/机器学习15-3--独立成分分析ica（independent-component-analysis）/">
+    <link itemprop="mainEntityOfPage" href="http://www.datadriven.top/2014/06/13/机器学习15-3--独立成分分析ica（independent-component-analysis）/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="DanielJyc">

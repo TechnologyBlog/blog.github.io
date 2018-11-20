@@ -83,23 +83,23 @@
 
 
 
-<meta name="description" content="抽时间将数据驱动的一些内容进行了总结，先整理下面五篇，后续将不断完善。  数据驱动应用（一）：整体概述 数据驱动应用（二）：架构设计 数据驱动应用（三）：数据服务 数据驱动应用（四）：数据决策 数据驱动应用（五）：基于时间序列数据的异常识别模型  概述 决策引擎主要目标是将业务决策逻辑从系统逻辑中抽离出来，使两种逻辑可以独立于彼此而变化，这样可以明显降低两种逻辑的维护成本。下面列举三种方案，然后分">
+<meta name="description" content="抽时间将数据驱动的一些内容进行了总结，先整理下面五篇，后续将不断完善。  数据驱动应用（一）：整体概述 数据驱动应用（二）：架构设计 数据驱动应用（三）：数据服务 数据驱动应用（四）：数据决策 数据驱动应用（五）：基于时间序列数据的异常识别模型   概述 决策引擎主要目标是将业务决策逻辑从系统逻辑中抽离出来，使两种逻辑可以独立于彼此而变化，这样可以明显降低两种逻辑的维护成本。下面列举三种方案，然">
 <meta name="keywords" content="数据驱动,数据决策,决策树">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据驱动应用（四）：数据决策">
 <meta property="og:url" content="http://www.datadriven.top/2018/11/20/DDA-数据驱动应用（四）：数据决策/index.html">
 <meta property="og:site_name" content="技术博客">
-<meta property="og:description" content="抽时间将数据驱动的一些内容进行了总结，先整理下面五篇，后续将不断完善。  数据驱动应用（一）：整体概述 数据驱动应用（二）：架构设计 数据驱动应用（三）：数据服务 数据驱动应用（四）：数据决策 数据驱动应用（五）：基于时间序列数据的异常识别模型  概述 决策引擎主要目标是将业务决策逻辑从系统逻辑中抽离出来，使两种逻辑可以独立于彼此而变化，这样可以明显降低两种逻辑的维护成本。下面列举三种方案，然后分">
+<meta property="og:description" content="抽时间将数据驱动的一些内容进行了总结，先整理下面五篇，后续将不断完善。  数据驱动应用（一）：整体概述 数据驱动应用（二）：架构设计 数据驱动应用（三）：数据服务 数据驱动应用（四）：数据决策 数据驱动应用（五）：基于时间序列数据的异常识别模型   概述 决策引擎主要目标是将业务决策逻辑从系统逻辑中抽离出来，使两种逻辑可以独立于彼此而变化，这样可以明显降低两种逻辑的维护成本。下面列举三种方案，然">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://www.datadriven.top/images/media/15423697053653/image-20181107174702180.png">
 <meta property="og:image" content="http://www.datadriven.top/images/media/15423697053653/image-20181107181546309.png">
 <meta property="og:image" content="http://www.datadriven.top/images/media/15423697053653/image-20181107192620073.png">
 <meta property="og:image" content="http://www.datadriven.top/images/media/15423697053653/image-20181107194934545.png">
 <meta property="og:image" content="http://www.datadriven.top/images/media/15423697053653/15174046686142.jpg">
-<meta property="og:updated_time" content="2018-11-20T14:42:41.825Z">
+<meta property="og:updated_time" content="2018-11-20T14:58:58.617Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据驱动应用（四）：数据决策">
-<meta name="twitter:description" content="抽时间将数据驱动的一些内容进行了总结，先整理下面五篇，后续将不断完善。  数据驱动应用（一）：整体概述 数据驱动应用（二）：架构设计 数据驱动应用（三）：数据服务 数据驱动应用（四）：数据决策 数据驱动应用（五）：基于时间序列数据的异常识别模型  概述 决策引擎主要目标是将业务决策逻辑从系统逻辑中抽离出来，使两种逻辑可以独立于彼此而变化，这样可以明显降低两种逻辑的维护成本。下面列举三种方案，然后分">
+<meta name="twitter:description" content="抽时间将数据驱动的一些内容进行了总结，先整理下面五篇，后续将不断完善。  数据驱动应用（一）：整体概述 数据驱动应用（二）：架构设计 数据驱动应用（三）：数据服务 数据驱动应用（四）：数据决策 数据驱动应用（五）：基于时间序列数据的异常识别模型   概述 决策引擎主要目标是将业务决策逻辑从系统逻辑中抽离出来，使两种逻辑可以独立于彼此而变化，这样可以明显降低两种逻辑的维护成本。下面列举三种方案，然">
 <meta name="twitter:image" content="http://www.datadriven.top/images/media/15423697053653/image-20181107174702180.png">
 
 
@@ -446,7 +446,8 @@
       
 
       
-        <p>抽时间将数据驱动的一些内容进行了总结，先整理下面五篇，后续将不断完善。</p>
+        <blockquote>
+<p>抽时间将数据驱动的一些内容进行了总结，先整理下面五篇，后续将不断完善。</p>
 <ul>
 <li><a href="https://www.datadriven.top/2018/11/20/DDA-数据驱动应用（一）：整体概述/">数据驱动应用（一）：整体概述</a></li>
 <li><a href="https://www.datadriven.top/2018/11/20/DDA-数据驱动应用（二）：架构设计/">数据驱动应用（二）：架构设计</a></li>
@@ -454,6 +455,7 @@
 <li><a href="https://www.datadriven.top/2018/11/20/DDA-数据驱动应用（四）：数据决策/">数据驱动应用（四）：数据决策</a></li>
 <li><a href="https://www.datadriven.top/2018/11/20/DDA-数据驱动应用（五）：基于时间序列数据的异常识别模型/">数据驱动应用（五）：基于时间序列数据的异常识别模型</a></li>
 </ul>
+</blockquote>
 <h2 id="概述">概述</h2>
 <p>决策引擎主要目标是将业务决策逻辑从系统逻辑中抽离出来，使两种逻辑可以独立于彼此而变化，这样可以明显降低两种逻辑的维护成本。下面列举三种方案，然后分析各自优缺点，从而确定本文的方案。</p>
 <h3 id="方案一硬编码实现方式">方案一：硬编码实现方式</h3>

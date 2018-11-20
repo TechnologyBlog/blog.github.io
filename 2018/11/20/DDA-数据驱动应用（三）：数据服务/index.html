@@ -83,13 +83,13 @@
 
 
 
-<meta name="description" content="抽时间将数据驱动的一些内容进行了总结，先整理下面五篇，后续将不断完善。  数据驱动应用（一）：整体概述 数据驱动应用（二）：架构设计 数据驱动应用（三）：数据服务 数据驱动应用（四）：数据决策 数据驱动应用（五）：基于时间序列数据的异常识别模型  概述 主要概念  数据服务(Data Service)：对异构数据源，基于有向无环图，提供异构数据的查询和推送能力。 指标：用于衡量事物发展程度的单位或">
+<meta name="description" content="抽时间将数据驱动的一些内容进行了总结，先整理下面五篇，后续将不断完善。  数据驱动应用（一）：整体概述 数据驱动应用（二）：架构设计 数据驱动应用（三）：数据服务 数据驱动应用（四）：数据决策 数据驱动应用（五）：基于时间序列数据的异常识别模型   概述 主要概念  数据服务(Data Service)：对异构数据源，基于有向无环图，提供异构数据的查询和推送能力。 指标：用于衡量事物发展程度的单">
 <meta name="keywords" content="数据驱动,数据服务,DAG">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据驱动应用（三）：数据服务">
 <meta property="og:url" content="http://www.datadriven.top/2018/11/20/DDA-数据驱动应用（三）：数据服务/index.html">
 <meta property="og:site_name" content="技术博客">
-<meta property="og:description" content="抽时间将数据驱动的一些内容进行了总结，先整理下面五篇，后续将不断完善。  数据驱动应用（一）：整体概述 数据驱动应用（二）：架构设计 数据驱动应用（三）：数据服务 数据驱动应用（四）：数据决策 数据驱动应用（五）：基于时间序列数据的异常识别模型  概述 主要概念  数据服务(Data Service)：对异构数据源，基于有向无环图，提供异构数据的查询和推送能力。 指标：用于衡量事物发展程度的单位或">
+<meta property="og:description" content="抽时间将数据驱动的一些内容进行了总结，先整理下面五篇，后续将不断完善。  数据驱动应用（一）：整体概述 数据驱动应用（二）：架构设计 数据驱动应用（三）：数据服务 数据驱动应用（四）：数据决策 数据驱动应用（五）：基于时间序列数据的异常识别模型   概述 主要概念  数据服务(Data Service)：对异构数据源，基于有向无环图，提供异构数据的查询和推送能力。 指标：用于衡量事物发展程度的单">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://www.datadriven.top/images/media/15423697054405/image-20181106201548669.png">
 <meta property="og:image" content="http://www.datadriven.top/images/media/15423697054405/image-20181106202720647.png">
@@ -104,10 +104,10 @@
 <meta property="og:image" content="http://www.datadriven.top/images/media/15423697054405/15248195495426.jpg">
 <meta property="og:image" content="http://www.datadriven.top/images/media/15423697054405/15248311695610.jpg">
 <meta property="og:image" content="http://www.datadriven.top/images/media/15423697054405/image-20181107155543474.png">
-<meta property="og:updated_time" content="2018-11-20T14:43:06.700Z">
+<meta property="og:updated_time" content="2018-11-20T14:58:47.837Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据驱动应用（三）：数据服务">
-<meta name="twitter:description" content="抽时间将数据驱动的一些内容进行了总结，先整理下面五篇，后续将不断完善。  数据驱动应用（一）：整体概述 数据驱动应用（二）：架构设计 数据驱动应用（三）：数据服务 数据驱动应用（四）：数据决策 数据驱动应用（五）：基于时间序列数据的异常识别模型  概述 主要概念  数据服务(Data Service)：对异构数据源，基于有向无环图，提供异构数据的查询和推送能力。 指标：用于衡量事物发展程度的单位或">
+<meta name="twitter:description" content="抽时间将数据驱动的一些内容进行了总结，先整理下面五篇，后续将不断完善。  数据驱动应用（一）：整体概述 数据驱动应用（二）：架构设计 数据驱动应用（三）：数据服务 数据驱动应用（四）：数据决策 数据驱动应用（五）：基于时间序列数据的异常识别模型   概述 主要概念  数据服务(Data Service)：对异构数据源，基于有向无环图，提供异构数据的查询和推送能力。 指标：用于衡量事物发展程度的单">
 <meta name="twitter:image" content="http://www.datadriven.top/images/media/15423697054405/image-20181106201548669.png">
 
 
@@ -454,7 +454,8 @@
       
 
       
-        <p>抽时间将数据驱动的一些内容进行了总结，先整理下面五篇，后续将不断完善。</p>
+        <blockquote>
+<p>抽时间将数据驱动的一些内容进行了总结，先整理下面五篇，后续将不断完善。</p>
 <ul>
 <li><a href="https://www.datadriven.top/2018/11/20/DDA-数据驱动应用（一）：整体概述/">数据驱动应用（一）：整体概述</a></li>
 <li><a href="https://www.datadriven.top/2018/11/20/DDA-数据驱动应用（二）：架构设计/">数据驱动应用（二）：架构设计</a></li>
@@ -462,6 +463,7 @@
 <li><a href="https://www.datadriven.top/2018/11/20/DDA-数据驱动应用（四）：数据决策/">数据驱动应用（四）：数据决策</a></li>
 <li><a href="https://www.datadriven.top/2018/11/20/DDA-数据驱动应用（五）：基于时间序列数据的异常识别模型/">数据驱动应用（五）：基于时间序列数据的异常识别模型</a></li>
 </ul>
+</blockquote>
 <h2 id="概述">概述</h2>
 <h3 id="主要概念">主要概念</h3>
 <ul>

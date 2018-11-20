@@ -83,23 +83,23 @@
 
 
 
-<meta name="description" content="抽时间将数据驱动的一些内容进行了总结，先整理下面五篇，后续将不断完善。  数据驱动应用（一）：整体概述 数据驱动应用（二）：架构设计 数据驱动应用（三）：数据服务 数据驱动应用（四）：数据决策 数据驱动应用（五）：基于时间序列数据的异常识别模型  整体概述 在本文中，我们采用整体到部分的分析思路。首先介绍大数据系统在整个公司架构中的位置，然后具体介绍大数据系统的架构实现，再次对大数据系统中的数据驱">
+<meta name="description" content="抽时间将数据驱动的一些内容进行了总结，先整理下面五篇，后续将不断完善。  数据驱动应用（一）：整体概述 数据驱动应用（二）：架构设计 数据驱动应用（三）：数据服务 数据驱动应用（四）：数据决策 数据驱动应用（五）：基于时间序列数据的异常识别模型   整体概述 在本文中，我们采用整体到部分的分析思路。首先介绍大数据系统在整个公司架构中的位置，然后具体介绍大数据系统的架构实现，再次对大数据系统中的数">
 <meta name="keywords" content="数据驱动,架构">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据驱动应用（二）：架构设计">
 <meta property="og:url" content="http://www.datadriven.top/2018/11/20/DDA-数据驱动应用（二）：架构设计/index.html">
 <meta property="og:site_name" content="技术博客">
-<meta property="og:description" content="抽时间将数据驱动的一些内容进行了总结，先整理下面五篇，后续将不断完善。  数据驱动应用（一）：整体概述 数据驱动应用（二）：架构设计 数据驱动应用（三）：数据服务 数据驱动应用（四）：数据决策 数据驱动应用（五）：基于时间序列数据的异常识别模型  整体概述 在本文中，我们采用整体到部分的分析思路。首先介绍大数据系统在整个公司架构中的位置，然后具体介绍大数据系统的架构实现，再次对大数据系统中的数据驱">
+<meta property="og:description" content="抽时间将数据驱动的一些内容进行了总结，先整理下面五篇，后续将不断完善。  数据驱动应用（一）：整体概述 数据驱动应用（二）：架构设计 数据驱动应用（三）：数据服务 数据驱动应用（四）：数据决策 数据驱动应用（五）：基于时间序列数据的异常识别模型   整体概述 在本文中，我们采用整体到部分的分析思路。首先介绍大数据系统在整个公司架构中的位置，然后具体介绍大数据系统的架构实现，再次对大数据系统中的数">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://www.datadriven.top/images/media/15423697053589/image-20181103180601858.png">
 <meta property="og:image" content="http://www.datadriven.top/images/media/15423697053589/image-20181103181134952.png">
 <meta property="og:image" content="http://www.datadriven.top/images/media/15423697053589/image-20181103181314458.png">
 <meta property="og:image" content="http://www.datadriven.top/images/media/15423697053589/image-20181103181723636.png">
 <meta property="og:image" content="http://www.datadriven.top/images/media/15423697053589/image-20181103181931158.png">
-<meta property="og:updated_time" content="2018-11-20T14:42:27.965Z">
+<meta property="og:updated_time" content="2018-11-20T14:58:51.790Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据驱动应用（二）：架构设计">
-<meta name="twitter:description" content="抽时间将数据驱动的一些内容进行了总结，先整理下面五篇，后续将不断完善。  数据驱动应用（一）：整体概述 数据驱动应用（二）：架构设计 数据驱动应用（三）：数据服务 数据驱动应用（四）：数据决策 数据驱动应用（五）：基于时间序列数据的异常识别模型  整体概述 在本文中，我们采用整体到部分的分析思路。首先介绍大数据系统在整个公司架构中的位置，然后具体介绍大数据系统的架构实现，再次对大数据系统中的数据驱">
+<meta name="twitter:description" content="抽时间将数据驱动的一些内容进行了总结，先整理下面五篇，后续将不断完善。  数据驱动应用（一）：整体概述 数据驱动应用（二）：架构设计 数据驱动应用（三）：数据服务 数据驱动应用（四）：数据决策 数据驱动应用（五）：基于时间序列数据的异常识别模型   整体概述 在本文中，我们采用整体到部分的分析思路。首先介绍大数据系统在整个公司架构中的位置，然后具体介绍大数据系统的架构实现，再次对大数据系统中的数">
 <meta name="twitter:image" content="http://www.datadriven.top/images/media/15423697053589/image-20181103180601858.png">
 
 
@@ -446,7 +446,8 @@
       
 
       
-        <p>抽时间将数据驱动的一些内容进行了总结，先整理下面五篇，后续将不断完善。</p>
+        <blockquote>
+<p>抽时间将数据驱动的一些内容进行了总结，先整理下面五篇，后续将不断完善。</p>
 <ul>
 <li><a href="https://www.datadriven.top/2018/11/20/DDA-数据驱动应用（一）：整体概述/">数据驱动应用（一）：整体概述</a></li>
 <li><a href="https://www.datadriven.top/2018/11/20/DDA-数据驱动应用（二）：架构设计/">数据驱动应用（二）：架构设计</a></li>
@@ -454,6 +455,7 @@
 <li><a href="https://www.datadriven.top/2018/11/20/DDA-数据驱动应用（四）：数据决策/">数据驱动应用（四）：数据决策</a></li>
 <li><a href="https://www.datadriven.top/2018/11/20/DDA-数据驱动应用（五）：基于时间序列数据的异常识别模型/">数据驱动应用（五）：基于时间序列数据的异常识别模型</a></li>
 </ul>
+</blockquote>
 <h2 id="整体概述">整体概述</h2>
 <p>在本文中，我们采用整体到部分的分析思路。首先介绍大数据系统在整个公司架构中的位置，然后具体介绍大数据系统的架构实现，再次对大数据系统中的数据驱动部分进行分析，最后对数据驱动中的各个部分依次概述。 ## 整体架构 首先，我们需要确定大数据系统在一个公司整体架构中的位置。为了方便分析，我们引入云计算中的四个概念来设计整体架构，包括：IaaS、PaaS、SaaS、DaaS。不同于云计算中服务的概念，本文主要使用这4个概念对整体架构进行粗略划分。如下图，各层依次为：</p>
 <ul>

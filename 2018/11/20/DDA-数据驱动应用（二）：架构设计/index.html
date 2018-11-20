@@ -1,0 +1,1493 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+<meta name="google-site-verification" content="xrvFo-xMhGUVW9MlINVghBe-xALQ7rRE3fePMwYEUZo">
+<meta name="baidu-site-verification" content="PjBALlzELE">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="数据驱动,架构,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="技术博客" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="DDA-数据驱动应用（二）：架构设计 整体概述 在本文中，我们采用整体到部分的分析思路。首先介绍大数据系统在整个公司架构中的位置，然后具体介绍大数据系统的架构实现，再次对大数据系统中的数据驱动部分进行分析，最后对数据驱动中的各个部分依次概述。 ## 整体架构 首先，我们需要确定大数据系统在一个公司整体架构中的位置。为了方便分析，我们引入云计算中的四个概念来设计整体架构，包括：IaaS、PaaS、S">
+<meta name="keywords" content="数据驱动,架构">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据驱动应用（二）：架构设计">
+<meta property="og:url" content="http://www.datadriven.top/2018/11/20/DDA-数据驱动应用（二）：架构设计/index.html">
+<meta property="og:site_name" content="技术博客">
+<meta property="og:description" content="DDA-数据驱动应用（二）：架构设计 整体概述 在本文中，我们采用整体到部分的分析思路。首先介绍大数据系统在整个公司架构中的位置，然后具体介绍大数据系统的架构实现，再次对大数据系统中的数据驱动部分进行分析，最后对数据驱动中的各个部分依次概述。 ## 整体架构 首先，我们需要确定大数据系统在一个公司整体架构中的位置。为了方便分析，我们引入云计算中的四个概念来设计整体架构，包括：IaaS、PaaS、S">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://www.datadriven.top/images/media/15423697053589/image-20181103180601858.png">
+<meta property="og:image" content="http://www.datadriven.top/images/media/15423697053589/image-20181103181134952.png">
+<meta property="og:image" content="http://www.datadriven.top/images/media/15423697053589/image-20181103181314458.png">
+<meta property="og:image" content="http://www.datadriven.top/images/media/15423697053589/image-20181103181723636.png">
+<meta property="og:image" content="http://www.datadriven.top/images/media/15423697053589/image-20181103181931158.png">
+<meta property="og:updated_time" content="2018-11-20T14:26:56.224Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数据驱动应用（二）：架构设计">
+<meta name="twitter:description" content="DDA-数据驱动应用（二）：架构设计 整体概述 在本文中，我们采用整体到部分的分析思路。首先介绍大数据系统在整个公司架构中的位置，然后具体介绍大数据系统的架构实现，再次对大数据系统中的数据驱动部分进行分析，最后对数据驱动中的各个部分依次概述。 ## 整体架构 首先，我们需要确定大数据系统在一个公司整体架构中的位置。为了方便分析，我们引入云计算中的四个概念来设计整体架构，包括：IaaS、PaaS、S">
+<meta name="twitter:image" content="http://www.datadriven.top/images/media/15423697053589/image-20181103180601858.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.datadriven.top/2018/11/20/DDA-数据驱动应用（二）：架构设计/">
+
+
+
+
+
+  <title>数据驱动应用（二）：架构设计 | 技术博客</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?416c0f5a580537e8280c2f78b135e762";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">技术博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.datadriven.top/2018/11/20/DDA-数据驱动应用（二）：架构设计/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="DanielJyc">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="技术博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">数据驱动应用（二）：架构设计</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-20T22:31:44+08:00">
+                2018-11-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/数据驱动/" itemprop="url" rel="index">
+                    <span itemprop="name">数据驱动</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/11/20/DDA-数据驱动应用（二）：架构设计/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/11/20/DDA-数据驱动应用（二）：架构设计/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/11/20/DDA-数据驱动应用（二）：架构设计/" class="leancloud_visitors" data-flag-title="数据驱动应用（二）：架构设计">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2.2k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  7
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="dda-数据驱动应用二架构设计">DDA-数据驱动应用（二）：架构设计</h1>
+<h2 id="整体概述">整体概述</h2>
+<p>在本文中，我们采用整体到部分的分析思路。首先介绍大数据系统在整个公司架构中的位置，然后具体介绍大数据系统的架构实现，再次对大数据系统中的数据驱动部分进行分析，最后对数据驱动中的各个部分依次概述。 ## 整体架构 首先，我们需要确定大数据系统在一个公司整体架构中的位置。为了方便分析，我们引入云计算中的四个概念来设计整体架构，包括：IaaS、PaaS、SaaS、DaaS。不同于云计算中服务的概念，本文主要使用这4个概念对整体架构进行粗略划分。如下图，各层依次为：</p>
+<ul>
+<li>IaaS：意思是基础设施即服务。主要包括虚拟机、网络、负载均衡等一些基础设施。</li>
+<li>PaaS：意思是平台即服务。主要包括限流、通讯（RPC/http）、消息组件、注册中心、安全组件、文件系统等平台类软件。</li>
+<li>SaaS：意思是软件即服务。主要是公司的业务应用，具有很强的领域特性。</li>
+<li>DaaS：意思是数据即服务。可以简单的理解为，大数据系统是DaaS的一种实现形式。这里我们将其分为五层，由下往上依次为：采集层、计算层、存储层、驱动层、应用层。</li>
+</ul>
+<figure>
+<img src="/images/media/15423697053589/image-20181103180601858.png" alt="image-20181103180601858"><figcaption>image-20181103180601858</figcaption>
+</figure>
+<h2 id="大数据系统架构">大数据系统架构</h2>
+<h3 id="架构分层设计">架构分层设计</h3>
+<p>如下图，结合上篇文章介绍的数据金字塔理论，得到如下分层。</p>
+<ul>
+<li>纵向分析：由下往上是一个逐步递进的关系，最上层数据量最小，但是为最有用的部分。大数据系统架构，主要从数据流的角度出发，将其分为：采集层、计算层、存储层、驱动层、应用层。</li>
+<li>横向分析：如图所示，通过颜色将金字塔理论和架构分层映射起来，渐进色表示涉及到了多层。
+<ul>
+<li>采集层：对应金字塔理论的“数据”。</li>
+<li>计算层和存储层：对应金字塔理论的“数据”、“信息”和“知识”。</li>
+</ul></li>
+<li>应用层和数据驱动应用层：对应金字塔理论的“知识”和“AI”。</li>
+</ul>
+<figure>
+<img src="/images/media/15423697053589/image-20181103181134952.png" alt="image-20181103181134952"><figcaption>image-20181103181134952</figcaption>
+</figure>
+<h3 id="架构设计">架构设计</h3>
+<p>如图所示，为大数据系统的架构图，主要分为采集层、计算层、存储层、驱动层、应用层5层。大数据系统根据采集的数据，使用实时计算和离线计算能力进行初步加工，然后，再利用规则、算法等能力赋能数据应用。</p>
+<figure>
+<img src="/images/media/15423697053589/image-20181103181314458.png" alt="image-20181103181314458"><figcaption>image-20181103181314458</figcaption>
+</figure>
+<h4 id="采集层">采集层</h4>
+<p>致力于全面、高性能、规范地完成海量数据的采集，并将其传输到计算层。被采集的数据种类包括：数据库数据和日志数据。</p>
+<ul>
+<li><strong>数据库数据</strong>：一般是采用T+1方式，离线同步到Hadoop。</li>
+<li><strong>日志数据</strong>：包括应用日志和系统日志，通过Flume采集日志，以Kafka消息的方式实时同步给Storm集群和Hadoop。</li>
+</ul>
+<h4 id="计算层">计算层</h4>
+<p>采集层得到的数据，将进入数据计算层中被进一步整合和计算。数据只有经过计算和整合，才能被用于洞察商业规律，挖掘潜在信息，从而实现大数据价值，达到赋能于商业和创造价值的目的。对于海量的数据，从数据计算频率来看，包括实时计算和离线计算两种方式。</p>
+<ul>
+<li><strong>实时计算</strong>：一般采用Storm、Spark等技术，提供秒级的计算能力。</li>
+<li><strong>离线计算</strong>：一般采用Hadoop技术。数据计算频率主要以天（还包括小时、周、月）为单位，比如T-1，则每天凌晨处理上一天的数据。接收kafka消息数据，计算的结果输出到存储层，或直接给驱动层。</li>
+</ul>
+<p>工具平台提供数据管理、开发和整合的方法体系。用来构建统一、规范和可共享的全域数据体系，避免数据冗余和重复计算，规避数据烟囱和不一致性。</p>
+<h4 id="存储层">存储层</h4>
+<p>该层主要用来存储计算层加工后的数据。</p>
+<ul>
+<li><strong>关系型DB</strong>：用来存储业务数据和元数据。</li>
+<li><strong>分析型DB</strong>：用来存储报表、多维查询类数据。一般RT较高，为百ms级别，甚至s级。</li>
+<li><strong>时序型DB</strong>：用来存储状态数据、时间序列数据。</li>
+<li><strong>消息</strong>：以推的方式将数据传输到上层。</li>
+<li><strong>KV数据库</strong>：实时计算的结果一般流出到Hbase，Hbase为分布式架构，方便扩容，从而做到容量大、QPS高、低RT。</li>
+<li><strong>API(Dubbo/Https)</strong>提供一些业务系统数据，或者公司外部数据。注：业务相关的DB，通过dubbo接口查询。</li>
+<li><strong>缓存数据</strong>：通过分布式缓存对数据查询进行加速。</li>
+</ul>
+<h4 id="数据驱动层">数据驱动层</h4>
+<p>该层主要是给数据应用层提供平台能力。包含3大部分：</p>
+<ul>
+<li><strong>数据服务</strong>：提供数据的查询和推送能力。</li>
+<li><strong>数据决策</strong>：提供数据的决策能力。</li>
+<li><strong>AI算法平台</strong>：特征提取、模型选择、参数校验、模型训练。</li>
+</ul>
+<h4 id="应用层">应用层</h4>
+<p>基于数据服务、数据决策和AI算法这些基础能力，创建数据驱动型的应用。</p>
+<h4 id="管控层">管控层</h4>
+<p>提供数据的管理能力、监控能力、运维能力等，包括：配置管控、数据治理、元数据管理、血缘关系管理、监控、运维等。</p>
+<h2 id="数据驱动的架构">数据驱动的架构</h2>
+<h3 id="数据驱动的思想和架构对应关系">数据驱动的思想和架构对应关系</h3>
+<p>上篇文章讲到了数据驱动的思想，现在将其对应到架构中，则对应数据驱动层和数据应用层。如下图，感知器即为数据服务模块；决策器为数据决策模块和AI算法模块；执行器为数据应用层。</p>
+<figure>
+<img src="/images/media/15423697053589/image-20181103181723636.png" alt="image-20181103181723636"><figcaption>image-20181103181723636</figcaption>
+</figure>
+<h3 id="数据驱动的架构-1">数据驱动的架构</h3>
+<p>下面对数据驱动的架构进行详细说明。下图是数据驱动的关键架构，也是我们要探讨的重点内容。</p>
+<figure>
+<img src="/images/media/15423697053589/image-20181103181931158.png" alt="image-20181103181931158"><figcaption>image-20181103181931158</figcaption>
+</figure>
+<h4 id="数据服务">数据服务</h4>
+<p>通过接入数据存储层的各种数据源，基于异构分布式数据库访问层DAG，实现了对异构数据源进行处理和聚合，主要提供简单数据查询复合、复杂数据查询服务和数据实时推送服务。该模块主要将能力输出给数据引用层，好比将眼睛有选择地看到一些事物，然后传输给大脑。</p>
+<h4 id="ai算法平台">AI算法平台</h4>
+<p>包括统计类算法、机器学习、深度学习、时间序列算法等。该模块接收存储层的数据进行离线训练得到所需算法模型，在对新数据进行预测。就好像大脑基于历史经历得到经验，经验即为模型。</p>
+<h4 id="数据决策">数据决策</h4>
+<p>基于规则引擎、动作、决策树，提供决策能力。同时，也可以使用算法平台的算法能力进行决策。好比大脑根据经验，做出决策结果。</p>
+<h4 id="数据应用层">数据应用层</h4>
+<p>对于多类数据应用，抽象出执行组件和状态管理两部分。基于这两类组件，可以构建出行领域、运营领域、风控领域、信用领域等应用。该层使用了数据驱动层的平台能力，可以方便的创建各类数据应用，让数据快速、方便、有效地发挥价值。该层负责将眼睛看到的新数据传输给大脑，得到大脑的决策结果后，再用手去执行。</p>
+<h4 id="数据管理">数据管理</h4>
+<p>对计算层、数据服务、数据决策、AI算法平台、数据应用层的配置进行管控。计算层包括Pipline、DSL、Transform、UDF等元数据；数据服务包括数据集配置和数据资产管理；算法平台包含算法相关配置；决策模块包括决策配置、规则配置、动作配置和算法配置；应用层包括各个应用的配置。</p>
+<h2 id="小结">小结</h2>
+<p>本文重点讲述了数据驱动的架构。在后面的文章中会依次介绍数据服务、数据决策、算法3部分的详细架构实现。对于数据采集层、数据计算层和数据存储层成熟方案已有很多，非本系列文章重点。</p>
+<h2 id="参考">参考</h2>
+<ul>
+<li>大数据之路——阿里巴巴大数据实践</li>
+<li><a href="https://wiki.mbalib.com/wiki/%E6%95%B0%E6%8D%AE%E5%8D%B3%E6%9C%8D%E5%8A%A1" target="_blank" rel="noopener">数据即服务(Data as a Service; DaaS)</a></li>
+<li><a href="https://bbs.sangfor.com.cn/forum.php?mod=viewthread&amp;tid=32598&amp;page=1" target="_blank" rel="noopener">云计算四层分——IaaS、PaaS、SaaS、DaaS</a></li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpeg" alt="DanielJyc 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpeg" alt="DanielJyc 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/数据驱动/" rel="tag"># 数据驱动</a>
+          
+            <a href="/tags/架构/" rel="tag"># 架构</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/11/09/DDA-数据驱动应用（五）：基于时间序列数据的异常识别模型/" rel="next" title="数据驱动应用（五）：基于时间序列数据的异常识别模型">
+                <i class="fa fa-chevron-left"></i> 数据驱动应用（五）：基于时间序列数据的异常识别模型
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/11/20/DDA-数据驱动应用（四）：数据决策/" rel="prev" title="数据驱动应用（四）：数据决策">
+                数据驱动应用（四）：数据决策 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="DanielJyc">
+            
+              <p class="site-author-name" itemprop="name">DanielJyc</p>
+              <p class="site-description motion-element" itemprop="description">数据驱动 Java 大数据 算法</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://danieljyc.github.io/" title="Danieljyc blog" target="_blank">Danieljyc blog</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#dda-数据驱动应用二架构设计"><span class="nav-number">1.</span> <span class="nav-text">DDA-数据驱动应用（二）：架构设计</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#整体概述"><span class="nav-number">1.1.</span> <span class="nav-text">整体概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#大数据系统架构"><span class="nav-number">1.2.</span> <span class="nav-text">大数据系统架构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#架构分层设计"><span class="nav-number">1.2.1.</span> <span class="nav-text">架构分层设计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#架构设计"><span class="nav-number">1.2.2.</span> <span class="nav-text">架构设计</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#采集层"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">采集层</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#计算层"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">计算层</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#存储层"><span class="nav-number">1.2.2.3.</span> <span class="nav-text">存储层</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据驱动层"><span class="nav-number">1.2.2.4.</span> <span class="nav-text">数据驱动层</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#应用层"><span class="nav-number">1.2.2.5.</span> <span class="nav-text">应用层</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#管控层"><span class="nav-number">1.2.2.6.</span> <span class="nav-text">管控层</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据驱动的架构"><span class="nav-number">1.3.</span> <span class="nav-text">数据驱动的架构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据驱动的思想和架构对应关系"><span class="nav-number">1.3.1.</span> <span class="nav-text">数据驱动的思想和架构对应关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据驱动的架构-1"><span class="nav-number">1.3.2.</span> <span class="nav-text">数据驱动的架构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#数据服务"><span class="nav-number">1.3.2.1.</span> <span class="nav-text">数据服务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ai算法平台"><span class="nav-number">1.3.2.2.</span> <span class="nav-text">AI算法平台</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据决策"><span class="nav-number">1.3.2.3.</span> <span class="nav-text">数据决策</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据应用层"><span class="nav-number">1.3.2.4.</span> <span class="nav-text">数据应用层</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据管理"><span class="nav-number">1.3.2.5.</span> <span class="nav-text">数据管理</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小结"><span class="nav-number">1.4.</span> <span class="nav-text">小结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">1.5.</span> <span class="nav-text">参考</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2014 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">DanielJyc</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">52.5k</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: window.location.pathname, 
+            owner: 'DanielJyc',
+            repo: 'gitment',
+            
+            lang: "zh-Hans" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: '807aa1205dbd6cf2f4cf1a56c5a05243d89f8f10',
+            
+                client_id: '8f44940851c869479ac9'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
+    
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("zYEWmF1a0i8uGTxvDClNekjd-gzGzoHsz", "STn158ECLfhmmqrEq5VEkRsb");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>

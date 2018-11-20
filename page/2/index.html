@@ -298,6 +298,1720 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.datadriven.top/2018/07/08/各公司智能运维-AIOPs架构分析和对比/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="DanielJyc">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="技术博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/07/08/各公司智能运维-AIOPs架构分析和对比/" itemprop="url">各公司智能运维 AIOPs架构分析和对比</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-08T20:35:06+08:00">
+                2018-07-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/数据驱动/" itemprop="url" rel="index">
+                    <span itemprop="name">数据驱动</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/07/08/各公司智能运维-AIOPs架构分析和对比/" class="leancloud_visitors" data-flag-title="各公司智能运维 AIOPs架构分析和对比">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  7.4k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  25
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="各公司智能运维-aiops架构分析和对比">各公司智能运维 AIOPs架构分析和对比</h1>
+<p>[TOC]</p>
+<h2 id="数据驱动的智能运维平台"><a href="https://mp.weixin.qq.com/s/mIB3fPME1MyO67wNQW74Lg" target="_blank" rel="noopener">数据驱动的智能运维平台</a> ★★★★★</h2>
+<h3 id="什么是aipos">什么是AIPOs</h3>
+<p>在定义 AIOps 时画了一张图，除了中间有机器学习、BigData、Platform 外，外层的内容就是监管控，这也就是做 AIOps 的目的。只不过是在做监管控时，要使用一些新的方式，以减轻运维的工作量。</p>
+<figure>
+<img src="/images/QQ20180703-164936.jpg" alt="QQ20180703-164936"><figcaption>QQ20180703-164936</figcaption>
+</figure>
+<h3 id="机器学习的运用算法分类">机器学习的运用算法分类</h3>
+<p>这个可以用来做系统设计的参考</p>
+<figure>
+<img src="/images/QQ20180703-163744.jpg" alt="QQ20180703-163744"><figcaption>QQ20180703-163744</figcaption>
+</figure>
+<h3 id="典型应用场景">典型应用场景</h3>
+<p>主要包含：时序预测、异常检测、模式聚类。</p>
+<h4 id="时序预测">时序预测</h4>
+<p>（eg：Holt-Winters），开源选择：</p>
+<figure>
+<img src="/images/QQ20180703-164402.jpg" alt="QQ20180703-164402"><figcaption>QQ20180703-164402</figcaption>
+</figure>
+<h4 id="异常检测">异常检测</h4>
+<p>分析思路：Basic 采用的是四分位方法，Agile 用的是 SARIMA 算法，Robust 用的是趋势分解，Adaptive 在我看起来，采用的是 sigma 标准差。如下图：</p>
+<figure>
+<img src="/images/QQ20180703-171236.jpg" alt="QQ20180703-171236"><figcaption>QQ20180703-171236</figcaption>
+</figure>
+<p>对于异常检测的开源库选择，有些是原子的，有些是组合的。Etsy 的 skyline 是比较高级的场景，里面带有数据存储、异常检测分析、告警等；Twitter、Netflix、Numenta 是纯粹的机器学习算法库，没有任何附加内容；Yahoo 的 egads 库可以算是异常检测的原子场景，比 Twitter 和 Netflix 层级稍高。开源选择：</p>
+<figure>
+<img src="/images/QQ20180703-172107.jpg" alt="QQ20180703-172107"><figcaption>QQ20180703-172107</figcaption>
+</figure>
+<p>另外这部分，还提到了很多场景案例的分析和对比。</p>
+<p>监控的目标需要直达业务结果，业务量下跌即为出现故障，虽然故障可能不是由于系统本身引起，但仍需要发现并定位该故障。如此将一个对业务的监控通过以下流程进行转换，首先对故障进行等级定义，<strong>对时间序列的业务指标监控，定位异常点，做出故障通告</strong>。</p>
+<h4 id="模式聚类">模式聚类</h4>
+<p>第一个，像 Num、Date、IP、ID 等都是运维 IT 日志里一定会出现的，但在关注模式时不会关注这些。因此，可以在开始就把这些信息替换，节省工作量。</p>
+<p>第二个是对齐，对齐也是耗资源的，如何减少对齐的时候强行匹配资源呢？可以开始先走一个距离极其小的聚类，这样每一类中的原始文本差异非常小。此时意味着第二步得到的最底层聚类去做对齐时，在这个类里的对齐耗损就会非常小，可以直接做模式发现。</p>
+<p>到第四步的时候，虽然还是聚类，但是消耗的资源已经非常少，因为给出的数据量已经很小，可以快速完成整个速度的迭代。</p>
+<figure>
+<img src="/images/QQ20180703-173508.jpg" alt="QQ20180703-173508"><figcaption>QQ20180703-173508</figcaption>
+</figure>
+<p>##《企业级 AIOps 实施建议》白皮书 ★★★★★</p>
+<p>AIOPs的白皮书，关键内容：</p>
+<h3 id="能力框架">能力框架</h3>
+<h4 id="学件抽象">学件抽象</h4>
+<p>学件，亦称 AI 运维组件，类似程序中的 API 或公共库，但 API 及公共库不含具体业务数据，只是某种算法，而 AI 运维组件（或称学件），则是在类似 API 的基础上，兼具对某个运维场景智能化解决的“记忆”能力，将处理这个场景的智能规则保存在了这个组件中。学件（Learnware）= 模型（ model ） + 规 约 （ specification ） ， 具 有 可 重 用 、 可 演 进 、 可 了 解 的 特 性 。</p>
+<p>学件类似于百度AIOPs的机器人，但是，角度不同，含义也不同。</p>
+<h4 id="能力分级">能力分级</h4>
+<figure>
+<img src="/images/QQ20180703-174341.jpg" alt="QQ20180703-174341"><figcaption>QQ20180703-174341</figcaption>
+</figure>
+<h4 id="整体架构">整体架构</h4>
+<figure>
+<img src="/images/QQ20180703-174440.jpg" alt="QQ20180703-174440"><figcaption>QQ20180703-174440</figcaption>
+</figure>
+<ul>
+<li>“可重用”的特性使得能够获取大量不同的样本；</li>
+<li>“可演进”的特性使得可以适应环境的变化；</li>
+<li>“可了解”的特性使得能有效地了解模型的能力。</li>
+</ul>
+<h4 id="关键运维场景和经历阶段">关键运维场景和经历阶段</h4>
+<p>见百度部分的场景图</p>
+<figure>
+<img src="/images/QQ20180705-142858.jpg" alt="QQ20180705-142858"><figcaption>QQ20180705-142858</figcaption>
+</figure>
+<h3 id="平台架构">平台架构</h3>
+<h4 id="整体功能架构模块">整体功能架构(模块)</h4>
+<figure>
+<img src="/images/QQ20180703-174801.jpg" alt="QQ20180703-174801"><figcaption>QQ20180703-174801</figcaption>
+</figure>
+<h4 id="ai部分架构">AI部分架构</h4>
+<figure>
+<img src="/images/QQ20180703-174949.jpg" alt="QQ20180703-174949"><figcaption>QQ20180703-174949</figcaption>
+</figure>
+<p>如上面的两张架构图，具体的工具或者产品应具备以下功能或模块：</p>
+<ul>
+<li><ol type="1">
+<li>交互式建模功能：该功能支持用户在平台上交互式的进行模型的开发调试，通过简单的方法配置完成模型的构建。<br>
+</li>
+</ol></li>
+<li><ol start="2" type="1">
+<li>算法库：用户可以在算法库中找到常见常用的算法直接使用，算法按照用途分类， 以供用户方便的使用。<br>
+</li>
+</ol></li>
+<li><ol start="3" type="1">
+<li>样本库：样本库用于管理用户的样本数据，供用户建模时使用，支持样本的增删改查等基本操作。<br>
+</li>
+</ol></li>
+<li><ol start="4" type="1">
+<li>数据准备：该功能支持用户对数据进行相关的预处理操作，包括关联、合并、分支路由、过滤等。<br>
+</li>
+</ol></li>
+<li><ol start="5" type="1">
+<li>灵活的计算逻辑表达：在基本常用的节点功能之外，用户还需要自由的表达一些计算逻辑，该需求主要是通过让用户写代码或表达式来支持。<br>
+</li>
+</ol></li>
+<li><ol start="6" type="1">
+<li>可扩展的底层框架支持：平台本身要能够灵活的支持和兼容多种算法框架引擎，如Spark、TensorFlow 等，以满足不同的场景以及用户的需求。<br>
+</li>
+</ol></li>
+<li><ol start="7" type="1">
+<li>数据分析探索：该功能是让用户能够方便快捷地了解认识自己的数据，用户只有基于对数据充分的认识与理解，才能很好的完成模型的构建。</li>
+</ol></li>
+<li><ol start="8" type="1">
+<li>模型评估：对模型的效果进行评估的功能，用户需要依据评估的结论对模型进行调整。</li>
+</ol></li>
+<li><ol start="9" type="1">
+<li>参数以及算法搜索：该功能能够自动快速的帮助用户搜索算法的参数，对比不同的算法，帮助用户选择合适的算法以及参数，辅助用户建模。</li>
+</ol></li>
+<li><ol start="10" type="1">
+<li>场景模型：平台针对特定场景沉淀的解决方案，这些场景都是通用常见的，用户可以借鉴参考相关的解决方案以快速的解决实际问题</li>
+</ol></li>
+<li><ol start="11" type="1">
+<li>实验报告：模型除了部署运行，相关挖掘出来的结论也要能够形成报告，以供用户导出或动态发布使用。</li>
+</ol></li>
+<li><ol start="12" type="1">
+<li>模型的版本管理：模型可能有对个不同的版本，线上运行的模型实例可能分属各个不同的版本，版本管理支持模型不同版本构建发布以及模型实例版本切换升级等。</li>
+</ol></li>
+<li><ol start="13" type="1">
+<li>模型部署应用：模型构建完成后需要发布应用，模型部署应用功能支持模型的实例化，以及相关计算任务的运行调度管理。</li>
+</ol></li>
+<li><ol start="14" type="1">
+<li>数据质量保障：全链路的数据监控，能够完整的掌控数据的整个生命周期，具备对丢失的数据执行回传补录的能力，保障数据的可用性。</li>
+</ol></li>
+</ul>
+<h3 id="aiops的团队角色">AIOPs的团队角色</h3>
+<figure>
+<img src="/images/QQ20180703-175610.jpg" alt="QQ20180703-175610"><figcaption>QQ20180703-175610</figcaption>
+</figure>
+<h3 id="常见场景和分类">常见场景和分类</h3>
+<p>效率提升、质量保障、成本管理。我们的重点在于质量管理，还有一部分的效率提升。</p>
+<figure>
+<img src="/images/QQ20180703-175704.jpg" alt="QQ20180703-175704"><figcaption>QQ20180703-175704</figcaption>
+</figure>
+<h3 id="个场景的五个阶段">3个场景的五个阶段</h3>
+<p>详见附件中的表格。</p>
+<h3 id="实施和关键技术">实施和关键技术</h3>
+<p>数据平台、需要用到的关键算法。—重点在于怎么对算法进行抽象，得到算法的公共层，从而各个垂直场景中都可以使用。</p>
+<figure>
+<img src="/images/QQ20180703-195515.jpg" alt="QQ20180703-195515"><figcaption>QQ20180703-195515</figcaption>
+</figure>
+<h3 id="应用案例">应用案例：</h3>
+<ul>
+<li>时间序列异常检测（腾讯）：有监督算法+无监督算法。</li>
+<li>根源告警（京东）</li>
+<li>单机房故障自愈（百度）：详见<code>调度</code>部分</li>
+</ul>
+<h3 id="面向-aiops-的算法技术">面向 AIOps 的算法技术</h3>
+<p>运维场景通常无法直接基于通用的机器学习算法以黑盒的方式解决，因此需要一些面向AIOps 的算法技术，作为解决具体运维场景的基础。有时一个算法技术还可用于支撑另外一个算法技术。 常见的面向 AIOps 的算法技术包括：</p>
+<ul>
+<li><ol type="1">
+<li>指标趋势预测：通过分析指标历史数据，判断未来一段时间指标趋势及预测值，常见有 <code>Holt-Winters</code>、时序数据分解、<code>ARIMA</code> 等算法。该算法技术可用于异常检测、容量预测、容量规划等场景。</li>
+</ol></li>
+<li><ol start="2" type="1">
+<li>指标聚类: 根据曲线的相似度把多个 KPI 聚成多个类别。该算法技术可以应用于大规模的指标异常检测：在同一指标类别里采用同样的异常检测算法及参数，大幅降低训练和检测开销。常见的算法有 <code>DBSCAN</code>, <code>K-medoids</code>, <code>CLARANS</code> 等，应用的挑战是数据量大，曲线模式复杂。</li>
+</ol></li>
+<li><ol start="3" type="1">
+<li>多指标联动关联挖掘: 多指标联动分析判断多个指标是否经常一起波动或增长。该算法技术可用于构建故障传播关系，从而应用于故障诊断。常见的算法有 <code>Pearson correlation</code>, <code>Spearman correlation</code>, <code>Kendall correlation</code> 等，应用的挑战为 KPI 种类繁多，关联关系复杂。</li>
+</ol></li>
+<li><ol start="4" type="1">
+<li>指标与事件关联挖掘: 自动挖掘文本数据中的事件与指标之间的关联关系（ 比如在程序 A 每次启动的时候 CPU 利用率就上一个台阶）。该算法技术可用于构建故障传播关系，从而应用于故障诊断。常见的算法有 <code>Pearson correlation</code>, <code>J-measure</code>, <code>Two-sample test</code> 等，应用的挑战为事件和 KPI 种类繁多，KPI 测量时间粒度过粗会导致判断相关、先后、单调关系困难。</li>
+</ol></li>
+<li><ol start="5" type="1">
+<li>事件与事件关联挖掘: 分析异常事件之间的关联关系，把历史上经常一起发生的事件关联在一起。该算法技术可用于构建故障传播关系，从而应用于故障诊断。常见的算法有 <code>FP-Growth</code>, <code>Apriori</code>，<code>随机森林</code>等，但前提是异常检测需要准确可靠。</li>
+</ol></li>
+<li><ol start="6" type="1">
+<li>故障传播关系挖掘：融合文本数据与指标数据，基于上述多指标联动关联挖掘、指标与事件关联挖掘、事件与事件关联挖掘等技术、由 tracing 推导出的模块调用关系图、辅以服务器与网络拓扑，构建组件之间的故障传播关系。该算法技术可以应用于故障诊断，其有效性主要取决于其基于的其它技术。</li>
+</ol></li>
+</ul>
+<h2 id="百度智能运维">百度智能运维 ★★★★★</h2>
+<p>参考：</p>
+<ul>
+<li>百度智能运维AIOPs技术沙龙关键PPT.pdf</li>
+<li><a href="https://mp.weixin.qq.com/s/mLDKcQpmRJI0gCpW1yEcNQ" target="_blank" rel="noopener">百度智能运维的技术演进之路</a></li>
+<li><a href="https://mp.weixin.qq.com/s/iq2-Y0QQCm6Z5cZ25_QKew" target="_blank" rel="noopener">百度智能运维 | 框架在手，AI我有</a></li>
+</ul>
+<h3 id="智能运维分级标准阶段">智能运维分级标准(阶段)</h3>
+<figure>
+<img src="/images/QQ20180703-203026.jpg" alt="QQ20180703-203026"><figcaption>QQ20180703-203026</figcaption>
+</figure>
+<h3 id="智能运维架构场景象限划分">智能运维架构——场景象限划分</h3>
+<p><code>高频 X 复杂</code></p>
+<figure>
+<img src="/images/image-20180702142018403.jpg" alt="image-20180702142018403"><figcaption>image-20180702142018403</figcaption>
+</figure>
+<h3 id="智能运维架构工程思想">智能运维架构——工程思想</h3>
+<figure>
+<img src="/images/image-20180702143030520.jpg" alt="image-20180702143030520"><figcaption>image-20180702143030520</figcaption>
+</figure>
+<h3 id="运维工程架构整体框架">运维工程架构——整体框架</h3>
+<figure>
+<img src="/images/image-20180702141741650.jpg" alt="image-20180702141741650"><figcaption>image-20180702141741650</figcaption>
+</figure>
+<h3 id="智能运维架构技术栈技术架构">智能运维架构——技术栈(技术架构)</h3>
+<figure>
+<img src="/images/image-20180702143355014.jpg" alt="image-20180702143355014"><figcaption>image-20180702143355014</figcaption>
+</figure>
+<h4 id="运维知识库运维数据">4.1 运维知识库（运维数据）</h4>
+<p>所有要处理的数据都来自知识库，以及所有处理后的数据也都会再进入到知识库中。知识库由三部分组成，分别是分为元数据(MetaDB)、状态数据(TSDB)和事件数据(EventDB)。持续的数据建设，是智能运维建设的关键。</p>
+<figure>
+<img src="/images/QQ20180703-202209.jpg" alt="QQ20180703-202209"><figcaption>QQ20180703-202209</figcaption>
+</figure>
+<h4 id="运维工程研发框架">4.2 运维工程研发框架</h4>
+<p>每个运维智能操作都可以分解成感知、决策、执行这样一个标准流程，这样一个流程叫做智能运维机器人。运维工程研发框架提供感知、决策、执行过程常用的组件，便于用户快速构建智能运维机器人。</p>
+<figure>
+<img src="/images/image-20180702144434325.jpg" alt="image-20180702144434325"><figcaption>image-20180702144434325</figcaption>
+</figure>
+<ul>
+<li><strong>1、感知方面，</strong>智能异常检测算法替代过去大量误报漏报的阈值检测方法；</li>
+<li><strong>2、决策方面，</strong>具备全局信息、自动决策的算法组件替代了过去“老中医会诊”的人工决策模式；</li>
+<li><strong>3、执行方面，</strong>状态机等执行长流程组件的加入，让执行过程可定位、可复用。</li>
+</ul>
+<figure>
+<img src="/images/image-20180627160312805.png" alt="image-20180627160312805"><figcaption>image-20180627160312805</figcaption>
+</figure>
+<ul>
+<li><p><strong>感知器是运维机器人的眼睛和耳朵。</strong>就像人有两个眼睛和两个耳朵一样。运维机器人也可以挂载多个感知器来获取不同事件源的消息，比如监控的指标数据或者是报警事件，变更事件这些，甚至可以是一个定时器。这些消息可以以推拉两种方式被感知器获取到。这些消息也可以做一定的聚合，达到阈值再触发后续处理。</p></li>
+<li><p><strong>决策器是运维机器人的大脑，</strong>所以为了保证决策的唯一，机器人有且只能有一个决策器。决策器也是使用者主要要扩展实现的部分。除了常见的逻辑判断规则之外，未来我们还会加入决策树等模型，让运维机器人自主控制决策路径。</p></li>
+<li><p><strong>执行器是运维机器人的手脚，</strong>所以同样的，执行器可以并行的执行多个不同的任务。执行器将运维长流程抽象成状态机和工作流两种模式。这样框架就可以记住当前的执行状态，如果运维机器人发生了故障迁移，还可以按照已经执行的状态让长流程断点续起。</p></li>
+</ul>
+<h4 id="运维开发框架">4.3 运维开发框架</h4>
+<figure>
+<img src="/images/QQ20180703-201909.jpg" alt="QQ20180703-201909"><figcaption>QQ20180703-201909</figcaption>
+</figure>
+<p>把线上环境看做一个黑盒服务，那么我们对它的操作无非读写两类:</p>
+<ul>
+<li>所谓的写也就是操作控制流，是那种要对线上状态做一些改变的操作，我们常说的部署、执行命令，都属于这一类；</li>
+<li>另一类是读，指的是数据流，也就是要从线上获取状态数据，并进行一些聚合统计之类的处理，我们常说的指标汇聚、异常检测、报警都在这个里面。</li>
+</ul>
+<p>通过运维知识库，可以在这两种操作的基础上，封装出多种不同的运维机器人，对业务提供高效率、高质量以及高可用方面的能力。</p>
+<h4 id="运维大脑">4.3 运维大脑</h4>
+<p>运维大脑包括异常检测和故障诊断，这两个部分的共同基础是基本的恒定阈值异常检测算法。恒定阈值异常检测算法利用多种概率模型估计数据的概率分布，并由此产生报警阈值。</p>
+<figure>
+<img src="/images/QQ20180704-100911.jpg" alt="QQ20180704-100911"><figcaption>QQ20180704-100911</figcaption>
+</figure>
+<h3 id="智能运维实践故障管理解决方案">智能运维实践——故障管理解决方案</h3>
+<p>故障预防 —&gt;故障发现 —&gt;故障自愈 —&gt;...<img src="/images/image-20180702150434675.jpg" alt="image-20180702150434675"></p>
+<h4 id="故障预防">5.1故障预防</h4>
+<p>自动拦截异常变更。 —现阶段我们主要是通过人工流程来预防。</p>
+<h4 id="故障发现">5.2 故障发现</h4>
+<p>算法自动选择：</p>
+<figure>
+<img src="/images/QQ20180704-101456.jpg" alt="QQ20180704-101456"><figcaption>QQ20180704-101456</figcaption>
+</figure>
+<h4 id="故障自愈">5.3 故障自愈</h4>
+<figure>
+<img src="/images/image-20180702203156159.jpg" alt="image-20180702203156159"><figcaption>image-20180702203156159</figcaption>
+</figure>
+<h2 id="百度异常检测">百度异常检测 ★★★★★</h2>
+<p>参考</p>
+<ul>
+<li><p>百度智能运维实践之异常检测.pdf</p></li>
+<li><p><a href="https://blog.csdn.net/g2v13ah/article/details/78474370" target="_blank" rel="noopener">异常检测：百度是这样做的</a></p></li>
+</ul>
+<h3 id="异常检测-1">异常检测</h3>
+<h4 id="流程">流程</h4>
+<figure>
+<img src="/images/image-20180627204634628.png" alt="image-20180627204634628"><figcaption>image-20180627204634628</figcaption>
+</figure>
+<h4 id="系统架构">系统架构</h4>
+<figure>
+<img src="/images/image-20180702113603340.png" alt="image-20180702113603340"><figcaption>image-20180702113603340</figcaption>
+</figure>
+<h4 id="恒定阈值算法">恒定阈值算法</h4>
+<p>累计恒定阈值 用来排除单点抖动。</p>
+<h4 id="突升突降算法">突升突降算法</h4>
+<p>r空间：引入周期内累计值</p>
+<h4 id="同比算法">同比算法</h4>
+<p>z空间：引入分布和数据标准化。 参考：<a href="https://blog.csdn.net/bbbeoy/article/details/70185798" target="_blank" rel="noopener">三种常用数据标准化方法</a></p>
+<h3 id="时序数据存储及计算职责">时序数据存储及计算职责</h3>
+<p>使用专门的时序型数据库。</p>
+<figure>
+<img src="/images/image-20180702110645458.png" alt="image-20180702110645458"><figcaption>image-20180702110645458</figcaption>
+</figure>
+<h4 id="聚合计算实现">聚合计算实现</h4>
+<p>支持场景聚合函数<code>sum/avg/...</code></p>
+<figure>
+<img src="/images/image-20180702112558001.png" alt="image-20180702112558001"><figcaption>image-20180702112558001</figcaption>
+</figure>
+<h4 id="二次计算实现">二次计算实现</h4>
+<figure>
+<img src="/images/image-20180702112434310.png" alt="image-20180702112434310"><figcaption>image-20180702112434310</figcaption>
+</figure>
+<h2 id="百度运维大数据存储平台设计与实践.pdf">百度运维大数据存储平台设计与实践.pdf ★★★★</h2>
+<p>重点分析了物理层的设计，包括：</p>
+<ul>
+<li>大规模时序数据的存储：层次存储结构：Hadoop--冷数据；Hbase—暖数据；Redis--热数据。</li>
+<li>海量运维事件数据存储；EventDB</li>
+<li>知识库（元数据管理）：系统架构如下图：</li>
+</ul>
+<figure>
+<img src="/images/image-20180702111933197.jpg" alt="image-20180702111933197"><figcaption>image-20180702111933197</figcaption>
+</figure>
+<h2 id="智能运维-单机房故障自愈收藏这一篇就够了"><a href="https://mp.weixin.qq.com/s/m5q8A-0-dHvV_dDFKov_0g" target="_blank" rel="noopener">智能运维 | 单机房故障自愈，收藏这一篇就够了</a> ★★★★★</h2>
+<h3 id="单机房故障止损的能力标准">单机房故障止损的能力标准</h3>
+<figure>
+<img src="/images/QQ20180703-203917.jpg" alt="QQ20180703-203917"><figcaption>QQ20180703-203917</figcaption>
+</figure>
+<h3 id="故障自愈的技术架构">故障自愈的技术架构</h3>
+<figure>
+<img src="/images/QQ20180703-203941.jpg" alt="QQ20180703-203941"><figcaption>QQ20180703-203941</figcaption>
+</figure>
+<h3 id="故障自愈的算法">故障自愈的算法</h3>
+<p><strong>基于容量水位的动态均衡</strong>（这个可能是BFE模型中的一部分）。智能IDC、专线路由都可以参考这个方案。</p>
+<ol type="1">
+<li>可以参考《企业级 AIOps 实施建议》白皮书中的 <code>案例3</code></li>
+</ol>
+<ul>
+<li><p><strong>基于容量水位的动态均衡</strong></p>
+<figure>
+<img src="/images/QQ20180703-204031.jpg" alt="QQ20180703-204031"><figcaption>QQ20180703-204031</figcaption>
+</figure></li>
+<li><p><strong>基于快速熔断的过载保护</strong></p></li>
+</ul>
+<p>在流量调度时，建立快速的熔断机制作为防止服务过载的最后屏障。一旦出现过载风险，则快速停止流量调度，降低次生故障发生的概率。</p>
+<ul>
+<li><strong>基于降级功能的过载保护</strong></li>
+</ul>
+<p>在流量调度前，如果已经出现对应机房的容量过载情况，则动态联动对应机房的降级功能，实现故障的恢复。</p>
+<h2 id="流量调度">流量调度 ★★★★★</h2>
+<p>参考：百度智能运维AIOPs技术沙龙关键PPT</p>
+<ol type="1">
+<li>流量调度部分：重点在于模型的定义。</li>
+</ol>
+<figure>
+<img src="/images/image-20180702204024368.jpg" alt="image-20180702204024368"><figcaption>image-20180702204024368</figcaption>
+</figure>
+<h2 id="外卖订单量预测异常报警模型实践"><a href="https://tech.meituan.com/order-holtwinter.html" target="_blank" rel="noopener">外卖订单量预测异常报警模型实践</a> ★★★★★</h2>
+<p>这篇介绍了Holt-Winters算法在订单异常检测中的应用。文章关键点在于： 1. 之前问过百度的智能运维，说曾经用过该算法，效果不是很好。但在该文章中效果看似还不错。其原因可能在，该文章对Holt-Winters算法进行了2种方式的精简和改进；这点值得借鉴。 2. 给出了异常检测模型，及模型内的各部件关系。 3. 给出了报警模型结构图。从该图可以看出，要实现整体过程，需要离线计算模块，这一块依赖于Hadoop，是我们还不具备的能力。</p>
+<h3 id="异常检测模型">异常检测模型</h3>
+<p>基于预测的异常检测模型如下图所示，<em>xt</em>是真实数据，通过预测器得到预测数据，然后<em>xt</em>和<em>pt</em>分别作为比较器的输入，最终得到输出<em>yt</em>。<em>yt</em>是一个二元值，可以用+1（+1表示输入数据正常），-1（-1表示输入数据异常）表示。</p>
+<figure>
+<img src="/images/QQ20180703-204703.jpg" alt="QQ20180703-204703"><figcaption>QQ20180703-204703</figcaption>
+</figure>
+<h3 id="预测器">预测器</h3>
+<figure>
+<img src="/images/QQ20180703-204909.jpg" alt="QQ20180703-204909"><figcaption>QQ20180703-204909</figcaption>
+</figure>
+<h3 id="比较器模型">比较器模型</h3>
+<figure>
+<img src="/images/QQ20180703-205017.jpg" alt="QQ20180703-205017"><figcaption>QQ20180703-205017</figcaption>
+</figure>
+<ul>
+<li><strong>离散度Filter</strong>：根据预测误差曲线离散程度过滤出可能的异常点。一个序列的方差表示该序列离散的程度，方差越大，表明该序列波动越大。如果一个预测误差序列方差比较大，那么我们认为预测误差的报警阈值相对大一些才比较合理。离散度Filter利用了这一特性，取连续15分钟的预测误差序列，分为首尾两个序列（e1,e2），如果两个序列的均值差大于e1序列方差的某个倍数，我们就认为该点可能是异常点。</li>
+<li><strong>阈值Filter</strong>：根据误差绝对值是否超过某个阈值过滤出可能的异常点。利用离散度Filter进行过滤时，报警阈值随着误差序列波动程度变大而变大，但是在输入数据比较小时，误差序列方差比较小，报警阈值也很小，容易出现误报。所以设计了根据误差绝对值进行过滤的阈值Filter。阈值Filter设计了一个分段阈值函数<em>y</em>=<em>f</em>(<em>x</em>)，对于实际值<em>x</em>和预测值<em>p</em>，只有当|<em>x</em>-<em>p</em>|&gt;<em>f</em>(<em>x</em>)时报警。实际使用中，可以寻找一个对数函数替换分段阈值函数，更易于参数调优。</li>
+</ul>
+<h3 id="异常预警模型整体结构图">异常预警模型整体结构图</h3>
+<p>最终的外卖订单异常报警模型结构图如图所示，每天会有定时Job从ETL中统计出最近10天的历史订单量，经过预处理模块，去除异常数据，经过周期数据计算模块得到周期性数据。对当前时刻预测时，取60分钟的真实数据和周期性数据，经过实时预测模块，预测出当前订单量。将连续15分钟的预测值和真实值通过比较器，判断当前时刻是否异常。</p>
+<figure>
+<img src="/images/QQ20180703-205152.jpg" alt="QQ20180703-205152"><figcaption>QQ20180703-205152</figcaption>
+</figure>
+<h2 id="阿里智能运维">阿里智能运维 ★★★★</h2>
+<h3 id="运维体系职责">运维体系职责</h3>
+<figure>
+<img src="/images/QQ20180704-154755.jpg" alt="QQ20180704-154755"><figcaption>QQ20180704-154755</figcaption>
+</figure>
+<blockquote>
+<p><strong>自动化是智能化的前提</strong>: 我认为智能化最重要的前提是自动化。如果你的系统还没有完成自动化的过程，我认为就不要去做智能化，你还在前面的阶段。智能化非常多的要求都是自动化，如果不够自动化，意味着后边看起来做了一个很好的智能化的算法等等，告诉别人我能给你很大的帮助，结果发现前面自动化过程还没有做完全。</p>
+</blockquote>
+<h3 id="阿里巴巴智能化运维五步走">阿里巴巴智能化运维五步走</h3>
+<p>在运维这五个领域，我们看到的一些可能性，包括我们正在做的事情。</p>
+<figure>
+<img src="/images/QQ20180704-155008.jpg" alt="QQ20180704-155008"><figcaption>QQ20180704-155008</figcaption>
+</figure>
+<ul>
+<li><strong>资源</strong>
+<ul>
+<li><strong>DC大脑，让控制更加智能化</strong>：谷歌的一篇文章，里面有一个消息透露，他们通过更好的智能化，去控制整个机房的智能等等。比如说控制空调的出口，就是风向往哪边吹，控制这个，然后为谷歌节省了非常多的钱，非常可观。</li>
+<li><strong>资源画像让资源更好搭配</strong></li>
+</ul></li>
+<li><strong>监控AI化</strong>
+<ul>
+<li><strong>智能报警</strong>：最火的领域。阿里在尝试的一个方向是让你不要去配，阿里根据分析来决定什么情况下需要报警。</li>
+<li><strong>异常检测直接影响到效率</strong>：很多公司都在做。</li>
+</ul></li>
+<li><strong>用智能化做好故障定位</strong></li>
+</ul>
+<h3 id="智能运维整体架构统一的大数据运营平台">智能运维整体架构——统一的大数据运营平台</h3>
+<figure>
+<img src="/images/QQ20180705-151848.jpg" alt="QQ20180705-151848"><figcaption>QQ20180705-151848</figcaption>
+</figure>
+<h3 id="智能运维异常检测算法架构">智能运维——异常检测算法架构</h3>
+<h4 id="整体算法框架">整体算法框架</h4>
+<p>整体算法框架如下图所示。</p>
+<ul>
+<li>首先对数据进行预处理，包括差值补缺和平滑去噪。</li>
+<li>然后基于优化后的时间序列分解Seanonal Trend LOESS方法进行基线拟合，滑动平均使曲线平滑。</li>
+<li>然后结合时间序列分析、机器学习以及特征工程中的各种方法，判断一个时间片段是否需要报警。
+<ul>
+<li>开始设计时并未确定该算法应采取哪些方法，而是被阿里巴巴各行业的业务、形态各异的数据以及判断标准训练出来的。它的优势在于对各行业的数据有较高的适配性，对非技术性的曲线波动有较强的抗干扰能力。</li>
+<li>此外，该算法会输出拟合的基线，并且内部系统中可以通过该基线提前100分钟预测趋势，当然距离越近的预测越准确，预测时会将历史波动和局部变化趋势都考虑在内，每个瞬间都会判断这个时刻是否需要报警。</li>
+</ul></li>
+<li>出现报警后，可以回溯到该报警的开始时间和结束时间。由此达到整体的报警功能。</li>
+</ul>
+<figure>
+<img src="/images/QQ20180704-174605.jpg" alt="QQ20180704-174605"><figcaption>QQ20180704-174605</figcaption>
+</figure>
+<h4 id="集群智能分析架构-异常分析">集群智能分析架构-异常分析</h4>
+<figure>
+<img src="/images/QQ20180705-152108.jpg" alt="QQ20180705-152108"><figcaption>QQ20180705-152108</figcaption>
+</figure>
+<h3 id="智能根因推荐">智能根因推荐</h3>
+<p>分析流程</p>
+<figure>
+<img src="/images/QQ20180704-175204.jpg" alt="QQ20180704-175204"><figcaption>QQ20180704-175204</figcaption>
+</figure>
+<h3 id="人工智能驱动大数据">人工智能驱动大数据</h3>
+<p>技术主要包含4部分：智能解决方案算法平台、 数据资产 管理平台、数据计算开发平台、数据采集管理平台。</p>
+<h4 id="算法平台架构">算法平台架构</h4>
+<p>人工智能解决方案算法平台架构：</p>
+<figure>
+<img src="/images/QQ20180704-162223.jpg" alt="QQ20180704-162223"><figcaption>QQ20180704-162223</figcaption>
+</figure>
+<h4 id="数据清洗层架构">数据清洗层架构</h4>
+<h5 id="整体结构">整体结构</h5>
+<p>下图中，模型层对各算法进行了抽象，分为：<strong>规则</strong>、<strong>异常检测算法</strong>、<strong>监督&amp;无监督算法</strong>、图算法等。</p>
+<figure>
+<img src="/images/QQ20180704-160916.jpg" alt="QQ20180704-160916"><figcaption>QQ20180704-160916</figcaption>
+</figure>
+<h4 id="自动化标签工厂架构">自动化标签工厂架构</h4>
+<p>流程：基础数据 --&gt; 特征 --&gt; 算法 --&gt; 质量评估</p>
+<figure>
+<img src="/images/QQ20180704-163658.jpg" alt="QQ20180704-163658"><figcaption>QQ20180704-163658</figcaption>
+</figure>
+<h3 id="参考">参考</h3>
+<ul>
+<li><a href="http://www.360doc.com/content/17/1105/10/34701069_701024221.shtml" target="_blank" rel="noopener">阿里毕玄：智能时代的新运维</a></li>
+<li><a href="https://yq.aliyun.com/articles/598336" target="_blank" rel="noopener">还不知道AIOps嘛？阿里这么火的智能运维，你不能不知道！</a></li>
+</ul>
+<h2 id="清华裴丹aiops落地路线图">清华裴丹:AIOps落地路线图 ★★★★</h2>
+<h3 id="整体流程">整体流程</h3>
+<ol type="1">
+<li><p><strong>AIOps引擎 中的“异常检测”模块在检测到异常之后可以将报警第一时间报给运维人员，达到“故障发现”的效果；</strong></p></li>
+<li><p><strong>“异常定位”模块达到“故障止损”的效果，它会给出一些止损的建议，</strong>运维专家看到这个定位之后也许他不知道根因，但是他知道怎么去根据已有的预案来进行止损，然后再执行自动化的脚本。如果是软件上线导致的问题我们回卷，如果业务不允许回卷就赶紧发布更新版本；如果是容量不够了，那我们动态扩容；如果部分软硬件出问题了，我们切换一下流量等等。</p></li>
+<li><p><strong>AIOps引擎中的“根因分析”模块会找出故障的根因，从而对其进行修复。</strong>如果根因是硬件出了问题，像慢性病一样的问题，那我们可以让我们的运维人员去修复。</p></li>
+<li><strong>同时，AIOps 引擎中的“异常预测模块”能够提前预测性能瓶颈、容量不足、故障等，从而实现“故障规避”。</strong>比如，如果我们预测出来了设备故障的话，那么可以更新设备；如果说我们发现性能上的瓶颈是代码导致的，那就交给研发人员去修改。</li>
+<li><p>核心的AIOps的引擎会积累一个知识库，从里边不断的学习。也就是说监控数据会给AIOps提供训练数据的基础，然后专家会反馈一部分专家知识，上图是我展望的AIOps大概的体系结构，这里面关键的一点是，我们还是离不开运维专家的。最终的止损、规避的决策、软件的代码修复以及设备的更换还是要靠人来做的，但是机器把绝大部分工作都做了，包括异常检测、异常定位、根因分析、异常预测。</p></li>
+</ol>
+<figure>
+<img src="/images/QQ20180704-191853.jpg" alt="QQ20180704-191853"><figcaption>QQ20180704-191853</figcaption>
+</figure>
+<h3 id="ai-擅长解决问题">AI 擅长解决问题</h3>
+<figure>
+<img src="/images/QQ20180704-192310.jpg" alt="QQ20180704-192310"><figcaption>QQ20180704-192310</figcaption>
+</figure>
+<h3 id="架构技术路线图">架构（技术路线图）</h3>
+<figure>
+<img src="/images/QQ20180704-192434.jpg" alt="QQ20180704-192434"><figcaption>QQ20180704-192434</figcaption>
+</figure>
+<h3 id="各类算法对比">各类算法对比</h3>
+<figure>
+<img src="/images/QQ20180705-113940.jpg" alt="QQ20180705-113940"><figcaption>QQ20180705-113940</figcaption>
+</figure>
+<h3 id="算法产品">算法产品</h3>
+<figure>
+<img src="/images/QQ20180705-112614.jpg" alt="QQ20180705-112614"><figcaption>QQ20180705-112614</figcaption>
+</figure>
+<h4 id="异常检测-2">异常检测</h4>
+<figure>
+<img src="/images/QQ20180704-192520.jpg" alt="QQ20180704-192520"><figcaption>QQ20180704-192520</figcaption>
+</figure>
+<h4 id="故障发现-1">故障发现</h4>
+<figure>
+<img src="/images/QQ20180704-192606.jpg" alt="QQ20180704-192606"><figcaption>QQ20180704-192606</figcaption>
+</figure>
+<h4 id="故障止损">故障止损</h4>
+<figure>
+<img src="/images/QQ20180704-192803.jpg" alt="QQ20180704-192803"><figcaption>QQ20180704-192803</figcaption>
+</figure>
+<h4 id="故障修复">故障修复</h4>
+<figure>
+<img src="/images/QQ20180704-192914.jpg" alt="QQ20180704-192914"><figcaption>QQ20180704-192914</figcaption>
+</figure>
+<h3 id="参考-1">参考</h3>
+<ul>
+<li><a href="https://www.jianshu.com/p/126288065148" target="_blank" rel="noopener">清华裴丹分享AIOps落地路线图，看智能运维如何落地生根</a></li>
+<li>6、裴丹-AIOps在传统行业的落地探索.pdf</li>
+</ul>
+<h2 id="腾讯aiops">腾讯AIOPs ★★★★★</h2>
+<h3 id="智能运维思路">智能运维思路</h3>
+<figure>
+<img src="/images/QQ20180705-144343.jpg" alt="QQ20180705-144343"><figcaption>QQ20180705-144343</figcaption>
+</figure>
+<h3 id="整体架构-1">整体架构</h3>
+<h3 id="运维平台整体架构">运维平台整体架构</h3>
+<figure>
+<img src="/images/QQ20180705-151143.jpg" alt="QQ20180705-151143"><figcaption>QQ20180705-151143</figcaption>
+</figure>
+<h4 id="技术架构">技术架构</h4>
+<figure>
+<img src="/images/QQ20180705-145301.jpg" alt="QQ20180705-145301"><figcaption>QQ20180705-145301</figcaption>
+</figure>
+<h4 id="服务构建">服务构建</h4>
+<figure>
+<img src="/images/QQ20180705-142230.jpg" alt="QQ20180705-142230"><figcaption>QQ20180705-142230</figcaption>
+</figure>
+<p>智能运营白皮书用于衡量智能化产品建设的水平，白皮书中定义了:</p>
+<ul>
+<li>三个阶段:半智能、浅智能、智能</li>
+<li>六项能力:感知、分析、决策、执行、呈现、干预</li>
+</ul>
+<h3 id="时间序列异常检测">时间序列异常检测</h3>
+<h4 id="类算法">3类算法</h4>
+<figure>
+<img src="/images/QQ20180705-150219.jpg" alt="QQ20180705-150219"><figcaption>QQ20180705-150219</figcaption>
+</figure>
+<h4 id="经典算法的使用场景armaarmaarima">经典算法的使用场景：AR/MA/ARMA/ARIMA</h4>
+<figure>
+<img src="/images/QQ20180705-144654.jpg" alt="QQ20180705-144654"><figcaption>QQ20180705-144654</figcaption>
+</figure>
+<h4 id="时间序列异常检测的技术框架">时间序列异常检测的技术框架</h4>
+<figure>
+<img src="/images/QQ20180705-145655.jpg" alt="QQ20180705-145655"><figcaption>QQ20180705-145655</figcaption>
+</figure>
+<h5 id="sigma算法和控制图算法的优缺点">3-Sigma算法和控制图算法的优缺点</h5>
+<figure>
+<img src="/images/QQ20180705-145900.jpg" alt="QQ20180705-145900"><figcaption>QQ20180705-145900</figcaption>
+</figure>
+<h5 id="无监督学习算法的优缺点">无监督学习算法的优缺点</h5>
+<h5 id="有监督算法">有监督算法</h5>
+<h3 id="告警收敛根源分析">告警收敛根源分析</h3>
+<figure>
+<img src="/images/QQ20180705-150747.jpg" alt="QQ20180705-150747"><figcaption>QQ20180705-150747</figcaption>
+</figure>
+<h3 id="参考-2">参考</h3>
+<ul>
+<li>3、涂彦-AIOps仅仅是异常检测么</li>
+<li>avila--腾讯运维的AI实践v_0.4.pdf ★★★★★</li>
+<li>max--复杂业务的自动化运维精髓V2.pdf</li>
+</ul>
+<h2 id="aiops">360 AIOps ★★★★</h2>
+<h3 id="时序序列算法">时序序列算法</h3>
+<h3 id="ewma指数加权移动平均">EWMA(指数加权移动平均)</h3>
+<figure>
+<img src="/images/QQ20180705-143453.jpg" alt="QQ20180705-143453"><figcaption>QQ20180705-143453</figcaption>
+</figure>
+<p>另外还有各种同环比等算法介绍</p>
+<h3 id="机器学习架构">机器学习架构</h3>
+<figure>
+<img src="/images/QQ20180705-143825.jpg" alt="QQ20180705-143825"><figcaption>QQ20180705-143825</figcaption>
+</figure>
+<p>机器学习算法选择</p>
+<figure>
+<img src="/images/QQ20180705-143924.jpg" alt="QQ20180705-143924"><figcaption>QQ20180705-143924</figcaption>
+</figure>
+<h3 id="参考-3">参考</h3>
+<ul>
+<li>4、谭学士-360 AIOps 亮剑网络运维</li>
+</ul>
+<h2 id="华为aiops实践">华为AIOps实践 ★★★★</h2>
+<h3 id="aiops现实中面临的痛点难点">AIOps现实中面临的痛点、难点</h3>
+<figure>
+<img src="/images/QQ20180705-154148.jpg" alt="QQ20180705-154148"><figcaption>QQ20180705-154148</figcaption>
+</figure>
+<h3 id="serverless环境中因果序列追踪">Serverless环境中因果序列追踪</h3>
+<p>需求:</p>
+<ul>
+<li><p>对Serverless API调用依赖关系、异常检测、响应时间等的监控和分析</p></li>
+<li><p>API的高频调用、临时性(使用时创建、空闲时销毁)等特性，调用链成为实</p>
+<p>时监控的重要手段</p></li>
+<li><p>函数trigger:提供日志事件触发函数调用的能力:1)能看到事件来源，便于跟 踪问题 2)供用户自定义功能扩展</p></li>
+</ul>
+<h3 id="多源数据的rca分析探索">多源数据的RCA分析探索</h3>
+<p>为什么说异常检测是AIOps的第一需求:</p>
+<ul>
+<li>有异常才需要操作(Ops)<br>
+</li>
+<li>理解什么是正常pattern</li>
+</ul>
+<h4 id="单一时序变量">单一时序变量</h4>
+<ul>
+<li>窗口法: sliding window, xxx window。手工配置大量参数(尤其是窗口大小)，平衡延迟和误报率，即延迟短误报率会高，延迟长误报率低 。</li>
+<li>ARIMA、EWMA)等算法</li>
+</ul>
+<h4 id="多个时序变量预测单一事件">多个时序变量预测单一事件</h4>
+<ul>
+<li>Hidden Markov Model ： 根据预设的事件依赖关系进行预测。 参数不多，计算量较小，每个节点 意义明确，但准确性非常依赖于预 设的Markov Chain</li>
+<li>Recurrent Neural Network, e.g. LSTM ：隐变量意义不明确，参数较多，计 算复杂度较大，比较难收敛</li>
+</ul>
+<h3 id="聚类算法实现网络包的blackbox分析">聚类算法实现网络包的Blackbox分析</h3>
+<ul>
+<li>Blackbox算法 ：计算因果路径，即不同业务的服务间调用路径。</li>
+<li>基于Hierarchical Clustering实现因果路径推导</li>
+</ul>
+<h3 id="参考-4">参考</h3>
+<ul>
+<li>1、华为-华为三位一体探索 AIOps 关键技术的实践.pdf</li>
+</ul>
+<h1 id="原理部分">原理部分</h1>
+<h2 id="holt-winters模型原理">Holt-Winters模型原理</h2>
+<ul>
+<li><a href="https://blog.csdn.net/u010665216/article/details/78051192?locationNum=11&amp;fps=1" target="_blank" rel="noopener">Holt-Winters模型原理分析及代码实现（python)</a> ★★★★</li>
+<li><a href="https://en.wikipedia.org/wiki/Exponential_smoothing" target="_blank" rel="noopener">Exponential smoothing</a> ★★★★</li>
+</ul>
+<p>这两篇文章，由浅入深，从原理上指出了，Holt-Winters为什么可以解决残差、趋势、周期的问题。</p>
+<h2 id="holt-winters-seasonal-method"><a href="https://www.otexts.org/fpp/7/5" target="_blank" rel="noopener">Holt-Winters seasonal method</a> ★★★</h2>
+<p>这篇文章介绍了原理，美团那篇文章中的公司参考的这里。同时，这里给出了仿真方式。</p>
+<h2 id="holt-winters原理和初始值的确定"><a href="https://www.cnblogs.com/xuanlvshu/p/5451974.html" target="_blank" rel="noopener">Holt-Winters原理和初始值的确定</a> ★★★</h2>
+<p>该文章介绍了参数的计算过程。同时给出来很多参考文献。</p>
+<h2 id="facebook-prophet的探索python语言"><a href="https://blog.csdn.net/wjskeepmaking/article/details/64905745" target="_blank" rel="noopener">facebook prophet的探索（python语言）</a></h2>
+<p>介绍了时序型的分析框架。提供了Python和R两种语言支持。</p>
+<ol type="1">
+<li>可以研究下是否可以拿来使用。</li>
+<li>吸收性该框架的思想，用到我们的设计中来。</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.datadriven.top/2018/07/08/TensorFlow快速入门示例/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="DanielJyc">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="技术博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/07/08/TensorFlow快速入门示例/" itemprop="url">TensorFlow快速入门示例</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-08T20:27:59+08:00">
+                2018-07-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/大数据/" itemprop="url" rel="index">
+                    <span itemprop="name">大数据</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/07/08/TensorFlow快速入门示例/" class="leancloud_visitors" data-flag-title="TensorFlow快速入门示例">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.2k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  6
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="设置程序">设置程序</h1>
+<h2 id="安装最新版本的-tensorflow">安装最新版本的 TensorFlow</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">!pip install -q --upgrade tensorflow</span><br></pre></td></tr></table></figure>
+<h2 id="配置导入和-eager-execution">配置导入和 Eager Execution</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> __future__ <span class="keyword">import</span> absolute_import, division, print_function</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"><span class="keyword">import</span> tensorflow.contrib.eager <span class="keyword">as</span> tfe</span><br><span class="line"></span><br><span class="line">tf.enable_eager_execution()</span><br><span class="line"></span><br><span class="line">print(<span class="string">"TensorFlow version: &#123;&#125;"</span>.format(tf.VERSION))</span><br><span class="line">print(<span class="string">"Eager execution: &#123;&#125;"</span>.format(tf.executing_eagerly()))</span><br></pre></td></tr></table></figure>
+<pre><code>TensorFlow version: 1.9.0-rc2
+Eager execution: True</code></pre>
+<h1 id="导入和解析训练数据集">导入和解析训练数据集</h1>
+<h2 id="下载数据集">下载数据集</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">train_dataset_url = <span class="string">"http://download.tensorflow.org/data/iris_training.csv"</span></span><br><span class="line"></span><br><span class="line">train_dataset_fp = tf.keras.utils.get_file(fname=os.path.basename(train_dataset_url),</span><br><span class="line">                                           origin=train_dataset_url)</span><br><span class="line"></span><br><span class="line">print(<span class="string">"Local copy of the dataset file: &#123;&#125;"</span>.format(train_dataset_fp))</span><br></pre></td></tr></table></figure>
+<pre><code>Downloading data from http://download.tensorflow.org/data/iris_training.csv
+8192/2194 [================================================================================================================] - 0s 0us/step
+Local copy of the dataset file: /content/.keras/datasets/iris_training.csv</code></pre>
+<h2 id="检查数据-使用-head--n5-命令查看前-5-个条目">检查数据: 使用 head -n5 命令查看前 5 个条目：</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">!head -n5 &#123;train_dataset_fp&#125;</span><br></pre></td></tr></table></figure>
+<pre><code>120,4,setosa,versicolor,virginica
+6.4,2.8,5.6,2.2,2
+5.0,2.3,3.3,1.0,1
+4.9,2.5,4.5,1.7,2
+4.9,3.1,1.5,0.1,0</code></pre>
+<h1 id="解析数据集">解析数据集</h1>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">parse_csv</span><span class="params">(line)</span>:</span></span><br><span class="line">  example_defaults = [[<span class="number">0.</span>], [<span class="number">0.</span>], [<span class="number">0.</span>], [<span class="number">0.</span>], [<span class="number">0</span>]]  <span class="comment"># sets field types</span></span><br><span class="line">  parsed_line = tf.decode_csv(line, example_defaults)</span><br><span class="line">  <span class="comment"># First 4 fields are features, combine into single tensor</span></span><br><span class="line">  features = tf.reshape(parsed_line[:<span class="number">-1</span>], shape=(<span class="number">4</span>,))</span><br><span class="line">  <span class="comment"># Last field is the label</span></span><br><span class="line">  label = tf.reshape(parsed_line[<span class="number">-1</span>], shape=())</span><br><span class="line">  <span class="keyword">return</span> features, label</span><br></pre></td></tr></table></figure>
+<h1 id="创建训练-tf.data.dataset">创建训练 tf.data.Dataset|</h1>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">train_dataset = tf.data.TextLineDataset(train_dataset_fp)</span><br><span class="line">train_dataset = train_dataset.skip(<span class="number">1</span>)             <span class="comment"># skip the first header row</span></span><br><span class="line">train_dataset = train_dataset.map(parse_csv)      <span class="comment"># parse each row</span></span><br><span class="line">train_dataset = train_dataset.shuffle(buffer_size=<span class="number">1000</span>)  <span class="comment"># randomize</span></span><br><span class="line">train_dataset = train_dataset.batch(<span class="number">32</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># View a single example entry from a batch</span></span><br><span class="line">features, label = iter(train_dataset).next()</span><br><span class="line">print(<span class="string">"example features:"</span>, features[<span class="number">0</span>])</span><br><span class="line">print(<span class="string">"example label:"</span>, label[<span class="number">0</span>])</span><br></pre></td></tr></table></figure>
+<pre><code>example features: tf.Tensor([5.8 2.7 4.1 1. ], shape=(4,), dtype=float32)
+example label: tf.Tensor(1, shape=(), dtype=int32)</code></pre>
+<h1 id="选择模型类型-使用-keras-创建模型">选择模型类型: 使用 Keras 创建模型</h1>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">model = tf.keras.Sequential([</span><br><span class="line">  tf.keras.layers.Dense(<span class="number">10</span>, activation=<span class="string">"relu"</span>, input_shape=(<span class="number">4</span>,)),  <span class="comment"># input shape required</span></span><br><span class="line">  tf.keras.layers.Dense(<span class="number">10</span>, activation=<span class="string">"relu"</span>),</span><br><span class="line">  tf.keras.layers.Dense(<span class="number">3</span>)</span><br><span class="line">])</span><br><span class="line">print( model)</span><br></pre></td></tr></table></figure>
+<pre><code>&lt;tensorflow.python.keras.engine.sequential.Sequential object at 0x7fa0842648d0&gt;</code></pre>
+<h1 id="训练模型">训练模型</h1>
+<h2 id="定义损失和梯度函数">定义损失和梯度函数</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">loss</span><span class="params">(model, x, y)</span>:</span></span><br><span class="line">  y_ = model(x)</span><br><span class="line">  <span class="keyword">return</span> tf.losses.sparse_softmax_cross_entropy(labels=y, logits=y_)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">grad</span><span class="params">(model, inputs, targets)</span>:</span></span><br><span class="line">  <span class="keyword">with</span> tf.GradientTape() <span class="keyword">as</span> tape:</span><br><span class="line">    loss_value = loss(model, inputs, targets)</span><br><span class="line">  <span class="keyword">return</span> tape.gradient(loss_value, model.variables)</span><br></pre></td></tr></table></figure>
+<h2 id="创建优化器">创建优化器</h2>
+<p>TensorFlow 拥有许多可用于训练的优化算法。此模型使用的是 tf.train.GradientDescentOptimizer，它可以实现随机梯度下降法 (SGD)。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">optimizer = tf.train.GradientDescentOptimizer(learning_rate=<span class="number">0.01</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="训练循环">训练循环</h2>
+<ol type="1">
+<li>迭代每个周期。通过一次数据集即为一个周期。</li>
+<li>在一个周期中，遍历训练 Dataset 中的每个样本，并获取样本的特征 (x) 和标签 (y)。</li>
+<li>根据样本的特征进行预测，并比较预测结果和标签。衡量预测结果的不准确性，并使用所得的值计算模型的损失和梯度。</li>
+<li>使用 optimizer 更新模型的变量。</li>
+<li>跟踪一些统计信息以进行可视化。</li>
+<li>对每个周期重复执行以上步骤。</li>
+</ol>
+<p>num_epochs 变量是遍历数据集集合的次数。与直觉恰恰相反的是，训练模型的时间越长，并不能保证模型就越好。</p>
+<p>num_epochs 是一个可以调整的超参数。选择正确的次数通常需要一定的经验和实验基础。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## Note: Rerunning this cell uses the same model variables</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># keep results for plotting</span></span><br><span class="line">train_loss_results = []</span><br><span class="line">train_accuracy_results = []</span><br><span class="line"></span><br><span class="line">num_epochs = <span class="number">201</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> epoch <span class="keyword">in</span> range(num_epochs):</span><br><span class="line">  epoch_loss_avg = tfe.metrics.Mean()</span><br><span class="line">  epoch_accuracy = tfe.metrics.Accuracy()</span><br><span class="line"></span><br><span class="line">  <span class="comment"># Training loop - using batches of 32</span></span><br><span class="line">  <span class="keyword">for</span> x, y <span class="keyword">in</span> train_dataset:</span><br><span class="line">    <span class="comment"># Optimize the model</span></span><br><span class="line">    grads = grad(model, x, y)</span><br><span class="line">    optimizer.apply_gradients(zip(grads, model.variables),</span><br><span class="line">                              global_step=tf.train.get_or_create_global_step())</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Track progress</span></span><br><span class="line">    epoch_loss_avg(loss(model, x, y))  <span class="comment"># add current batch loss</span></span><br><span class="line">    <span class="comment"># compare predicted label to actual label</span></span><br><span class="line">    epoch_accuracy(tf.argmax(model(x), axis=<span class="number">1</span>, output_type=tf.int32), y)</span><br><span class="line"></span><br><span class="line">  <span class="comment"># end epoch</span></span><br><span class="line">  train_loss_results.append(epoch_loss_avg.result())</span><br><span class="line">  train_accuracy_results.append(epoch_accuracy.result())</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> epoch % <span class="number">50</span> == <span class="number">0</span>:</span><br><span class="line">    print(<span class="string">"Epoch &#123;:03d&#125;: Loss: &#123;:.3f&#125;, Accuracy: &#123;:.3%&#125;"</span>.format(epoch,</span><br><span class="line">                                                                epoch_loss_avg.result(),</span><br><span class="line">                                                                epoch_accuracy.result()))</span><br></pre></td></tr></table></figure>
+<pre><code>Epoch 000: Loss: 1.433, Accuracy: 34.167%
+Epoch 050: Loss: 0.636, Accuracy: 70.000%
+Epoch 100: Loss: 0.417, Accuracy: 71.667%
+Epoch 150: Loss: 0.331, Accuracy: 87.500%
+Epoch 200: Loss: 0.239, Accuracy: 96.667%</code></pre>
+<h2 id="可视化损失函数随时间推移而变化的情况">可视化损失函数随时间推移而变化的情况</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">fig, axes = plt.subplots(<span class="number">2</span>, sharex=<span class="keyword">True</span>, figsize=(<span class="number">12</span>, <span class="number">8</span>))</span><br><span class="line">fig.suptitle(<span class="string">'Training Metrics'</span>)</span><br><span class="line"></span><br><span class="line">axes[<span class="number">0</span>].set_ylabel(<span class="string">"Loss"</span>, fontsize=<span class="number">14</span>)</span><br><span class="line">axes[<span class="number">0</span>].plot(train_loss_results)</span><br><span class="line"></span><br><span class="line">axes[<span class="number">1</span>].set_ylabel(<span class="string">"Accuracy"</span>, fontsize=<span class="number">14</span>)</span><br><span class="line">axes[<span class="number">1</span>].set_xlabel(<span class="string">"Epoch"</span>, fontsize=<span class="number">14</span>)</span><br><span class="line">axes[<span class="number">1</span>].plot(train_accuracy_results)</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="/images/TensorFlow入门示例_22_0.png"></p>
+<h1 id="评估模型的效果">评估模型的效果</h1>
+<h2 id="设置测试数据集">设置测试数据集</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">test_url = <span class="string">"http://download.tensorflow.org/data/iris_test.csv"</span></span><br><span class="line"></span><br><span class="line">test_fp = tf.keras.utils.get_file(fname=os.path.basename(test_url),</span><br><span class="line">                                  origin=test_url)</span><br><span class="line"></span><br><span class="line">test_dataset = tf.data.TextLineDataset(test_fp)</span><br><span class="line">test_dataset = test_dataset.skip(<span class="number">1</span>)             <span class="comment"># skip header row</span></span><br><span class="line">test_dataset = test_dataset.map(parse_csv)      <span class="comment"># parse each row with the funcition created earlier</span></span><br><span class="line">test_dataset = test_dataset.shuffle(<span class="number">1000</span>)       <span class="comment"># randomize</span></span><br><span class="line">test_dataset = test_dataset.batch(<span class="number">32</span>)           <span class="comment"># use the same batch size as the training set</span></span><br></pre></td></tr></table></figure>
+<pre><code>Downloading data from http://download.tensorflow.org/data/iris_test.csv
+8192/573 [============================================================================================================================================================================================================================================================================================================================================================================================================================================] - 0s 0us/step</code></pre>
+<h2 id="根据测试数据集评估模型">根据测试数据集评估模型</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">test_accuracy = tfe.metrics.Accuracy()</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (x, y) <span class="keyword">in</span> test_dataset:</span><br><span class="line">  prediction = tf.argmax(model(x), axis=<span class="number">1</span>, output_type=tf.int32)</span><br><span class="line">  test_accuracy(prediction, y)</span><br><span class="line"></span><br><span class="line">print(<span class="string">"Test set accuracy: &#123;:.3%&#125;"</span>.format(test_accuracy.result()))</span><br></pre></td></tr></table></figure>
+<pre><code>Test set accuracy: 96.667%</code></pre>
+<h1 id="使用经过训练的模型进行预测">使用经过训练的模型进行预测</h1>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">class_ids = [<span class="string">"Iris setosa"</span>, <span class="string">"Iris versicolor"</span>, <span class="string">"Iris virginica"</span>]</span><br><span class="line"></span><br><span class="line">predict_dataset = tf.convert_to_tensor([</span><br><span class="line">    [<span class="number">5.1</span>, <span class="number">3.3</span>, <span class="number">1.7</span>, <span class="number">0.5</span>,],</span><br><span class="line">    [<span class="number">5.9</span>, <span class="number">3.0</span>, <span class="number">4.2</span>, <span class="number">1.5</span>,],</span><br><span class="line">    [<span class="number">6.9</span>, <span class="number">3.1</span>, <span class="number">5.4</span>, <span class="number">2.1</span>]</span><br><span class="line">])</span><br><span class="line"></span><br><span class="line">predictions = model(predict_dataset)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i, logits <span class="keyword">in</span> enumerate(predictions):</span><br><span class="line">  class_idx = tf.argmax(logits).numpy()</span><br><span class="line">  name = class_ids[class_idx]</span><br><span class="line">  print(<span class="string">"Example &#123;&#125; prediction: &#123;&#125;"</span>.format(i, name))</span><br></pre></td></tr></table></figure>
+<pre><code>Example 0 prediction: Iris setosa
+Example 1 prediction: Iris versicolor
+Example 2 prediction: Iris virginica</code></pre>
+<h1 id="colab地址">colab地址</h1>
+<p>https://colab.research.google.com/drive/1iGHulgf_ioKl_GP_7_v8yTwwyfzP6KTR</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.datadriven.top/2018/04/11/以太坊白皮书笔记/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="DanielJyc">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="技术博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/04/11/以太坊白皮书笔记/" itemprop="url">以太坊白皮书笔记</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-11T15:06:25+08:00">
+                2018-04-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/大数据/" itemprop="url" rel="index">
+                    <span itemprop="name">大数据</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/04/11/以太坊白皮书笔记/" class="leancloud_visitors" data-flag-title="以太坊白皮书笔记">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  4.8k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  16
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="以太坊白皮书笔记">以太坊白皮书笔记</h1>
+<p>比特币的两个创新：</p>
+<ul>
+<li>一种去中心化的点对点的网上货币</li>
+<li>基于工作量证明的区块链概念使得人们可以就交易顺序达成共识。</li>
+</ul>
+<p>“智能合约”：</p>
+<ul>
+<li>根据事先任意制订的规则来自动转移数字资产的系统。</li>
+</ul>
+<p>以太坊的目标：</p>
+<ul>
+<li>就是提供一个带有内置的成熟的图灵完备语言的区块链，用这种语言可以创建合约来编码任意状态转换功能，用户只要简单地用几行代码来实现逻辑，就能够创建以上提及的所有系统以及许多我们还想象不到的的其它系统。从而，将区块链应用于货币以外的领域。</li>
+</ul>
+<h1 id="历史">历史</h1>
+<p>中本聪的创新是引入这样一个理念：将一个非常简单的基于节点的去中心化共识协议与工作量证明机制结合在一起。节点通过工作量证明机制获得参与到系统的权利，每十分钟将交易打包到“区块”中，从而创建出不断增长的区块链。</p>
+<h2 id="作为状态转换系统的比特币">作为状态转换系统的比特币</h2>
+<p>从技术角度讲，比特币账本可以被认为是一个状态转换系统，该系统包括所有现存的比特币所有权状态和“状态转换函数”。状态转换函数以当前状态和交易为输入，输出新的状态。</p>
+<p><img src="/images/15192743757568/15192753695524.jpg"></p>
+<ul>
+<li>UTXO:所有已经被挖出的、没有花费的比特币（技术上称为“未花费的交易输出，unspent transaction outputs)。每个UTXO都有一个面值和所有者。</li>
+<li>一笔交易：包括一个或多个输入和一个或多个输出。</li>
+<li>每个输入包含一个对现有UTXO的引用和由与所有者地址相对应的私钥创建的密码学签名。</li>
+<li>每个输出包含一个新的加入到状态中的UTXO。</li>
+</ul>
+<p>在比特币系统中，状态转换函数<code>APPLY(S,TX)-&gt;S’</code>大体上可以如下定义：</p>
+<ul>
+<li>交易的每个输入：
+<ul>
+<li>如果引用的UTXO不存在于现在的状态中（S），返回错误提示</li>
+<li>如果签名与UTXO所有者的签名不一致，返回错误提示</li>
+</ul></li>
+<li>如果所有的UTXO输入面值总额小于所有的UTXO输出面值总额，返回错误提示</li>
+<li>返回新状态<code>S’</code>,新状态S中移除了所有的输入UTXO，增加了所有的输出UTXO。</li>
+</ul>
+<h2 id="挖矿">挖矿</h2>
+<p><img src="/images/15192743757568/15197327486094.jpg"> 每个区块包含一个时间戳、一个随机数、一个对上一个区块的引用（即哈希）和上一区块生成以来发生的所有交易列表。</p>
+<ul>
+<li>区块验证算法,即“工作量证明”：</li>
+<li>防止攻击：利用交易顺序攻击时，在发生区块链分叉时，区块链长的分支被认为是诚实的区块链。</li>
+</ul>
+<h2 id="默克尔树">默克尔树</h2>
+<p><img src="/images/15192743757568/15197330359160.jpg"></p>
+<p>左：仅提供默克尔树（Merkle tree）上的少量节点已经足够给出分支的合法证明。 右：任何对于默克尔树的任何部分进行改变的尝试都会最终导致链上某处的不一致。</p>
+<ul>
+<li>默克尔树是一种二叉树，由一组叶节点、一组中间节点和一个根节点构成。最下面的大量的叶节点包含基础数据，每个中间节点是它的两个子节点的哈希，根节点也是由它的两个子节点的哈希，代表了默克尔树的顶部。</li>
+<li>默克尔树的目的是允许区块的数据可以零散地传送：节点可以从一个源下载区块头，从另外的源下载与其有关的树的其它部分，而依然能够确认所有的数据都是正确的。</li>
+</ul>
+<p>节点：</p>
+<ul>
+<li>轻节点”，它下载区块头，使用区块头确认工作量证明，然后只下载与其交易相关的默克尔树“分支”。</li>
+<li>全量节点：存储和处理所有区块的全部数据的节点。</li>
+</ul>
+<h2 id="其他区块链应用">其他区块链应用</h2>
+<p>去中心化共识技术的应用将会服从幂律分布，大多数的应用太小不足以保证自由区块链的安全，我们还注意到大量的去中心化应用，尤其是去中心化自治组织，需要进行应用之间的交互。</p>
+<h2 id="脚本">脚本</h2>
+<p>本质上，比特币系统允许不同的密码学货币进行去中心化的兑换。然而，比特币系统的脚本语言存在一些严重的限制：</p>
+<ul>
+<li>缺少图灵完备性：不支持循环语句。</li>
+<li>价值盲（Value-blindness）。UTXO脚本不能为账户的取款额度提供精细的的控制。</li>
+<li>缺少状态 – UTXO只能是已花费或者未花费状态，这就没有给需要任何其它内部状态的多阶段合约或者脚本留出生存空间。</li>
+<li>区块链盲（Blockchain-blindness）- UTXO看不到区块链的数据，例如随机数和上一个区块的哈希。这一缺陷剥夺了脚本语言所拥有的基于随机性的潜在价值，严重地限制了博彩等其它领域应用。</li>
+</ul>
+<h1 id="以太坊">以太坊</h1>
+<ul>
+<li>以太坊的目的是基于脚本、竞争币和链上元协议（on-chain meta-protocol）概念进行整合和提高，使得开发者能够创建任意的基于共识的、可扩展的、标准化的、特性完备的、易于开发的和协同的应用。</li>
+<li>以太坊通过建立终极的抽象的基础层-内置有图灵完备编程语言的区块链-使得任何人都能够创建合约和去中心化应用并在其中设立他们自由定义的所有权规则、交易方式和状态转换函数。</li>
+</ul>
+<h2 id="以太坊账户">以太坊账户</h2>
+<p>以太坊的账户包含四个部分：</p>
+<ul>
+<li>随机数，用于确定每笔交易只能被处理一次的计数器</li>
+<li>账户目前的以太币余额</li>
+<li>账户的合约代码，如果有的话</li>
+<li>账户的存储（默认为空）</li>
+</ul>
+<p>以太币（Ether）：</p>
+<ul>
+<li>是以太坊内部的主要加密燃料，用于支付交易费用。</li>
+</ul>
+<p>两类账户：外部所有的账户（由私钥控制的）和合约账户（由合约代码控制）。</p>
+<ul>
+<li>外部所有的账户没有代码，人们可以通过创建和签名一笔交易从一个外部账户发送消息。</li>
+<li>每当合约账户收到一条消息，合约内部的代码就会被激活，允许它对内部存储进行读取和写入，和发送其它消息或者创建合约。</li>
+</ul>
+<h2 id="消息和交易">消息和交易</h2>
+<p>以太坊的消息在某种程度上类似于比特币的交易，但是两者之间存在三点重要的不同。</p>
+<ul>
+<li>第一，以太坊的消息可以由外部实体或者合约创建，然而比特币的交易只能从外部创建。</li>
+<li>第二，以太坊消息可以选择包含数据。</li>
+<li>第三，如果以太坊消息的接受者是合约账户，可以选择进行回应，这意味着以太坊消息也包含函数概念。</li>
+</ul>
+<p>以太坊中“交易”是指存储从外部账户发出的消息的签名数据包。交易包含消息的接收者、用于确认发送者的签名、以太币账户余额、要发送的数据和两个被称为STARTGAS和GASPRICE的数值。</p>
+<ul>
+<li>STARTGAS就是限制，GASPRICE是每一计算步骤需要支付矿工的费用。</li>
+<li>创建合约有单独的交易类型和相应的消息类型；合约的地址是基于账号随机数和交易数据的哈希计算出来的。</li>
+</ul>
+<h2 id="以太坊状态转换函数">以太坊状态转换函数</h2>
+<p><img src="/images/15192743757568/15197350638427.jpg"> 以太坊的状态转换函数：<code>APPLY(S,TX) -&gt; S'</code>，可以定义如下：</p>
+<ul>
+<li>检查交易的格式是否正确（即有正确数值）、签名是否有效和随机数是否与发送者账户的随机数匹配。如否，返回错误。</li>
+<li>计算交易费用:fee=STARTGAS * GASPRICE，并从签名中确定发送者的地址。从发送者的账户中减去交易费用和增加发送者的随机数。如果账户余额不足，返回错误。</li>
+<li>设定初值GAS = STARTGAS，并根据交易中的字节数减去一定量的瓦斯值。</li>
+<li>从发送者的账户转移价值到接收者账户。如果接收账户还不存在，创建此账户。如果接收账户是一个合约，运行合约的代码，直到代码运行结束或者瓦斯用完。</li>
+<li>如果因为发送者账户没有足够的钱或者代码执行耗尽瓦斯导致价值转移失败，恢复原来的状态，但是还需要支付交易费用，交易费用加至矿工账户。</li>
+<li>否则，将所有剩余的瓦斯归还给发送者，消耗掉的瓦斯作为交易费用发送给矿工。</li>
+</ul>
+<h2 id="代码执行">代码执行</h2>
+<p>EVM代码（以太坊虚拟机代码）：使用低级的基于堆栈的字节码的语言写成。代码由一系列字节构成，每一个字节代表一种操作。操作可以访问三种存储数据的空间：</p>
+<ul>
+<li><strong>堆栈</strong>，一种后进先出的数据存储，32字节的数值可以入栈，出栈。</li>
+<li><strong>内存</strong>，可无限扩展的字节队列。</li>
+<li><strong>合约的长期存储</strong>，一个秘钥/数值的存储，其中秘钥和数值都是32字节大小，与计算结束即重置的堆栈和内存不同，存储内容将长期保持。</li>
+</ul>
+<h2 id="区块链和挖矿">区块链和挖矿</h2>
+<p><img src="/images/15192743757568/15197367362645.jpg"></p>
+<p>以太坊区块不仅包含交易记录和最近的状态，还包含区块序号和难度值。以太坊中的区块确认算法如下：</p>
+<ul>
+<li>检查区块引用的上一个区块是否存在和有效。</li>
+<li>检查区块的时间戳是否比引用的上一个区块大，而且小于15分钟。</li>
+<li>检查区块序号、难度值、 交易根，叔根和瓦斯限额（许多以太坊特有的底层概念）是否有效。</li>
+<li>检查区块的工作量证明是否有效。</li>
+<li>将<code>S[0]</code>赋值为上一个区块的<code>STATE_ROOT</code>。</li>
+<li>将TX赋值为区块的交易列表，一共有n笔交易。对于属于<code>0……n-1</code>的i，进行状态转换<code>S[i+1] = APPLY(S[i],TX[i])</code>。如果任何一个转换发生错误，或者程序执行到此处所花费的瓦斯（gas）超过了GASLIMIT，返回错误。</li>
+<li>用<code>S[n]</code>给<code>S_FINAL</code>赋值, 向矿工支付区块奖励。</li>
+<li>检查S-FINAL是否与<code>STATE_ROOT</code>相同。如果相同，区块是有效的。否则，区块是无效的。</li>
+</ul>
+<h1 id="应用">应用</h1>
+<p>三种应用:</p>
+<ul>
+<li>第一类是金融应用，为用户提供更强大的用他们的钱管理和参与合约的方法。包括子货币，金融衍生品，对冲合约，储蓄钱包，遗嘱，甚至一些种类的全面的雇佣合约。</li>
+<li>第二类是半金融应用，这里有钱的存在但也有很重的非金钱的方面，一个完美的例子是为解决计算问题而设的自我强制悬赏。</li>
+<li>还有在线投票和去中心化治理这样的完全的非金融应用。</li>
+</ul>
+<h2 id="令牌系统">令牌系统</h2>
+<p>链上令牌系统有很多应用，如美元或黄金等资产的子货币、公司股票、不可伪造的优惠券、积分奖励， 所有的货币或者令牌系统，从根本上来说是一个带有如下操作的数据库：从A中减去X单位并把X单位加到B上，前提条件是(1)A在交易之前有至少X单位以及(2)交易被A批准。实施一个令牌系统就是把这样一个逻辑实施到一个合约中去。</p>
+<h2 id="金融衍生品">金融衍生品</h2>
+<p>金融衍生品是“智能合约”的最普遍的应用，也是最易于用代码实现的之一。</p>
+<p>实现金融合约的主要挑战是它们中的大部分需要参照一个外部的价格发布器。最简单地方法是通过由某特定机构（例如纳斯达克）维护的“数据提供“合约进行，该合约的设计使得该机构能够根据需要更新合约，并提供一个接口使得其它合约能够通过发送一个消息给该合约以获取包含价格信息的回复。 ## 身份和信誉系统</p>
+<h2 id="去中心化文件存储">去中心化文件存储</h2>
+<p>以太坊合约允许去中心化存储生态的开发，这样用户通过将他们自己的硬盘或未用的网络空间租出去以获得少量收益，从而降低了文件存储的成本。当一个用户想重新下载他的文件，他可以使用微支付通道协议（例如每32k字节支付1萨博）恢复文件。</p>
+<h2 id="去中心化自治组织">去中心化自治组织</h2>
+<ul>
+<li>去中心化自治组织（<code>DAO</code>, decentralized autonomous organization）”的概念指的是一个拥有一定数量成员或股东的虚拟实体，依靠比如67%多数来决定花钱以及修改代码。</li>
+<li>中心化组织（DO）</li>
+<li>去中心化自治公司（DAC，decentralized autonomous corporation）</li>
+</ul>
+<h2 id="进一步的应用">进一步的应用</h2>
+<ul>
+<li>储蓄钱包。类似银行。</li>
+<li>作物保险</li>
+<li>一个去中心化的数据发布器。</li>
+<li>云计算。</li>
+<li><strong>点对点赌博。</strong></li>
+<li>预测市场。</li>
+</ul>
+<h1 id="杂项和关注">杂项和关注</h1>
+<h2 id="改进版幽灵协议的实施">改进版幽灵协议的实施</h2>
+<p>如果矿工A挖出了一个区块然后矿工B碰巧在A的区块扩散至B之前挖出了另外一个区块，矿工B的区块就会作废并且没有对网络安全作出贡献。此外，这里还有中心化问题：如果A是一个拥有全网30%算力的矿池而B拥有10%的算力，A将面临70%的时间都在产生作废区块的风险而B在90%的时间里都在产生作废区块。</p>
+<h2 id="费用">费用</h2>
+<p>比特币使用的默认方法是纯自愿的交易费用，依靠矿工担当守门人并设定动态的最低费用。因为这种方法是“基于市场的”，使得矿工和交易发送者能够按供需来决定价格，所以这种方法在比特币社区被很顺利地接受了。然而，这个逻辑的问题在于，交易处理并非一个市场；虽然根据直觉把交易处理解释成矿工给发送者提供的服务是很有吸引力的，但事实上一个矿工收录的交易是需要网络中每个节点处理的，所以交易处理中最大部分的成本是由第三方而不是决定是否收录交易的矿工承担的。于是，非常有可能发生公地悲剧。</p>
+<h2 id="计算和图灵完备">计算和图灵完备</h2>
+<p>以太坊虚拟机是图灵完备的。防止恶意循环：每一个交易设定运行执行的最大计算步数来解决问题，如果超过则计算被恢复原状但依然要支付费用。</p>
+<h2 id="货币和发行">货币和发行</h2>
+<p>发行模式如下：</p>
+<ul>
+<li>通过发售活动，以太币将以每BTC 1337-2000以太的价格发售，一个旨在为以太坊组织筹资并且为开发者支付报酬的机制已经在其它一些密码学货币平台上成功使用。早期购买者会享受较大的折扣，发售所得的BTC将完全用来支付开发者和研究者的工资和悬赏，以及投入密码学货币生态系统的项目。</li>
+<li>0.099x （x为发售总量）将被分配给BTC融资或其它的确定性融资成功之前参与开发的早期贡献者，另外一个0.099x将分配给长期研究项目。</li>
+<li>自上线时起每年都将有0.26x（x为发售总量）被矿工挖出。</li>
+</ul>
+<p>除了线性的发行方式外，和比特币一样以太币的的供应量增长率长期来看也趋于零。</p>
+<h2 id="挖矿的中心化">挖矿的中心化</h2>
+<ul>
+<li>以太坊使用一个基于为每1000个随机数随机产生唯一哈希的函数的挖矿算法，用足够宽的计算域，去除专用硬件的优势。</li>
+</ul>
+<h2 id="扩展性">扩展性</h2>
+<ul>
+<li>如果比特币网络处理Visa级的2000tps的交易，它将以每三秒1MB的速度增长（1GB每小时，8TB每年）。太坊全节点只需存储状态而不是完整的区块链，从而得到改善。</li>
+<li>因为基于区块链的挖矿算法，至少每个矿工会被迫成为一个全节点，这保证了一定数量的全节点。</li>
+</ul>
+<h1 id="综述去中心化应用">综述：去中心化应用</h1>
+<p>从“传统”网页的角度看来，这些网页是完全静态的内容，因为区块链和其它去中心化协议将完全代替服务器来处理用户发起的请求。</p>
+<h1 id="结论">结论</h1>
+<ul>
+<li>以太坊协议最初是作为一个通过高度通用的语言，提供链上契约、提现限制、金融合约、赌博市场等高级功能，作为升级版密码学货币。</li>
+<li>作为图灵完备编程语言，理论上任意的合约创建出来。</li>
+<li>以太坊协议比单纯的货币走得更远，可以创建金融和非金融应用。</li>
+<li>提供了一个具有独特潜力的平台</li>
+</ul>
+<h1 id="通俗理解">通俗理解</h1>
+<ol type="1">
+<li>是区块链的结构？区块链就是很多块数据的存储，形成链式结构。你可以这样理解，一个区块就是一个Word文件，每分钟产生一个Word文档；如果创世区块链式001.doc，第二分钟就是002.doc,后面依次产生下去003.doc 004.doc ... xxN.doc， 这就像链条一样，所以才叫区块链。总之一句话，每分钟产生的Word文档用链条连接起来，就是区块链。</li>
+<li>第二点就是，所有的文档存储在哪里？先说下，传统的金融行业，农业银行的系统，那就农行自己的机器上面。如果农行想修改的数据，可以随便修改。 这种情况，农行就是中心。区块链的存储是网上所有的挖矿机器上面， 任何人都没有权限修改你的数据，也就是Word文档的内容，任何人都不能修改。这也是为什么，区块链是去中心化的，没有中心，没有人能篡改。</li>
+<li>区块里面放了什么？ 每个Word文档里面放的就是这一分钟的交易信息。比如，我给你转账1个比特币，就放在当前分钟的Word文档里面。</li>
+<li>谁来把这些信息放到Word文档里面 矿工。 每个矿工（也就是计算机）都在抢打包交易信息去权限，抢到了就是挖到了矿，就会得到比特币的奖励。</li>
+</ol>
+<h1 id="参考文档">参考文档</h1>
+<ul>
+<li><a href="http://ethfans.org/wikis/以太坊白皮书" target="_blank" rel="noopener">以太坊白皮书</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.datadriven.top/2018/04/09/设计模式/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="DanielJyc">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="技术博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/04/09/设计模式/" itemprop="url">设计模式</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-09T20:30:41+08:00">
+                2018-04-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/研发技能/" itemprop="url" rel="index">
+                    <span itemprop="name">研发技能</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/04/09/设计模式/" class="leancloud_visitors" data-flag-title="设计模式">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2.1k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  7
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="代码重构">代码重构</h1>
+<h2 id="基础">基础</h2>
+<ul>
+<li>重构的定义:对软件内部结构的一种调整，目的是在不改变”软件之可察行为“前提下，提高其可理解性，降低其修改成本。</li>
+<li>重构的意义
+<ul>
+<li>优秀设计的根本是：消除重复部分！（DRY = Don’t repeat yourself）</li>
+<li>重构让代码更清晰，更容易理解</li>
+<li>清晰的代码可以更方便的找到bug，重构可以写出更强健的代码</li>
+<li>良好的设计可以在长远时间上提高开发速度</li>
+</ul></li>
+<li>什么时候重构
+<ul>
+<li>随时进行重构（在我看来，重构更是一种开发的习惯）</li>
+<li>事不过三，代码重复不要超过三次（否则就要”抽“出来）</li>
+<li>添加功能时候并一一重构（个人理解是，添加新功能之前，分析并重构，从而更方便添加新功能）</li>
+<li>修补错误时</li>
+<li>code review时</li>
+</ul></li>
+<li>重构与性能
+<ul>
+<li>重构确实会在短期内降低代码执行效率，但优化阶段是可以调整的，而且调整会更容易。</li>
+<li>提前优化是万恶之源</li>
+</ul></li>
+<li>从测试开始
+<ul>
+<li>无测试，无重构，只依赖手工测试，重构时候人会崩溃的。</li>
+<li>重构的保证就是自动化测试</li>
+</ul></li>
+</ul>
+<h2 id="避免事项">避免事项</h2>
+<ul>
+<li>重复的代码（这才是真正万恶之源，鄙视一切Ctrl+C/P）</li>
+<li>过长函数，会导致责任不明确/难以切割/难以理解等一系列问题</li>
+<li>过大类，职责不明确，垃圾滋生地</li>
+<li>过长参数列（面向对象不是说说而已）</li>
+<li>发散式变化，一个类会响应多种需求而被修改</li>
+<li>散弹式修改（其实就是没有封装变化处，由于一个需求，多处需要被修改）</li>
+<li>依赖情节（一个类对其他类过多的依赖）</li>
+<li>数据泥团（如果数据有意义，就将结构数据变成对象）</li>
+<li>type code，使用Class替代</li>
+<li>switch，少用，考虑多态</li>
+<li>过多平行的类，使用类继承并联起来</li>
+<li>冗余类，去除它</li>
+<li>夸夸其谈的未来性（Matin的文字，侯俊杰的翻译真是…出彩…）</li>
+<li>临时值域，封装它</li>
+<li>过度耦合的消息链，使用真正需要的函数和对象，而不要依赖于消息链</li>
+<li>过度的deleate</li>
+<li>过度使用其他类private值域</li>
+<li>重复作用的类</li>
+<li>不完美的类库，（类库老了，使用者也没办法阿）</li>
+<li>纯数据类（类需要行为）</li>
+<li>不纯粹的继承（拒绝父类的接口的类）</li>
+<li>过多注释，注释多了，就说明代码不清楚了</li>
+</ul>
+<h1 id="重构原则">重构原则</h1>
+<h2 id="函数重构规则">函数重构规则</h2>
+<ul>
+<li>Extract Method(提取函数)-------将大函数按模块拆分成几个小的函数</li>
+<li>Inline Method ---- 内联函数：将微不足道的小函数进行整合</li>
+<li>Introduce Explaining Variable---引入解释性变量：将复杂的表达式拆分成多个变量</li>
+<li>Remove Assignments to Parameters----移除对参数的赋值</li>
+<li>Replace Method with Method Object----以函数对象取代函数：一个函数如果参数过多，可抽为<code>类+函数+参数</code>。</li>
+</ul>
+<h2 id="类重构规则">类重构规则</h2>
+<ul>
+<li>Move Method----方法迁移：当类中的方法不适合放在当前类中时，就需要迁移。</li>
+<li>Move Field----搬移字段：当在一个类中的某一个字段，被另一个类的对象频繁使用时，我们就应该考虑将这个字段的位置进行更改了。</li>
+<li>Extract Class----提炼类：一个类如果过于复杂，做了好多的事情，违背了“单一职责”的原则，所以需要将其可以独立的模块进行拆分，当然有可能由一个类拆分出多个类。</li>
+<li>Introduce Foreign Method----引入外加函数：在不想或者不能修改原类的情况下，为该类添加新的方法。使用包装设计模式。</li>
+</ul>
+<h2 id="数据重构规则">数据重构规则</h2>
+<p>对数据重构是很有必要的，因为我们的程序主要是对数据进行处理。如果你的业务逻辑非常复杂，那么对数据进行合理的处理是很有必要的。对数据的组织形式以及操作进行重构，提高了代码的可维护性以及可扩展性。</p>
+<ul>
+<li>Self Encapsulate Field (自封装字段)：虽然字段对外是也隐藏的，但是还是有必要为其添加getter方法，在类的内部使用getter方法来代替self.field，该方式称为自封装字段，自己封装的字段，自己使用。</li>
+<li>Replace data Value with Object(以对象取代数据值)</li>
+<li>Change Value to Reference (将值对象改变成引用对象)</li>
+<li>Replace Array or Dictionary with Object(以对象取代数组或字典)：数据组合起来代表一定的意义，这是最好将其定义成一个实体类。</li>
+<li>Duplicate Observed Data(复制“被监测数据”)：即不要将业务代码和非业务代码糅合在一起。比如，不要再Integration层写业务代码。</li>
+<li>Change Unidirectional Association to Bidirectional(将单向关联改为双向关联)：Customer与Order的关系是单向关联的，也就是说Order引用了Customer, 而Customer没有引用Order。</li>
+<li>Encapsulate Field（封装字段)：public--&gt;private,再通过getter/setter操作。</li>
+<li>Encapsulate Collection（封装集合)：当你的类中有集合时，为了对该集合进行封装，你需要为集合创建相应的操作方法，例如增删改查等等。</li>
+<li>Replace Subclass with Fields（以字段取代子类)：当你的各个子类中唯一的差别只在“返回常量数据”的函数上。当遇到这种情况时，你就可以将这个返回的数据放到父类中，并在父类中创建相应的工厂方法，然后将子类删除即可。</li>
+</ul>
+<h2 id="条件表达式重构规则if-else">条件表达式重构规则(if-else)</h2>
+<p>有时候在实现比较复杂的业务逻辑时，各种条件各种嵌套。如果处理不好的话，代码看上去会非常的糟糕，而且业务逻辑看上去会非常混乱。通过一些重构规则来对条件表达式进行重构，可以让业务逻辑更为清晰，代码更以维护和扩展。</p>
+<ul>
+<li>Decompose Conditional(分解条件表达式)：经if后的复杂条件表达式进行提取，将其封装成函数。</li>
+<li>Consolidate Conditional Expression(合并条件表达式)：一些条件表达式后的语句体执行的代码块相同。</li>
+<li>Consolidate Duplicate Conditional Fragments(合并重复的条件片段)：if与else中的相同语句。</li>
+<li>Remove Control Flag(移除控制标记)：标记变量不易维护，不易理解。标记变量一般是可以使用其他语句进行替换的，可以使用break、return、continue等等，这个要根据具体情况而定。复杂的可以用状态机进行设计。</li>
+<li>Replace Nested Condition with Guard Clauses(以卫语句取代嵌套的条件)：尽量不要将if-else进行嵌套，因为嵌套的if-else确实不好理解。要去除上面的嵌套模式，我们可以将if后的条件进行翻转，根据具体需求再引入return、break、continue等卫语句。</li>
+<li>Replace Condition with Polymorphism(以多态取代条件表达式)：多态就是类的不同类型的对象有着不同的行为状态。当然，对多态再进一步包装，就是工厂设计模式。</li>
+</ul>
+<h2 id="继承关系重构规则">继承关系重构规则</h2>
+<ul>
+<li>Pull Up Field (字段上移) &amp; Pull Down Field (字段下移)
+<ul>
+<li>字段上移:两个子类中的相同字段，向上移动。</li>
+</ul></li>
+<li>Extract Subclass (提炼子类)：每个类的职责更为单一，即“单一职责”。</li>
+<li>Collapse Hierarchy (折叠继承关系)：与“提炼子类”规则相对应。就是当你的父类与子类差别不大时，我们就可以将子类与父类进行合并。</li>
+<li>Form Template Method (构造模板函数)：“模板”其实就是框架，没有具体的实现细节，只有固定不变的步骤，可以说模板不关心具体的细节。</li>
+<li>以委托取代继承（Replace Inheritance with Delegation）：子类只使用了父类的部分方法，而且没有继承或者部分继承了父类的数据。在这种情况下我们就可以将这种继承关系修改成委托的关系。具体做法就是修改这种继承关系，在原有子类中添加父类的对象字段，在子类中创建相应的方法，在方法中使用委托对象来调用原始父类中相应的方法。</li>
+</ul>
+<h1 id="参考">参考</h1>
+<ul>
+<li><a href="http://www.cnblogs.com/ludashi/category/792819.html" target="_blank" rel="noopener">代码重构</a></li>
+<li><a href="https://book.douban.com/subject/1229923/" target="_blank" rel="noopener">《重构：改善既有代码的设计》</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.datadriven.top/2018/02/11/mybatis-generator使用方式及实例/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -511,847 +2225,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.datadriven.top/2018/02/04/shell脚本使用和总结/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="DanielJyc">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="技术博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/02/04/shell脚本使用和总结/" itemprop="url">shell脚本使用和总结</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-04T22:23:38+08:00">
-                2018-02-04
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/工具/" itemprop="url" rel="index">
-                    <span itemprop="name">工具</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2018/02/04/shell脚本使用和总结/" class="leancloud_visitors" data-flag-title="shell脚本使用和总结">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  1.1k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  4
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="shell脚本使用和总结">shell脚本使用和总结</h1>
-<h2 id="hello-world">hello world</h2>
-<ul>
-<li>新建<code>test1.sh</code></li>
-<li>内容<code>echo Hello world!</code></li>
-</ul>
-<blockquote>
-<p>如果需要的话，赋予可执行权限<code>chmod +x test1.sh</code></p>
-</blockquote>
-<h2 id="执行指令">执行指令</h2>
-<p>可以在脚本中写入更多的命令，比如：启动app，编译、运行java文件，链接服务器等等；只要你能想到的，基本都可以。在此，我仅以一个简单的例子来说明：通过脚本编译运行一个java文件。</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /Users/daniel/Documents/tmp</span><br><span class="line">javac Test2.java</span><br><span class="line">java Test2</span><br></pre></td></tr></table></figure>
-<h2 id="匹配规则---的使用路径处理">匹配规则${}，##, %% , ：- ，：+， ？ 的使用（路径处理）</h2>
-<p>假设我们定义了一个变量为：<code>file=/dir1/dir2/dir3/my.file.txt</code></p>
-<ul>
-<li>1.可以用${ }分别替换得到不同的值：</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$&#123;file#*/&#125;：删掉第一个/ 及其左边的字符串：dir1/dir2/dir3/my.file.txt</span><br><span class="line">$&#123;file##*/&#125;：删掉最后一个/  及其左边的字符串：my.file.txt</span><br><span class="line">$&#123;file#*.&#125;：删掉第一个.  及其左边的字符串：file.txt</span><br><span class="line">$&#123;file##*.&#125;：删掉最后一个.  及其左边的字符串：txt</span><br><span class="line">$&#123;file%/*&#125;：删掉最后一个 /  及其右边的字符串：/dir1/dir2/dir3</span><br><span class="line">$&#123;file%%/*&#125;：删掉第一个/  及其右边的字符串：(空值)</span><br><span class="line">$&#123;file%.*&#125;：删掉最后一个 .  及其右边的字符串：/dir1/dir2/dir3/my.file</span><br><span class="line">$&#123;file%%.*&#125;：删掉第一个 .   及其右边的字符串：/dir1/dir2/dir3/my</span><br></pre></td></tr></table></figure>
-<ul>
-<li>2.记忆的方法为：</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 是 去掉左边（键盘上#在 $ 的左边）</span><br><span class="line">%是去掉右边（键盘上% 在$ 的右边）</span><br><span class="line">单一符号是最小匹配；两个符号是最大匹配</span><br><span class="line">$&#123;file:0:5&#125;：提取最左边的5 个字节：/dir1</span><br><span class="line">$&#123;file:5:5&#125;：提取第5 个字节右边的连续5个字节：/dir2</span><br><span class="line">也可以对变量值里的字符串作替换：</span><br><span class="line">$&#123;file/dir/path&#125;：将第一个dir 替换为path：/path1/dir2/dir3/my.file.txt</span><br><span class="line">$&#123;file//dir/path&#125;：将全部dir 替换为path：/path1/path2/path3/my.file.txt</span><br></pre></td></tr></table></figure>
-<ul>
-<li>3.利用${ } 还可针对不同的变数状态赋值(沒设定、空值、非空值)：</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$&#123;file-my.file.txt&#125; ：假如$file 沒有设定，則使用my.file.txt 作传回值。(空值及非空值時不作处理) </span><br><span class="line">$&#123;file:-my.file.txt&#125; ：假如$file 沒有設定或為空值，則使用my.file.txt 作傳回值。(非空值時不作处理)</span><br><span class="line">$&#123;file+my.file.txt&#125; ：假如$file 設為空值或非空值，均使用my.file.txt 作傳回值。(沒設定時不作处理)</span><br><span class="line">$&#123;file:+my.file.txt&#125; ：若$file 為非空值，則使用my.file.txt 作傳回值。(沒設定及空值時不作处理)</span><br><span class="line">$&#123;file=my.file.txt&#125; ：若$file 沒設定，則使用my.file.txt 作傳回值，同時將$file 賦值為my.file.txt 。(空值及非空值時不作处理)</span><br><span class="line">$&#123;file:=my.file.txt&#125; ：若$file 沒設定或為空值，則使用my.file.txt 作傳回值，同時將$file 賦值為my.file.txt 。(非空值時不作处理)</span><br><span class="line">$&#123;file?my.file.txt&#125; ：若$file 沒設定，則將my.file.txt 輸出至STDERR。(空值及非空值時不作处理)</span><br><span class="line"></span><br><span class="line">$&#123;file:?my.file.txt&#125; ：若$file 没设定或为空值，则将my.file.txt 输出至STDERR。(非空值時不作处理)</span><br><span class="line"></span><br><span class="line">$&#123;#var&#125; 可计算出变量值的长度：</span><br><span class="line"></span><br><span class="line">$&#123;#file&#125; 可得到27 ，因为/dir1/dir2/dir3/my.file.txt 是27个字节</span><br></pre></td></tr></table></figure>
-<h2 id="分割字符串">分割字符串</h2>
-<p>比如，要分割<code>test=&quot;aaa,bbb,cc cc,dd dd&quot;</code>，可以这样:</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1.分割</span></span><br><span class="line">OLD_IFS=<span class="string">"<span class="variable">$IFS</span>"</span> </span><br><span class="line">IFS=<span class="string">"-"</span> </span><br><span class="line">arr=(<span class="variable">$filename</span>) </span><br><span class="line">IFS=<span class="string">"<span class="variable">$OLD_IFS</span>"</span> </span><br><span class="line"></span><br><span class="line"><span class="comment"># 2.获取</span></span><br><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> <span class="variable">$arr</span>; <span class="keyword">do</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="variable">$x</span></span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$&#123;arr[0]&#125;</span></span><br></pre></td></tr></table></figure>
-<h2 id="实例">实例</h2>
-<p>取出照片，按照日期创建文件夹，并将文件放到指定文件夹中。</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> filePath <span class="keyword">in</span> /Users/***/DCIM/*.jpg; <span class="keyword">do</span></span><br><span class="line">	<span class="comment"># 1.获取文件名，eg: P70827-165946.jpg</span></span><br><span class="line">	filename=<span class="variable">$&#123;filePath##*/&#125;</span> </span><br><span class="line">	<span class="built_in">echo</span> <span class="variable">$&#123;filename&#125;</span></span><br><span class="line"></span><br><span class="line">	<span class="comment"># 2.获取日期标识部分P70827：从头开始取6位</span></span><br><span class="line">	dirName=<span class="string">"/Users/***/DCIM/"</span><span class="variable">$&#123;filename:0:6&#125;</span></span><br><span class="line">	<span class="built_in">echo</span> <span class="variable">$dirName</span><span class="string">"\n"</span></span><br><span class="line"></span><br><span class="line">	<span class="comment"># 3.根据日期创建文件夹</span></span><br><span class="line">	mkdir -p <span class="variable">$&#123;dirName&#125;</span> </span><br><span class="line"></span><br><span class="line">	<span class="comment"># 4.将文件移入该文件夹</span></span><br><span class="line">	mv  <span class="variable">$&#123;filePath&#125;</span>  <span class="variable">$&#123;dirName&#125;</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
-<h2 id="注意事项">注意事项</h2>
-<ul>
-<li>等号<code>=</code>两边不能有空格:空格对于linux的shell是一种很典型的分隔符，所以给变量赋值的时候中间不能够有空格。</li>
-</ul>
-<h1 id="参考文档">参考文档</h1>
-<ul>
-<li><a href="http://bbs.chinaunix.net/thread-4082007-1-1.html" target="_blank" rel="noopener">求助linux下批量建立文件夹和移动文件</a></li>
-<li><a href="http://www.runoob.com/linux/linux-shell.html" target="_blank" rel="noopener">Shell 教程</a></li>
-<li><a href="https://www.cnblogs.com/kaituorensheng/archive/2012/12/19/2825376.html" target="_blank" rel="noopener">shell编程--遍历目录下的文件</a></li>
-<li><a href="https://www.douban.com/note/498011007/?type=rec" target="_blank" rel="noopener">shell中的${}，##和%%的使用</a></li>
-<li><a href="https://www.cnblogs.com/gaochsh/p/6901809.html" target="_blank" rel="noopener">linux shell 字符串操作详解 （长度，读取，替换，截取，连接，对比，删除，位置 ）</a></li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.datadriven.top/2018/02/03/表达式引擎性能比较/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="DanielJyc">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="技术博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/02/03/表达式引擎性能比较/" itemprop="url">表达式引擎性能比较</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-03T17:19:00+08:00">
-                2018-02-03
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/研发技能/" itemprop="url" rel="index">
-                    <span itemprop="name">研发技能</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2018/02/03/表达式引擎性能比较/" class="leancloud_visitors" data-flag-title="表达式引擎性能比较">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  934
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  4
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="表达式引擎性能比较">表达式引擎性能比较</h1>
-<h2 id="表达式引擎选型">表达式引擎选型</h2>
-<p>选择3种主要的表达式引擎进行性能对比，从而选择最优表达式引擎和最优方案。常用的3中规则引擎：QLExpress、MEVL、JUEL。</p>
-<h2 id="性能测试">性能测试</h2>
-<p>性能测试维度：</p>
-<ul>
-<li>表达式引擎维度：主要采用了3种引擎的5种实现方式，即<code>QLExpress 使用缓存</code>; <code>mvel 不编译</code>; <code>mvel 先编译</code>; <code>mvel 先编译，且指定输入值类型</code>; <code>juel 指定输入值类型</code>。注：<code>QLExpress 不使用缓存</code>的话，性能非常低，就不再进行对比测试。</li>
-<li>表达式维度：主要采用了3种类型的表达式，后续的大多数需求，都属于这3种方式。即：
-<ul>
-<li>最常见的场景（多个条件进行and操作）： <code>a&lt;100 &amp;&amp; b&gt;=100 &amp;&amp; c&lt;=123</code>,</li>
-<li>包含特殊的操作（contains）：<code>a&lt;100 &amp;&amp; b&gt;=100 &amp;&amp; c&lt;=123 &amp;&amp; stringList.contains(str)</code></li>
-<li>一个稍微复杂一点的语法树：<code>a&gt;1 &amp;&amp; ((b&gt;1 || c&lt;1) || (a&gt;1 &amp;&amp; b&lt;1 &amp;&amp; c&gt;1))</code></li>
-</ul></li>
-</ul>
-<h2 id="测试方式">测试方式</h2>
-<p>10次循环，每次循环执行这5种方式10万次，即每种方式执行100万次。为了保证一定的差异性，变量赋值的时候，采用变化的值。代码详见附录。</p>
-<p>执行结果：</p>
-<p>对结果进行可视化，很显然<code>Mvel不编译</code>方式耗时最高。</p>
-<p><img src="/images/15172803326811/15176458278896.jpg"></p>
-<p>为了方便查看，将<code>Mvel不编译</code>方式过滤掉，得到下图。得到以下结论：</p>
-<ul>
-<li>性能高低顺序为：<code>mvel 先编译，且指定输入值类型</code> &gt; <code>mvel 先编译</code> &gt; <code>juel 指定输入值类型</code> &gt; <code>QLExpress 使用缓存</code> &gt; <code>mvel 不编译</code>。</li>
-<li><code>juel 指定输入值类型</code>性能也可以接受，但是在使用了<code>contains</code>操作后，性能明显降低很多。</li>
-</ul>
-<p><img src="/images/15172803326811/15176457169158.jpg"></p>
-<h2 id="结论">结论</h2>
-<p><code>mvel 先编译，且指定输入值类型</code>方式性能为最优，采用该方式作为表达式引擎的实现方式。但是，采用自己实现一层缓存：用来缓存预编译的结果，同时，采用2小时无访问，则更新缓存的策略。缓存使用Guava Cache实现。</p>
-<blockquote>
-<p>注： 1. QLExpress自身实现了缓存机制，如果性能要求没那么高的话，也可以采用该方式。 2. 如果规则非常多，比如到了亿级别的规模，并且基本不复用规则的话，就没有必要先编译并缓存了。或者调整缓存策略。</p>
-</blockquote>
-<h1 id="附录">附录</h1>
-<h2 id="机器配置">机器配置</h2>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">MacBook Pro (13-inch, 2017, Two Thunderbolt 3 ports)</span><br><span class="line">处理器 2.3 GHz Intel Core i5</span><br><span class="line">内存 8 GB 2133 MHz LPDDR3</span><br><span class="line">图形卡 Intel Iris Plus Graphics 640 1536 MB</span><br></pre></td></tr></table></figure>
-<h2 id="表达式引擎版本">表达式引擎版本：</h2>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- https://mvnrepository.com/artifact/org.mvel/mvel2 --&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.mvel<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mvel2<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.4.0.Final<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">       <span class="comment">&lt;!-- https://mvnrepository.com/artifact/ognl/ognl --&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>ognl<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>ognl<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.2.4<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">       <span class="comment">&lt;!-- https://mvnrepository.com/artifact/de.odysseus.juel/juel-api --&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>de.odysseus.juel<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>juel-api<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.2.7<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">       <span class="comment">&lt;!-- https://mvnrepository.com/artifact/de.odysseus.juel/juel-impl --&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>de.odysseus.juel<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>juel-impl<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.2.7<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h2 id="java代码">Java代码</h2>
-<p>详见： https://github.com/DanielJyc/expression-language-compare/blob/master/java/src/Test.java</p>
-<h1 id="参考文档">参考文档</h1>
-<ul>
-<li><a href="https://github.com/mvel/mvel" target="_blank" rel="noopener">mvel github</a></li>
-<li><a href="https://github.com/alibaba/QLExpress" target="_blank" rel="noopener">QLExpress</a></li>
-<li><a href="http://mvel.documentnode.com/" target="_blank" rel="noopener">MVEL 2.0 官方文档</a></li>
-<li><a href="https://en.wikibooks.org/wiki/Transwiki:MVEL_Language_Guide" target="_blank" rel="noopener">Transwiki:MVEL Language Guide</a></li>
-<li><a href="http://blog.csdn.net/sunnyyoona/article/details/75244442" target="_blank" rel="noopener">Mvel2.0使用指南一 基础</a></li>
-<li><a href="http://blog.csdn.net/fhm727/article/details/6543152" target="_blank" rel="noopener">mvel2.0语法指南</a></li>
-<li><a href="http://www.iteye.com/topic/732354" target="_blank" rel="noopener">Ognl/MVEL/Aviator/JSEL 四种表达式引擎执行效率对比</a></li>
-<li><a href="http://www.officezhushou.com/excel2013jiqiao/5149.html" target="_blank" rel="noopener">在Excel图表中制作三维立体图表的方法</a></li>
-<li><a href="http://juel.sourceforge.net/guide/start.html" target="_blank" rel="noopener">juel Quickstart</a></li>
-<li><a href="http://artexpressive.blogspot.com/" target="_blank" rel="noopener">THE ART OF BEING EXPRESSIVE</a></li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.datadriven.top/2018/01/19/Storm+kafka/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="DanielJyc">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="技术博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/01/19/Storm+kafka/" itemprop="url">Storm+kafka</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-19T21:25:26+08:00">
-                2018-01-19
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/大数据/" itemprop="url" rel="index">
-                    <span itemprop="name">大数据</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2018/01/19/Storm+kafka/" class="leancloud_visitors" data-flag-title="Storm+kafka">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  42
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  1
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="stormkafka">Storm+kafka</h1>
-<h2 id="stormkafka-1">Storm+kafka</h2>
-<p>flume实时收集日志，kafka消息队列源源不断生产数据，然后由storm进行实时消费。</p>
-<p><img src="/images/15152262382414/15154048911883.png"></p>
-<h2 id="参考">参考</h2>
-<ul>
-<li><a href="https://www.cnblogs.com/quchunhui/p/5380260.html" target="_blank" rel="noopener">Storm+kafka的HelloWorld初体验</a></li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.datadriven.top/2018/01/17/Apache Ambari/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="DanielJyc">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="技术博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/01/17/Apache Ambari/" itemprop="url">Apache Ambari</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-17T20:41:00+08:00">
-                2018-01-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/大数据/" itemprop="url" rel="index">
-                    <span itemprop="name">大数据</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2018/01/17/Apache Ambari/" class="leancloud_visitors" data-flag-title="Apache Ambari">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  202
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  1
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="apache-ambari">Apache Ambari</h1>
-<p>用来创建、管理、监视 Hadoop 的集群，但是这里的 Hadoop 是广义，指的是 Hadoop 整个生态圈（例如 Hive，Hbase，Sqoop，Zookeeper 等），而并不仅是特指 Hadoop。用一句话来说，Ambari 就是为了让 Hadoop 以及相关的大数据软件更容易使用的一个工具。</p>
-<p>Ambari 自身也是一个分布式架构的软件，主要由两部分组成：Ambari Server 和 Ambari Agent。简单来说，用户通过 Ambari Server 通知 Ambari Agent 安装对应的软件；Agent 会定时地发送各个机器每个软件模块的状态给 Ambari Server，最终这些状态信息会呈现在 Ambari 的 GUI，方便用户了解到集群的各种状态，并进行相应的维护。</p>
-<h2 id="参考">参考</h2>
-<ul>
-<li><a href="https://www.ibm.com/developerworks/cn/opensource/os-cn-bigdata-ambari/" target="_blank" rel="noopener">Ambari——大数据平台的搭建利器</a></li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1404,7 +2277,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">36</span>
+                  <span class="site-state-item-count">40</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1426,7 +2299,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-count">28</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -1498,7 +2371,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">42.3k</span>
+    <span title="Site words total count">52.5k</span>
   
 </div>
 

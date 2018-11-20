@@ -1,0 +1,1585 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+<meta name="google-site-verification" content="xrvFo-xMhGUVW9MlINVghBe-xALQ7rRE3fePMwYEUZo">
+<meta name="baidu-site-verification" content="PjBALlzELE">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="数据驱动,数据决策,决策树,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="技术博客" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="DDA-数据驱动应用（四）：数据决策 概述 决策引擎主要目标是将业务决策逻辑从系统逻辑中抽离出来，使两种逻辑可以独立于彼此而变化，这样可以明显降低两种逻辑的维护成本。下面列举三种方案，然后分析各自优缺点，从而确定本文的方案。 方案一：硬编码实现方式 优点：  当规则较少、变动不频繁时，开发效率最高。 稳定性较佳，语法级别错误不会出现，由编译系统保证。  缺点：  规则迭代成本高，对规则的少量改动就">
+<meta name="keywords" content="数据驱动,数据决策,决策树">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据驱动应用（四）：数据决策">
+<meta property="og:url" content="http://www.datadriven.top/2018/11/20/DDA-数据驱动应用（四）：数据决策/index.html">
+<meta property="og:site_name" content="技术博客">
+<meta property="og:description" content="DDA-数据驱动应用（四）：数据决策 概述 决策引擎主要目标是将业务决策逻辑从系统逻辑中抽离出来，使两种逻辑可以独立于彼此而变化，这样可以明显降低两种逻辑的维护成本。下面列举三种方案，然后分析各自优缺点，从而确定本文的方案。 方案一：硬编码实现方式 优点：  当规则较少、变动不频繁时，开发效率最高。 稳定性较佳，语法级别错误不会出现，由编译系统保证。  缺点：  规则迭代成本高，对规则的少量改动就">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://www.datadriven.top/images/media/15423697053653/image-20181107174702180.png">
+<meta property="og:image" content="http://www.datadriven.top/images/media/15423697053653/image-20181107181546309.png">
+<meta property="og:image" content="http://www.datadriven.top/images/media/15423697053653/image-20181107192620073.png">
+<meta property="og:image" content="http://www.datadriven.top/images/media/15423697053653/image-20181107194934545.png">
+<meta property="og:image" content="http://www.datadriven.top/images/media/15423697053653/15174046686142.jpg">
+<meta property="og:updated_time" content="2018-11-20T14:27:02.589Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数据驱动应用（四）：数据决策">
+<meta name="twitter:description" content="DDA-数据驱动应用（四）：数据决策 概述 决策引擎主要目标是将业务决策逻辑从系统逻辑中抽离出来，使两种逻辑可以独立于彼此而变化，这样可以明显降低两种逻辑的维护成本。下面列举三种方案，然后分析各自优缺点，从而确定本文的方案。 方案一：硬编码实现方式 优点：  当规则较少、变动不频繁时，开发效率最高。 稳定性较佳，语法级别错误不会出现，由编译系统保证。  缺点：  规则迭代成本高，对规则的少量改动就">
+<meta name="twitter:image" content="http://www.datadriven.top/images/media/15423697053653/image-20181107174702180.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.datadriven.top/2018/11/20/DDA-数据驱动应用（四）：数据决策/">
+
+
+
+
+
+  <title>数据驱动应用（四）：数据决策 | 技术博客</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?416c0f5a580537e8280c2f78b135e762";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">技术博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.datadriven.top/2018/11/20/DDA-数据驱动应用（四）：数据决策/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="DanielJyc">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="技术博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">数据驱动应用（四）：数据决策</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-20T22:31:44+08:00">
+                2018-11-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/数据驱动/" itemprop="url" rel="index">
+                    <span itemprop="name">数据驱动</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/11/20/DDA-数据驱动应用（四）：数据决策/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/11/20/DDA-数据驱动应用（四）：数据决策/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/11/20/DDA-数据驱动应用（四）：数据决策/" class="leancloud_visitors" data-flag-title="数据驱动应用（四）：数据决策">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2.8k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  9
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="dda-数据驱动应用四数据决策">DDA-数据驱动应用（四）：数据决策</h1>
+<h2 id="概述">概述</h2>
+<p>决策引擎主要目标是将业务决策逻辑从系统逻辑中抽离出来，使两种逻辑可以独立于彼此而变化，这样可以明显降低两种逻辑的维护成本。下面列举三种方案，然后分析各自优缺点，从而确定本文的方案。</p>
+<h3 id="方案一硬编码实现方式">方案一：硬编码实现方式</h3>
+<p><strong>优点</strong>：</p>
+<ul>
+<li>当规则较少、变动不频繁时，开发效率最高。</li>
+<li>稳定性较佳，语法级别错误不会出现，由编译系统保证。</li>
+</ul>
+<p><strong>缺点</strong>：</p>
+<ul>
+<li>规则迭代成本高，对规则的少量改动就需要走全流程（开发、测试、部署）。</li>
+<li>当存量规则较多时，可维护性差。</li>
+<li>规则开发和维护门槛高，规则对业务分析人员不可见。业务分析人员有规则变更需求后无法自助完成开发，需要由开发人员介入开发。</li>
+</ul>
+<h3 id="方案二开源方案drools">方案二：开源方案Drools</h3>
+<p><strong>配置流程</strong></p>
+<p>使用 Drools 的规则配置流程如下图。一般只适合开发人员使用。</p>
+<figure>
+<img src="/images/media/15423697053653/image-20181107174702180.png" alt="image-20181107174702180"><figcaption>image-20181107174702180</figcaption>
+</figure>
+<p><strong>优点</strong>：</p>
+<ul>
+<li>策略规则和执行逻辑解耦方便维护。</li>
+</ul>
+<p><strong>缺点</strong>：</p>
+<ul>
+<li>业务分析师无法独立完成规则配置，由于规则主体 DSL 是编程语言（支持 Java，Groovy，Python），因此仍然需要开发工程师维护。</li>
+<li>规则规模变大以后也会变得不好维护，相对硬编码的优势便不复存在。</li>
+<li>规则的语法仅适合扁平的规则，对于嵌套条件语义（then 里嵌套 when...then 子句）的规则只能将条件进行笛卡尔积组合以后进行配置，不利于维护。</li>
+</ul>
+<h3 id="方案三设计轻量级决策引擎">方案三：设计轻量级决策引擎</h3>
+<p>针对硬编码和drools方案的不足，我们开发了一套适用于运营、产品、业务、开发等人员的决策引擎。</p>
+<p>下图是配置系统，业务人员配置决策、决策树和决策列表，开发人员负责配置底层更原子的一些组件：规则、动作和因子。随着平台积累和完善，逐渐也将规则、动作和因子交给业务人员去配置。配置后的决策元数据落地到决策库。决策引擎从决策库获取元数据，依次经过获取因子数据--&gt;规则解析--&gt;决策执行，将结果输出到数据应用层。</p>
+<figure>
+<img src="/images/media/15423697053653/image-20181107181546309.png" alt="image-20181107181546309"><figcaption>image-20181107181546309</figcaption>
+</figure>
+<p><strong>优点</strong>：</p>
+<ul>
+<li>规则配置门槛低，因此业务分析师很容易上手。</li>
+<li>系统支持规则热部署。</li>
+<li>业务和规则解耦，可以推广到别的业务。</li>
+</ul>
+<h3 id="小结">小结</h3>
+<p>通过三种方案的分析，总结如下：</p>
+<ul>
+<li>硬编码迭代成本高。</li>
+<li>Drools 维护门槛高。视图对非技术人员不友好，即使对于技术人员来说维护成本也不比硬编码低。</li>
+<li>自开发决策引擎，配置门楷低，可以方便推广到其他业务。同时，后期还可以扩展更多能力：灰度、试跑、效果评估等。</li>
+</ul>
+<p>因此，我们自开发一套数据决策引擎。主要功能包括：</p>
+<ul>
+<li><p>基础决策能力：包含单个决策、决策树和决策表。</p></li>
+<li><p>AI决策：部署训练后的模型，提供基于AI算法的决策。</p></li>
+</ul>
+<h2 id="领域模型">领域模型</h2>
+<figure>
+<img src="/images/media/15423697053653/image-20181107192620073.png" alt="image-20181107192620073"><figcaption>image-20181107192620073</figcaption>
+</figure>
+<p>领域模型，由下往上依次为：</p>
+<ul>
+<li>决策的最小元素是因子，因子由数据字段的取值和可选项组成，可选项主要用作配置过程中，方便非开发人员选择可选的值。</li>
+<li>条件由因子和操作符组成，操作符包括：加、减、乘、除、包含、不包含等。</li>
+<li>规则由多个条件，通过连接符<code>and/or</code>组成。本质上，规则就是一些条件，通过<strong>语法树</strong>组合而成。</li>
+<li>决策输出的3种模式：
+<ul>
+<li>决策：决策时对外输出的最小方式，由规则和Action组成。</li>
+<li>决策树：本质上是一颗多叉树，每个节点由规则和Action组成。根节点没有规则和Action，叶子节点必有规则和Action，中间节点必有规则（Action可选）。</li>
+<li>决策表：多个决策组成决策表。</li>
+</ul></li>
+<li>业务单元：用来做业务隔离，类似于类目管理的作用。不同业务单元之间的因子、规则模板和动作模板，都是相互隔离的。一般来讲，业务单元都是比较大的概念，整个公司不会有太多业务单元。</li>
+</ul>
+<h2 id="技术架构">技术架构</h2>
+<figure>
+<img src="/images/media/15423697053653/image-20181107194934545.png" alt="image-20181107194934545"><figcaption>image-20181107194934545</figcaption>
+</figure>
+<p><strong>架构主要流程：</strong></p>
+<ol type="1">
+<li>最底层为数据层，HBASE主要存放一些实时计算的结果；MySQL为业务数据；API为http/https/dubbo接口数据，异步消息主要是Kafka数据。</li>
+<li>算法平台使用数据层的数据，进行模型训练，再通过实时打分模块输出结果。结果输出给数据服务，或者直接输出到数据决策。</li>
+<li>数据服务将数据层和算法的结果输出给数据决策。</li>
+<li>数据决策模块，基于规则和算法模型，进行评分或者匹配，同时可以对结果进行排序。将决策的结果和动作，通过dubbo服务提供出去。</li>
+<li>数据应用层使用数据决策和数据服务的能力，完成自己的功能。</li>
+<li>通过埋点数据，进行决策效果评估和监控，评估的结果可以反馈给算法平台和管控平台。</li>
+<li>管控平台，主要配置规则、因子、Action，进行灰度发布，规则试跑，多版本管理等。</li>
+</ol>
+<p><strong>数据决策的主要流程：</strong></p>
+<ol type="1">
+<li>元数据加载：
+<ul>
+<li>缓存：引擎运行过程中，需要使用缓存技术降低远程通信开销。</li>
+<li>预解析：缓存解析后的规则，而不是原始规则。从而，减小解析开销。</li>
+</ul></li>
+<li>因子数据获取：获取决策所需要的实例数据，直接使用数据服务DS的输出。</li>
+<li>执行：基于表达式解析引擎MVEL(表达式引擎性能对比，详见参考文档)，提供决策、决策树、决策表3种决策能力。
+<ul>
+<li>决策：多个规则和一个Action。</li>
+<li>决策表：N * (多个规则+1个Action)。注：决策表种的每个决策都有自己的优先级，默认值为100。</li>
+<li>决策树：通过深度优先遍历或者广度优先遍历，根据节点优先级，执行每个决策点。注：每个决策点，都有自己的优先级，默认值为100。</li>
+</ul></li>
+<li>执行策略：针对决策树和决策表，两种模式：
+<ul>
+<li><code>ONCE</code>：只将匹配的第一个叶子节点的结果返回。</li>
+<li><code>ALL</code>：将匹配到的所有叶子节点都返回。</li>
+</ul></li>
+<li>结果拼装：
+<ul>
+<li>执行路径拼装：主要针对决策树和决策列表，将执行路径返回。</li>
+<li>匹配Action：将所有匹配到的Action返回，同时返回其优先级。</li>
+<li>Rank：主要是针对批量决策，将匹配到的结果进行排序，并返回。</li>
+</ul></li>
+<li>Facade：将拼装的结果通过统一接口返回。</li>
+</ol>
+<h2 id="系统实现">系统实现</h2>
+<h3 id="facade接口">Facade接口</h3>
+<p>提供两种类型的决策：单个决策和批量决策。批量决策主要是为了减少多次接口调用的消耗。</p>
+<h3 id="语法树抽象">语法树抽象</h3>
+<h3 id="缓存">缓存</h3>
+<p>缓存的主键key为<code>业务单元-决策类型-决策code</code>。如下图：</p>
+<p><img src="/images/media/15423697053653/15174046686142.jpg"></p>
+<p>缓存数据前需要对元数据进行预解析，从而决策引擎可以执行预解析后的数据。需要预解析的部分：</p>
+<ul>
+<li>将模型转换为表达式引擎可执行的形式。</li>
+<li>决策树：先遍历，将遍历的结果缓存。而不是每次都遍历执行树。</li>
+</ul>
+<h3 id="决策执行">决策执行</h3>
+<p>将执行过程抽象为两部分：决策执行层和公共执行层。</p>
+<ul>
+<li>决策执行层：实现了决策、决策树和决策表的执行逻辑。</li>
+<li>公共执行层：为决策执行层提供公共的执行组件，包括动作执行器和规则执行器。</li>
+</ul>
+<h4 id="决策执行层">决策执行层</h4>
+<h5 id="决策树执行器">决策树执行器</h5>
+<p>加载元数据后，利用深度优先遍历的方式执行决策树，本质是一个递归的过程。执行方式有两种：<code>ONCE</code>，即执行的过程匹配到一个叶子节点后，停止执行；<code>ALL</code>，即要执行玩所有分支，才停止。执行结束后，对结果进行封装，并返回。决策树的节点，分为3种类型：根节点、中间节点和叶子节点。各节点和<code>Rule</code>、<code>Action</code>的关系如下表：</p>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th>Rule</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>根节点</td>
+<td>无</td>
+<td>无</td>
+</tr>
+<tr class="even">
+<td>中间节点</td>
+<td>有</td>
+<td>无</td>
+</tr>
+<tr class="odd">
+<td>叶子节点</td>
+<td>可选</td>
+<td>有</td>
+</tr>
+</tbody>
+</table>
+<h5 id="决策执行器">决策执行器</h5>
+<p>决策执行器是决策树执行器的一种特殊形式，即：一个只包含Action和Rule的节点。</p>
+<h5 id="决策表执行器">决策表执行器</h5>
+<p>决策表执行器是决策执行器的List形式，也包含<code>ONCE</code>和<code>ALL</code>两种执行模式。</p>
+<h4 id="公共执行层">公共执行层</h4>
+<h5 id="规则执行器">规则执行器</h5>
+<p>规则执行器的作用是，根据表达式和参数得到执行结果。底层采用成熟的表达式引擎来实现。为了方便扩展，使用工厂设计模式，可以方便地切换到不同的表达式引擎。各表达式引擎对比详见详见 <a href="https://technologyblog.github.io/2018/02/03/表达式引擎性能比较/" target="_blank" rel="noopener">表达式引擎性能比较</a>。经过比对发现使用<code>Mvel预编译，且指定输入值类型的方式</code>效率最高，故采用该方式。该方式没有缓存，因此自己实现一层缓存，来缓存预编译的结果。同时，采用2小时无访问，则失效缓存的策略；从而防止堆积过多无用规则配置。</p>
+<h5 id="动作执行器">动作执行器</h5>
+<p>根据入参、规则结果和上下文，执行响应操作，得到结果code。Action的执行类型有多种，用户可以自己定制。下面说两种执行器：</p>
+<ul>
+<li>返回固定内容：匹配到规则后，直接返回配置的内容。</li>
+<li>返回动态内容：根据入参和规则结果，对其进行处理，然后返回动态内容。</li>
+</ul>
+<h2 id="小结-1">小结</h2>
+<p>本文实现一个轻量级的决策引擎，本方案具有以下特点：</p>
+<ul>
+<li>规则表达能力强：通过决策、决策列表和决策树3种模式，可以覆盖多数的规则需求。</li>
+<li>接入成本低：统一的页面配置，统一的接口接入。</li>
+<li>规则运行/切换效率高：引擎运行过程中，需要使用缓存技术降低远程通信开销。同时，需要缓存解析后的规则，而不是原始规则。</li>
+<li>两种运行模式：执行模式和调试模式。</li>
+<li>易用性：方便配置，面向业务人员。</li>
+<li>易管理：通过因子、规则、动作等领域模型的抽象，更方便元数据的管理。通过业务单元进行业务隔离，从而既具有隔离性又具有复用性。</li>
+<li>规则迭代安全：规则支持热部署：系统通过版本控制，可以灰度一部分流量，增加上线信心。</li>
+</ul>
+<p>当然本方案还有一些不足，比如没有实现复杂的决策场景，如动态规划、决策树剪枝等；没有实现复杂的规则能力。 ​<br>
+​</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpeg" alt="DanielJyc 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpeg" alt="DanielJyc 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/数据驱动/" rel="tag"># 数据驱动</a>
+          
+            <a href="/tags/数据决策/" rel="tag"># 数据决策</a>
+          
+            <a href="/tags/决策树/" rel="tag"># 决策树</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/11/20/DDA-数据驱动应用（二）：架构设计/" rel="next" title="数据驱动应用（二）：架构设计">
+                <i class="fa fa-chevron-left"></i> 数据驱动应用（二）：架构设计
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/11/20/DDA-数据驱动应用（三）：数据服务/" rel="prev" title="数据驱动应用（三）：数据服务">
+                数据驱动应用（三）：数据服务 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="DanielJyc">
+            
+              <p class="site-author-name" itemprop="name">DanielJyc</p>
+              <p class="site-description motion-element" itemprop="description">数据驱动 Java 大数据 算法</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://danieljyc.github.io/" title="Danieljyc blog" target="_blank">Danieljyc blog</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#dda-数据驱动应用四数据决策"><span class="nav-number">1.</span> <span class="nav-text">DDA-数据驱动应用（四）：数据决策</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#概述"><span class="nav-number">1.1.</span> <span class="nav-text">概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#方案一硬编码实现方式"><span class="nav-number">1.1.1.</span> <span class="nav-text">方案一：硬编码实现方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方案二开源方案drools"><span class="nav-number">1.1.2.</span> <span class="nav-text">方案二：开源方案Drools</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方案三设计轻量级决策引擎"><span class="nav-number">1.1.3.</span> <span class="nav-text">方案三：设计轻量级决策引擎</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#小结"><span class="nav-number">1.1.4.</span> <span class="nav-text">小结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#领域模型"><span class="nav-number">1.2.</span> <span class="nav-text">领域模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#技术架构"><span class="nav-number">1.3.</span> <span class="nav-text">技术架构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#系统实现"><span class="nav-number">1.4.</span> <span class="nav-text">系统实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#facade接口"><span class="nav-number">1.4.1.</span> <span class="nav-text">Facade接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#语法树抽象"><span class="nav-number">1.4.2.</span> <span class="nav-text">语法树抽象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#缓存"><span class="nav-number">1.4.3.</span> <span class="nav-text">缓存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#决策执行"><span class="nav-number">1.4.4.</span> <span class="nav-text">决策执行</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#决策执行层"><span class="nav-number">1.4.4.1.</span> <span class="nav-text">决策执行层</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#决策树执行器"><span class="nav-number">1.4.4.1.1.</span> <span class="nav-text">决策树执行器</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#决策执行器"><span class="nav-number">1.4.4.1.2.</span> <span class="nav-text">决策执行器</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#决策表执行器"><span class="nav-number">1.4.4.1.3.</span> <span class="nav-text">决策表执行器</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#公共执行层"><span class="nav-number">1.4.4.2.</span> <span class="nav-text">公共执行层</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#规则执行器"><span class="nav-number">1.4.4.2.1.</span> <span class="nav-text">规则执行器</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#动作执行器"><span class="nav-number">1.4.4.2.2.</span> <span class="nav-text">动作执行器</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小结-1"><span class="nav-number">1.5.</span> <span class="nav-text">小结</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2014 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">DanielJyc</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">52.5k</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: window.location.pathname, 
+            owner: 'DanielJyc',
+            repo: 'gitment',
+            
+            lang: "zh-Hans" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: '807aa1205dbd6cf2f4cf1a56c5a05243d89f8f10',
+            
+                client_id: '8f44940851c869479ac9'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
+    
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("zYEWmF1a0i8uGTxvDClNekjd-gzGzoHsz", "STn158ECLfhmmqrEq5VEkRsb");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>

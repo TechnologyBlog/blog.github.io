@@ -1,0 +1,1714 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+<meta name="google-site-verification" content="xrvFo-xMhGUVW9MlINVghBe-xALQ7rRE3fePMwYEUZo">
+<meta name="baidu-site-verification" content="PjBALlzELE">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="数据驱动,数据服务,DAG,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="技术博客" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="DDA-数据驱动应用（三）：数据服务 概述 主要概念  数据服务(Data Service)：对异构数据源，基于有向无环图，提供异构数据的查询和推送能力。 指标：用于衡量事物发展程度的单位或方法，它还有个IT上常用的名字，也就是度量。例如：人口数、GDP、收入、用户数、利润率、留存率、覆盖率等。 维度：是事物或现象的某种特征，如性别、地区、时间等都是维度。一般指查询约束条件。 粒度：维度的一个组合">
+<meta name="keywords" content="数据驱动,数据服务,DAG">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据驱动应用（三）：数据服务">
+<meta property="og:url" content="http://www.datadriven.top/2018/11/20/DDA-数据驱动应用（三）：数据服务/index.html">
+<meta property="og:site_name" content="技术博客">
+<meta property="og:description" content="DDA-数据驱动应用（三）：数据服务 概述 主要概念  数据服务(Data Service)：对异构数据源，基于有向无环图，提供异构数据的查询和推送能力。 指标：用于衡量事物发展程度的单位或方法，它还有个IT上常用的名字，也就是度量。例如：人口数、GDP、收入、用户数、利润率、留存率、覆盖率等。 维度：是事物或现象的某种特征，如性别、地区、时间等都是维度。一般指查询约束条件。 粒度：维度的一个组合">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://www.datadriven.top/images/media/15423697054405/image-20181106201548669.png">
+<meta property="og:image" content="http://www.datadriven.top/images/media/15423697054405/image-20181106202720647.png">
+<meta property="og:image" content="http://www.datadriven.top/images/media/15423697054405/image-20181106204030223.png">
+<meta property="og:image" content="http://www.datadriven.top/images/media/15423697054405/15253283517773.jpg">
+<meta property="og:image" content="http://www.datadriven.top/images/media/15423697054405/image-20181107102744337.png">
+<meta property="og:image" content="http://www.datadriven.top/images/media/15423697054405/15245723067223.jpg">
+<meta property="og:image" content="http://www.datadriven.top/images/media/15423697054405/image-20181107111452242.png">
+<meta property="og:image" content="http://www.datadriven.top/images/media/15423697054405/image-20181107113511326.png">
+<meta property="og:image" content="http://www.datadriven.top/images/media/15423697054405/15248968893819.jpg">
+<meta property="og:image" content="http://www.datadriven.top/images/media/15423697054405/15248146685958.jpg">
+<meta property="og:image" content="http://www.datadriven.top/images/media/15423697054405/15248195495426.jpg">
+<meta property="og:image" content="http://www.datadriven.top/images/media/15423697054405/15248311695610.jpg">
+<meta property="og:image" content="http://www.datadriven.top/images/media/15423697054405/image-20181107155543474.png">
+<meta property="og:updated_time" content="2018-11-20T14:27:24.329Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数据驱动应用（三）：数据服务">
+<meta name="twitter:description" content="DDA-数据驱动应用（三）：数据服务 概述 主要概念  数据服务(Data Service)：对异构数据源，基于有向无环图，提供异构数据的查询和推送能力。 指标：用于衡量事物发展程度的单位或方法，它还有个IT上常用的名字，也就是度量。例如：人口数、GDP、收入、用户数、利润率、留存率、覆盖率等。 维度：是事物或现象的某种特征，如性别、地区、时间等都是维度。一般指查询约束条件。 粒度：维度的一个组合">
+<meta name="twitter:image" content="http://www.datadriven.top/images/media/15423697054405/image-20181106201548669.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.datadriven.top/2018/11/20/DDA-数据驱动应用（三）：数据服务/">
+
+
+
+
+
+  <title>数据驱动应用（三）：数据服务 | 技术博客</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?416c0f5a580537e8280c2f78b135e762";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">技术博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.datadriven.top/2018/11/20/DDA-数据驱动应用（三）：数据服务/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="DanielJyc">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="技术博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">数据驱动应用（三）：数据服务</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-20T22:31:44+08:00">
+                2018-11-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/数据驱动/" itemprop="url" rel="index">
+                    <span itemprop="name">数据驱动</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/11/20/DDA-数据驱动应用（三）：数据服务/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/11/20/DDA-数据驱动应用（三）：数据服务/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/11/20/DDA-数据驱动应用（三）：数据服务/" class="leancloud_visitors" data-flag-title="数据驱动应用（三）：数据服务">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  3.6k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  12
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="dda-数据驱动应用三数据服务">DDA-数据驱动应用（三）：数据服务</h1>
+<h2 id="概述">概述</h2>
+<h3 id="主要概念">主要概念</h3>
+<ul>
+<li><strong>数据服务(Data Service)</strong>：对异构数据源，基于有向无环图，提供异构数据的查询和推送能力。</li>
+<li><strong>指标</strong>：用于衡量事物发展程度的单位或方法，它还有个IT上常用的名字，也就是度量。例如：人口数、GDP、收入、用户数、利润率、留存率、覆盖率等。</li>
+<li><strong>维度</strong>：是事物或现象的某种特征，如性别、地区、时间等都是维度。一般指查询约束条件。</li>
+<li><strong>粒度</strong>：维度的一个组合。描述分析需要细分的程度。</li>
+<li><strong>数据集</strong>：用来描述数据从哪里来，有哪些字段输出，提供哪些能力(过滤、分组)，数据表的Join关系，粒度等等</li>
+<li><strong>HTAP数据库</strong>：Gartner提出了HTAP数据库概念，一个数据库既能支持OLTP(在线事务处理)，又能支持OLAP(在线分析处理)，涵盖大部分企业级应用的需求，一站解决这些问题。</li>
+</ul>
+<h3 id="异构数据查询产品对比和分析">异构数据查询产品对比和分析</h3>
+<p>本文的主要目的是设计一个轻量级的异构数据查询和推送系统。首先，先看下主流的异构数据查询系统，如下表格：</p>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th>Presto</th>
+<th>F1:Query</th>
+<th>Calcite</th>
+<th>TiDB</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>描述</td>
+<td>分布式大数据查询引擎(SQL)</td>
+<td>大数据异构查询引擎</td>
+<td>动态数据管理框架</td>
+<td>分布式 HTAP数据库</td>
+</tr>
+<tr class="even">
+<td>interactive交互式查询</td>
+<td>提供</td>
+<td>提供：集中式查询、分散式、批量查询ETL</td>
+<td>支持</td>
+<td>支持</td>
+</tr>
+<tr class="odd">
+<td>数据源类型</td>
+<td>多种</td>
+<td>多种</td>
+<td>多种</td>
+<td>多种</td>
+</tr>
+<tr class="even">
+<td>支持自定义数据源</td>
+<td></td>
+<td></td>
+<td>支持</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>使用公司</td>
+<td>Facebook</td>
+<td>Google</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>代码开源</td>
+<td>是</td>
+<td>否</td>
+<td>是</td>
+<td>是</td>
+</tr>
+<tr class="odd">
+<td>异构聚合</td>
+<td>是</td>
+<td>是</td>
+<td>是</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>模式</td>
+<td>Coordinator-Worker</td>
+<td>Master-Server-Worker</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>存储数据</td>
+<td>否</td>
+<td>否</td>
+<td>否</td>
+<td>是</td>
+</tr>
+<tr class="even">
+<td>分布式</td>
+<td>是</td>
+<td>是</td>
+<td></td>
+<td>是</td>
+</tr>
+<tr class="odd">
+<td>ACID事务特性</td>
+<td></td>
+<td></td>
+<td></td>
+<td>分布式事务</td>
+</tr>
+<tr class="even">
+<td>UDF</td>
+<td></td>
+<td>UDF server</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>水平弹性扩展</td>
+<td></td>
+<td>支持</td>
+<td></td>
+<td>支持</td>
+</tr>
+<tr class="even">
+<td>HTAP(OLAP/OLTP)</td>
+<td></td>
+<td>支持</td>
+<td></td>
+<td>支持</td>
+</tr>
+<tr class="odd">
+<td>特性</td>
+<td></td>
+<td>批量化 + 异步化 + 流水线化DAG</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>空白部分，表示没有找到相关说明。</p>
+</blockquote>
+<h3 id="本文的目标">本文的目标</h3>
+<p>本文设计的数据服务，基于有向无环图DAG，对异构数据源进行处理和聚合，主要提供简单数据查询复合、复杂数据查询服务和数据实时推送服务。 <strong>优势</strong></p>
+<ul>
+<li>轻量级的异构数据查询引擎</li>
+<li>结构化语义，无SQL</li>
+<li>融合数据管理</li>
+<li>支持异步消息的推送</li>
+<li>面向智能应用</li>
+</ul>
+<p><strong>存在的缺点</strong></p>
+<ul>
+<li>不支持离线批处理</li>
+<li>不支持分布式计算</li>
+<li>只支持大量数据的异构join和聚合</li>
+</ul>
+<h2 id="三层数据集思想">三层数据集思想</h2>
+<p>根据功能和层次的不同，将数据集分为3类，由下向上依次为原子数据集、公共层数据集、应用层数据集，如下图所示。</p>
+<ul>
+<li>原子数据集：原子数据集是一层逻辑上面的概念，用来接入数据源，包括各种数据源的数据，如HBASE/MySQL/API等。</li>
+<li>公共层数据集：多个原子数据集沉淀之后，形成公共层数据集；当然，一个原子数据集也可以被多个公共数据集使用。前期，该层也是一个逻辑概念，需要随着时间慢慢积累；用来管理不同业务的数据，原则上同一个业务可以抽象为几个公共数据集。公共层主要起到 了管理作用，并确定统一的数据口径。</li>
+<li>应用层数据集：一个公共数据集可以产生多个应用数据集，面向智能应用，直接赋能给应用。</li>
+</ul>
+<figure>
+<img src="/images/media/15423697054405/image-20181106201548669.png" alt="image-20181106201548669"><figcaption>image-20181106201548669</figcaption>
+</figure>
+<h2 id="领域模型">领域模型</h2>
+<p>如下图，领域模型分为逻辑层和物理层。</p>
+<ul>
+<li>物理层：数据源主要是各种数据的来源，包括MySQL、HBASE、kafka等。数据源里面的表抽象为物理表，表中包含物理字段，物理字段主要有维度、指标和标签3种类型。</li>
+<li>逻辑层：数据集是对物理表的逻辑抽象，一个数据集可能来自不同数据源的多个物理表，其字段称为数据集字段。对数据集字段包装的时候，可以使用自定义的Transform和UDF。通过主题来管理数据集，一个主题包含多个数据集，一个数据集也可以属于多个主题。</li>
+</ul>
+<figure>
+<img src="/images/media/15423697054405/image-20181106202720647.png" alt="image-20181106202720647"><figcaption>image-20181106202720647</figcaption>
+</figure>
+<h2 id="技术架构">技术架构</h2>
+<figure>
+<img src="/images/media/15423697054405/image-20181106204030223.png" alt="image-20181106204030223"><figcaption>image-20181106204030223</figcaption>
+</figure>
+<ul>
+<li><strong>元数据管理</strong>：主要提供数据集、物理表、标签、指标等元数据能力。</li>
+<li><strong>Meta Data Local Cache</strong>: 提供元数据的本地缓存。元数据使用定时刷新机制。</li>
+<li><strong>数据安全</strong>：主要是SQL注入等安全问题。</li>
+<li><strong>数据权限</strong>：主要是权限的控制，分为数据集维度和字段维度的权限控制。</li>
+<li><strong>Query Parse</strong>r：查询条件的解析，以及元数据的解析。一般减少每次解析的工作量，需要缓存解析后的元数据。</li>
+<li><strong>Query Plan Builder (构建执行计划)</strong>：主要是根据查询条件和元数据信息，构建有向无环图DAG。这里是本系统的难点。</li>
+<li><strong>Optimizer (执行计划的优化)</strong>：根据查询条件和元数据信息，对执行计划进行优化。</li>
+<li><strong>Scheduler (调度)</strong>：根据构件好的DAG，调度相应的执行器Executor执行。</li>
+<li><strong>Executor (执行器)</strong>：这里的执行，多线程并发执行。</li>
+<li><strong>Runner</strong>：主要是各种数据源的适配和性能优化，是一个原子的取数逻辑。主要是实时返回数据的数据库，不支持ETL离线型数据源。</li>
+<li><strong>Merger (合并)</strong>：主要是数据的合并，可以抽象为<code>left join</code>和<code>full join</code>两种类型。</li>
+<li><strong>Assemble (包装)</strong>：对字段进行包装，对行列数据进行转换。同时，可以自定义用户函数。这里会用到标签和指标元数据等信息。包装后的结果，将直接输出。</li>
+</ul>
+<blockquote>
+<p>注：OLTP和OLAP两类查询是隔离的，OLTP为快查询，OLAP为慢查询，因为OLAP一般耗时会到1s左右，可能影响OLTP的性能。</p>
+</blockquote>
+<h2 id="系统整体设计">系统整体设计</h2>
+<h3 id="数据集设计">数据集设计</h3>
+<p>根据查询粒度的不同，将查询分为三类：多为统计查询、主键查询和非主键多条件查询。其中，主键查询和非主键多条件查询为单维查询，主键查询的维度就是主键。</p>
+<figure>
+<img src="/images/media/15423697054405/15253283517773.jpg" alt="-w661"><figcaption>-w661</figcaption>
+</figure>
+<h4 id="多维统计">1.多维统计</h4>
+<p>多维统计是由&quot;维度+指标&quot;组成的聚合类数据，即聚合字段(group by)+过滤字段(where)+筛选字段(select)。数据集中的粒度(grain)决定了需要输出的维度组合，聚合维度(group by)字段属于粒度的子集，查询条件中的维度字段属于聚合维度的子集。多维统计由多个异构主表(事实表)内存Join，分别查完后按同粒度Grain进行join后输出。如下图所示，两个事实表包含相同的维度，不同的指标，经过内存join后，输出所需指标和维度。</p>
+<figure>
+<img src="/images/media/15423697054405/image-20181107102744337.png" alt="image-20181107102744337"><figcaption>image-20181107102744337</figcaption>
+</figure>
+<h4 id="单维详情查询按主键pk查询">2.单维详情查询——按主键PK查询</h4>
+<p>通过主键(PK)查询主表一条记录，通过主表的外键查连接其他表(一般是维表)的数据，并且可以支持多级连接，支持多个主表查询。通过主键，在内存进行merge join，输出结果一般为单条记录。</p>
+<p><img src="/images/media/15423697054405/15245723067223.jpg"></p>
+<h4 id="单维详情查询非主键查询">3. 单维详情查询——非主键查询</h4>
+<p>通过非主键的各种条件，查询一批主表记录。该查询中需要有一个确定的主表，通过主表来对结果进行分页查询；其他的表均为关联表，通过主表的外键连接多个关联表。</p>
+<figure>
+<img src="/images/media/15423697054405/image-20181107111452242.png" alt="image-20181107111452242"><figcaption>image-20181107111452242</figcaption>
+</figure>
+<p>参考：</p>
+<ul>
+<li><a href="http://www.sohu.com/a/121034331_472083" target="_blank" rel="noopener">大数据分析：多维数据分析基础与方法(钻取、切片和切块)</a></li>
+</ul>
+<h2 id="系统详细设计">系统详细设计</h2>
+<h3 id="系统流程">系统流程</h3>
+<p>如下图，描述了整个系统的设计流程上的关键部分，同时，对各部分的关键点和设计模式进行了说明。</p>
+<figure>
+<img src="/images/media/15423697054405/image-20181107113511326.png" alt="image-20181107113511326"><figcaption>image-20181107113511326</figcaption>
+</figure>
+<h3 id="元数据加载">元数据加载</h3>
+<p>该部分主要做了：入参解析、元数据解析、元数据缓存。</p>
+<ul>
+<li><p>入参解析：将用户的查询解析为系统参数，主要包含3种解析类型：<code>GroupByQuery/PkQuery/NormalQuery</code></p></li>
+<li><p>元数据解析：将数据库非结构元数据解析为结构对象，减少每次结构化的成本。同时，将查询入参和结构化元数据进行合并，得到一个内部对象。</p></li>
+<li><p>元数据缓存：缓存采用定时刷新机制。根据数据集name加载数据集配置信息，包含：数据集、数据集字段、用到的物理表和用到物理表的字段。</p></li>
+</ul>
+<h3 id="执行计划构建">执行计划构建</h3>
+<p>执行计划构建就是根据请求参数和元数据，生成数据查询的执行计划。构建的查询计划是一个有向无环图<code>DAG(Directed Acyclic Graph)</code>，每个节点是一个原子数据集。执行计划生成逻辑如下图，左边为加载的元数据信息，中间为执行计划构建流程，右边为执行计划的内容。</p>
+<p><img src="/images/media/15423697054405/15248968893819.jpg"></p>
+<h3 id="执行计划调度">执行计划调度</h3>
+<p>执行计划调度是指，根据前面构建的执行计划DAG，分配线程、调用Runner执行查询，再合并结果。</p>
+<h4 id="执行模式">执行模式</h4>
+<p>DAG的执行过程，就是执行各个子节点（原子数据集）的过程。根据每次执行节点数的不同，分为三种执行模式：Single模式，串行模式、并行模式。如图，每个阶段均为一次原子执行，同时节点中还可能包含合并merge操作。</p>
+<ul>
+<li><strong>single模式</strong>：一次只支持一种原子查询。</li>
+<li><strong>串行模式</strong>：支持多次原子查询及合并。在同一个线程中串行执行，有多少个节点就串行执行多少次。</li>
+<li><strong>并行模式</strong>：支持多次原子查询及合并。在多个线程中并行执行。根据DAG层数进行调度，即DAG有多少层，就并发执行多少次。执行过程中，每次执行入度为零的所有节点。如图所示，第一次执行<code>node1/node2/node4</code>，第二次执行<code>node3</code>，第三次执行<code>node5</code>。</li>
+</ul>
+<figure>
+<img src="/images/media/15423697054405/15248146685958.jpg" alt="-w676"><figcaption>-w676</figcaption>
+</figure>
+<h4 id="调度执行过程">调度执行过程</h4>
+<p>如下图，左侧为执行环境（元数据），右侧为调度过程。首先将DAG拍平，每次找出入度为零的节点执行、合并结果，执行完该节点后，对被引用的节点入度减一。递归执行，直到所有节点入度为-1。</p>
+<figure>
+<img src="/images/media/15423697054405/15248195495426.jpg" alt="-w526"><figcaption>-w526</figcaption>
+</figure>
+<h3 id="runner执行">Runner执行</h3>
+<p>类似于jdbc模块的方案，本文使用<code>SPI(Service Provider Interface)</code>机制发现服务，从而实现模块的解耦。同时，如果需要在外部开发定制Runner，使用SPI机制可以更好地实现。Runner种类包括<code>MySQL</code>、<code>HBASE</code>、<code>kafka</code>、<code>dubbo</code>等。下面主要介绍一种实现，即SQL类Runner：<code>SqlRunner</code></p>
+<h4 id="sqlrunner">SqlRunner</h4>
+<p>如下图所示，SqlRunner主要作用是将结构化的对象解析为数据库可执行的SQL。解析工具包括：<code>FilterBuilder</code>、<code>JoinBulider</code>、<code>GroupByBulider</code>、<code>SortBuilder</code>、<code>PageBuilder</code>。</p>
+<p><img src="/images/media/15423697054405/15248311695610.jpg"></p>
+<h5 id="filterbuilder">FilterBuilder</h5>
+<ul>
+<li>根据Filter构造Where子句。需要对&quot;=”、&quot;in”、&quot;range”、&quot;like&quot;四种类型的Filte进行解析。其中，range条件已经被上层区分为“&gt;”、“&gt;=”、“&lt;”、“&lt;=”，可以与&quot;=&quot;、&quot;like”共同视为单一条件值条件，组装为“字段操作符条件值”，其中条件值要根据类型决定是否加单引号。</li>
+<li>特殊类型字段(如时间) 需要根据底层DB的标准进行翻译。</li>
+</ul>
+<h5 id="joinbulider">JoinBulider</h5>
+<p>构造Join子句，包括<code>left join</code>和<code>full join</code>。</p>
+<h5 id="groupbybulider">GroupByBulider</h5>
+<p>根据grain字段构造<code>group by</code>子句，聚合列以grain为准。</p>
+<h5 id="sortbuilder">SortBuilder</h5>
+<p>取OrderBy对象中的字段名和升降序类型拼接<code>ORDER BY</code>子句。</p>
+<h5 id="pagebuilder">PageBuilder</h5>
+<p>取原子数据集上面的<code>pageSize</code>和<code>pageNum</code>字段。如果~，则无偏移；否则用<code>(pageNum-1)*pageSize</code>计算偏移，拼接LIMIT子句。</p>
+<h4 id="kafka-runner">Kafka-Runner</h4>
+<p>系统监听指定的Topic消息，收到消息后进行处理，并以异步消息的方式再把消息发送出去。其中，发送出去的消息中，携带其他异构Runner的数据信息。</p>
+<h5 id="执行流程">执行流程</h5>
+<p>如下图所示，接收到消息后，通过KafkaRunner处理后，再将消息发送出去。</p>
+<ul>
+<li>接收端：
+<ul>
+<li>接收不同的topic，接收的topic对应于领域模型的<code>Table</code>。使用同一个groupId，每个消息只接收一次。</li>
+<li>将入参解析为KV的map，本期只解析一层，后续有需求再支持解析多层。</li>
+<li>异步数据集，只能通过消息来触发。</li>
+<li>一个数据集只支持引用一个Topic。（引用多个Topic，会导致消息等待的问题，暂时不考虑支持这种复杂场景。）</li>
+</ul></li>
+<li>发送端：
+<ul>
+<li>将经过处理后的数据，以消息形式发送出去。对应领域模型的数据集<code>Dataset</code>。</li>
+</ul></li>
+</ul>
+<figure>
+<img src="/images/media/15423697054405/image-20181107155543474.png" alt="image-20181107155543474"><figcaption>image-20181107155543474</figcaption>
+</figure>
+<h5 id="运行时更新topic">运行时更新Topic</h5>
+<p>对于Kafka，一张物理表对应一个Topic。动态新增一张表的时候，需要在运行时，定时更新其对应的Topic。其中的关键点在于，更新Topic要保证在元数据加载完成之后，否则，可能导致接收到的消息数据，无法消费发送出去。kafka对自动新增和删除topic支持不是很好，需要自己实现一些内容。具体可以参考下面链接。</p>
+<p>参考：</p>
+<ul>
+<li><a href="https://github.com/spring-projects/spring-kafka/issues/132" target="_blank" rel="noopener">how can i set consumer's topic by code</a></li>
+<li>https://github.com/spring-projects/spring-kafka/issues/213</li>
+</ul>
+<h3 id="数据组装">数据组装</h3>
+<p>组装器是对字段或者行列的处理，包含包装、转换、排序、内存分页。</p>
+<ul>
+<li>包装：针对单字段的处理。
+<ul>
+<li>类型转换包装</li>
+<li>展示数据包装</li>
+<li>可视化参数包装</li>
+<li>字段跳转URL包装</li>
+</ul></li>
+<li>转换：行列转换、多行转单行等。</li>
+<li>排序：主要是对异构合并的数据进行排序。优先使用Runner自身的分类器。</li>
+<li>分页：对异构合并的数据进行分页返回。总条目数不宜过多。</li>
+</ul>
+<p>总体原则：优先使用底层的能力，比如要分页的时候，如果Runner底层不能满足的时候，才使用上层的<code>Pager</code>。或者要进行数据合并时，优先使用数据库自身的join，不能满足时再考虑内存<code>Merger</code>。</p>
+<h2 id="小结">小结</h2>
+<p>本文主要介绍了一个轻量级的异构数据查询和推送系统。由于内容较多，本设计的很多细节没有深入介绍。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpeg" alt="DanielJyc 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpeg" alt="DanielJyc 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/数据驱动/" rel="tag"># 数据驱动</a>
+          
+            <a href="/tags/数据服务/" rel="tag"># 数据服务</a>
+          
+            <a href="/tags/DAG/" rel="tag"># DAG</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/11/20/DDA-数据驱动应用（四）：数据决策/" rel="next" title="数据驱动应用（四）：数据决策">
+                <i class="fa fa-chevron-left"></i> 数据驱动应用（四）：数据决策
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/11/20/DDA-数据驱动应用（一）：整体概述/" rel="prev" title="数据驱动应用（一）：整体概述">
+                数据驱动应用（一）：整体概述 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="DanielJyc">
+            
+              <p class="site-author-name" itemprop="name">DanielJyc</p>
+              <p class="site-description motion-element" itemprop="description">数据驱动 Java 大数据 算法</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://danieljyc.github.io/" title="Danieljyc blog" target="_blank">Danieljyc blog</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#dda-数据驱动应用三数据服务"><span class="nav-number">1.</span> <span class="nav-text">DDA-数据驱动应用（三）：数据服务</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#概述"><span class="nav-number">1.1.</span> <span class="nav-text">概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#主要概念"><span class="nav-number">1.1.1.</span> <span class="nav-text">主要概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#异构数据查询产品对比和分析"><span class="nav-number">1.1.2.</span> <span class="nav-text">异构数据查询产品对比和分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#本文的目标"><span class="nav-number">1.1.3.</span> <span class="nav-text">本文的目标</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三层数据集思想"><span class="nav-number">1.2.</span> <span class="nav-text">三层数据集思想</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#领域模型"><span class="nav-number">1.3.</span> <span class="nav-text">领域模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#技术架构"><span class="nav-number">1.4.</span> <span class="nav-text">技术架构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#系统整体设计"><span class="nav-number">1.5.</span> <span class="nav-text">系统整体设计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据集设计"><span class="nav-number">1.5.1.</span> <span class="nav-text">数据集设计</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#多维统计"><span class="nav-number">1.5.1.1.</span> <span class="nav-text">1.多维统计</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#单维详情查询按主键pk查询"><span class="nav-number">1.5.1.2.</span> <span class="nav-text">2.单维详情查询——按主键PK查询</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#单维详情查询非主键查询"><span class="nav-number">1.5.1.3.</span> <span class="nav-text">3. 单维详情查询——非主键查询</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#系统详细设计"><span class="nav-number">1.6.</span> <span class="nav-text">系统详细设计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#系统流程"><span class="nav-number">1.6.1.</span> <span class="nav-text">系统流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#元数据加载"><span class="nav-number">1.6.2.</span> <span class="nav-text">元数据加载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#执行计划构建"><span class="nav-number">1.6.3.</span> <span class="nav-text">执行计划构建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#执行计划调度"><span class="nav-number">1.6.4.</span> <span class="nav-text">执行计划调度</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#执行模式"><span class="nav-number">1.6.4.1.</span> <span class="nav-text">执行模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#调度执行过程"><span class="nav-number">1.6.4.2.</span> <span class="nav-text">调度执行过程</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#runner执行"><span class="nav-number">1.6.5.</span> <span class="nav-text">Runner执行</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#sqlrunner"><span class="nav-number">1.6.5.1.</span> <span class="nav-text">SqlRunner</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#filterbuilder"><span class="nav-number">1.6.5.1.1.</span> <span class="nav-text">FilterBuilder</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#joinbulider"><span class="nav-number">1.6.5.1.2.</span> <span class="nav-text">JoinBulider</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#groupbybulider"><span class="nav-number">1.6.5.1.3.</span> <span class="nav-text">GroupByBulider</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#sortbuilder"><span class="nav-number">1.6.5.1.4.</span> <span class="nav-text">SortBuilder</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#pagebuilder"><span class="nav-number">1.6.5.1.5.</span> <span class="nav-text">PageBuilder</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#kafka-runner"><span class="nav-number">1.6.5.2.</span> <span class="nav-text">Kafka-Runner</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#执行流程"><span class="nav-number">1.6.5.2.1.</span> <span class="nav-text">执行流程</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#运行时更新topic"><span class="nav-number">1.6.5.2.2.</span> <span class="nav-text">运行时更新Topic</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据组装"><span class="nav-number">1.6.6.</span> <span class="nav-text">数据组装</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小结"><span class="nav-number">1.7.</span> <span class="nav-text">小结</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2014 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">DanielJyc</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">52.5k</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: window.location.pathname, 
+            owner: 'DanielJyc',
+            repo: 'gitment',
+            
+            lang: "zh-Hans" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: '807aa1205dbd6cf2f4cf1a56c5a05243d89f8f10',
+            
+                client_id: '8f44940851c869479ac9'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
+    
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("zYEWmF1a0i8uGTxvDClNekjd-gzGzoHsz", "STn158ECLfhmmqrEq5VEkRsb");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>

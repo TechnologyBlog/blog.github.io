@@ -298,6 +298,820 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.datadriven.top/2014/06/09/机器学习12-1--k-means算法(无监督)/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="DanielJyc">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="技术博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2014/06/09/机器学习12-1--k-means算法(无监督)/" itemprop="url">机器学习12-1--K-means算法(无监督)</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-06-09T11:24:28+08:00">
+                2014-06-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2014/06/09/机器学习12-1--k-means算法(无监督)/" class="leancloud_visitors" data-flag-title="机器学习12-1--K-means算法(无监督)">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  475
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>#机器学习12-1--K-means算法（无监督） 本章开始接触第一个无监督学习算法。无监督学习算法可用在新闻局累、图像分割等。 ## 无监督学习概念 - 定义：简单讲，就是<strong>没有分类标签y</strong>。非监督式学习是一种机器学习的方式，并不需要人力来输入标签。它是监督式学习和强化学习等策略之外的一种选择。 - K-means是最简单的聚类，<strong>聚类</strong>属于无监督学习。</p>
+<h2 id="k-means的步骤">K-means的步骤</h2>
+<ol type="1">
+<li>符号： &gt; 类的数目：<span class="math inline">\(k\)</span> 训练样本：<img src="/img/1402202798993.png"> 质心点：<img src="/img/1402202873143.png"> 类：<span class="math inline">\(｛c^{(1)}, c^{(2)}, ……, c^{(k)}｝\)</span></li>
+<li>步骤： K-means 算法是将样本聚类成 k 个簇（cluster），具体算法描述如下： <img src="/img/1402203082831.png"></li>
+<li>二维效果图(k=2): <img src="/img/1402203216709.png"></li>
+<li>Kmeans收敛的原因 &gt; 首先，我们定义畸变函数（distortion function）如下： <img src="/img/1402203396436.png"> <img src="/img/1402203602145.png"> <strong>注：</strong>由于畸变函数 J 是非凸函数，意味着我们不能保证取得的最小值是全局最小值，也就是说 k-means对质心初始位置的选取比较感冒，但一般情况下k-means达到的局部最优已经满足需求。但如果你怕陷入局部最优，那么可以选取不同的初始值跑多遍 k-means，然后取其中最小的 J 对应的μ和 c 输出。</li>
+<li>聚类后结果是一个个星团，星团里面的点相互距离比较近，星团间的星星距离就比较远了。</li>
+</ol>
+<h2 id="k-means与em的关系">K-means与EM的关系：</h2>
+<ol type="1">
+<li><p>EM的基本思想： &gt; - E步：固定参数θ，优化隐含类别Q &gt; - M步：固定隐含类别Q，优化参数θ</p></li>
+<li><p>K-means用到的EM的基本思想： &gt; - E步：确定隐含类别变量c &gt; - M步：更新其他参数μ来使J最小化</p></li>
+<li><p>两种算法都类似于坐标上升法。固定一个，优化另外一个。</p></li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.datadriven.top/2014/06/05/机器学习11-2--怎样用机器学习ml解决问题和在线学习/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="DanielJyc">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="技术博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2014/06/05/机器学习11-2--怎样用机器学习ml解决问题和在线学习/" itemprop="url">机器学习11-2--怎样用机器学习ML解决问题和在线学习</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-06-05T16:57:49+08:00">
+                2014-06-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2014/06/05/机器学习11-2--怎样用机器学习ml解决问题和在线学习/" class="leancloud_visitors" data-flag-title="机器学习11-2--怎样用机器学习ML解决问题和在线学习">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  481
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="机器学习11-2--怎样用机器学习ml解决问题和在线学习">机器学习11-2--怎样用机器学习ML解决问题和在线学习</h1>
+<p>本章讲了，通过误差、偏差和优化算法来进行算法的调试。并讲了一些调试的方法。然后，进行了误差分析，去掉一些不必要的特征。最后举例说明。</p>
+<h2 id="算法的调试debugging-learning-algorithms">算法的调试（Debugging Learning Algorithms）</h2>
+<h3 id="存在的问题">存在的问题</h3>
+<p>1、对于<strong>贝叶斯逻辑回归</strong>问题： <img src="/img/1401955188967.png"> 2、如果，误差太大，我们怎样做？ <img src="/img/1401955314976.png"> 3、很显然，这样很耗时。</p>
+<h3 id="改进方法1方差variance和偏差bias分析">改进方法1：方差variance和偏差bias分析</h3>
+<p><img src="/img/1401955565742.png"> <img src="/img/1401955575586.png"> <img src="/img/1401955692725.png"></p>
+<h3 id="改进方法2优化算法和参数">改进方法2：优化算法和参数</h3>
+<h4 id="参数是否恰当">参数是否恰当</h4>
+<p><img src="/img/1401955933005.png"></p>
+<h4 id="算法是否收敛是否正确优化了函数">算法是否收敛；是否正确优化了函数。</h4>
+<h4 id="优化算法通过对比两种算法">优化算法：通过对比两种算法</h4>
+<p><img src="/img/1401956098176.png"> <img src="/img/1401956107007.png"></p>
+<h3 id="改进方法3直觉">改进方法3：直觉</h3>
+<h3 id="总结">总结</h3>
+<p>出现的问题，及其解决方法： <img src="/img/1401956171790.png"></p>
+<h2 id="误差分析和销蚀分析-error-analyses-and-ablative-analysis">误差分析和销蚀分析（ Error analyses and ablative analysis）</h2>
+<h3 id="误差分析">误差分析</h3>
+<p>通过加入新的成分使得准确率逐步升高： <img src="/img/1401957133957.png"> ### 销蚀分析 逐一去除某一成分，分析那一个去除时，准确率下降最快。 <img src="/img/1401957242080.png"></p>
+<p>###总结 - Error analysis tries to explain the difference between current performance and perfect performance. - Ablative analysis tries to explain the difference between some baseline (much poorer) performance and current performance.</p>
+<h2 id="实例问题分析getting-started-on-a-learning-problem">实例问题分析（Getting started on a learning problem）</h2>
+<p>要解决一个问题，下面列出了两种方法。我们一般采用方法2（Approach #2）。因为，此方法可以快速实现我们的要求。<strong>此方法看似简单，但是NG说，很多人没有按照步骤做，结果导致半年甚至一年时间白白浪费掉。</strong> <img src="/img/1401957566356.png"></p>
+<h2 id="总结-1">总结</h2>
+<p><img src="/img/1401957620723.png"></p>
+<h1 id="在线学习online-learning">在线学习(online learning)</h1>
+<p>这一节相对比较独立，我就放在这里吧。 &gt; 1. 以前我们的学习算法：批学习算法（batch learning）；这里为：在线学习(online learning)。 2. 简而言之，每增加一个样本 都要重新计算一次<span class="math inline">\(\theta\)</span> 。即： <img src="/img/1401946602307.png"></p>
+<p><strong>eg：我们举一个简单的例子，在逻辑回归中</strong> <img src="/img/1401946614956.png"> <img src="/img/1401946624794.png"></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.datadriven.top/2014/06/05/机器学习11-1--贝叶斯统计和规则化/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="DanielJyc">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="技术博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2014/06/05/机器学习11-1--贝叶斯统计和规则化/" itemprop="url">机器学习11-1--贝叶斯统计和规则化</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-06-05T16:57:33+08:00">
+                2014-06-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2014/06/05/机器学习11-1--贝叶斯统计和规则化/" class="leancloud_visitors" data-flag-title="机器学习11-1--贝叶斯统计和规则化">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  972
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  3
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="机器学习11-1--贝叶斯统计和规则化">机器学习11-1--贝叶斯统计和规则化</h1>
+<h2 id="贝叶斯统计和规则化-bayesian-statistics-and-regularization">贝叶斯统计和规则化（ Bayesian statistics and regularization）</h2>
+<ul>
+<li>贝叶斯统计和规则化的目的：找更好的估计方法来减少过度拟合情况的发生。</li>
+<li>回顾,总结： &gt; 1. <strong>线性回归中使用的估计方法是最小二乘法</strong></li>
+</ul>
+<ol start="2" type="1">
+<li><strong>logistic 回归是条件概率的最大似然估计</strong></li>
+<li><strong>朴素贝叶斯是联合概率的最大似然估计</strong></li>
+<li><strong>SVM 是二次规划。</strong></li>
+</ol>
+<h3 id="频率学派和贝叶斯学派">频率学派和贝叶斯学派</h3>
+<p><strong>看待 <span class="math inline">\(\theta\)</span> 的角度不同</strong> #### 频率学派（frequentist statistics） 认为θ不是随机变量，只是一个未知的常量，因此我们没有把<img src="/img/1401942615337.png"> #### 贝叶斯学派（Bayesian） 认为θ是随机变量。 <strong>步骤：</strong> 1、先验概率p(θ)：不同的θ值就有不同的概率。训练集：<img src="/img/1401942831083.png">。则：θ的后验概率： &gt; <img src="/img/1401942868297.png"> 分母有误：<img src="/img/1401943041380.png"></p>
+<p>2、在θ是随机变量的情况下，如果新来一个样例特征为 x，那么为了预测 y。我们可以使用下面的公式： <img src="/img/1401943115094.png"> &gt; 注：<img src="/img/1401943217200.png">在不同的模型下计算方式不同。比如在贝叶斯 logistic 回归中： <img src="/img/1401943264910.png"> 其中，<img src="/img/1401943296618.png"></p>
+<p>3、进而得到期望： &gt;　<img src="/img/1401943429814.png"></p>
+<p>4、<strong>注：</strong> &gt; 1. 这次求解p(y|x, S)与之前的方式不同，以前是先求θ，然后直接预测，这次是对所有可 能的θ作积分。 2. 贝叶斯估计将θ视为随机变量，θ的值满足一定的分布，不是固定值，我们无法通过计算获得其值，只能在预测时计算积分。 3. 由于上述问题的存在；显然，后验概率p(θ|S)很难计算。为了解决这个问题，我们需要改变思路。看p(θ|S)公式中的分母，分母其实就是 P(S)，而我们就是要让P(S)在各种参数的影响下能够最大（这里只有参数θ） 。 因此我们<strong>只需求出随机变量θ中最可能的取值</strong>，这样求出θ后，可将θ视为固定值，那么预测时就不用积分了，而是直接像最大似然估计中求出θ后一样进行预测，这样就变成了点估计。这种方法称为<strong>MAP 最大后验概率估计（Maximum a posteriori）</strong>方法。</p>
+<p>5、<strong>MAP 最大后验概率估计（Maximum a posteriori）</strong>方法，Θ估计公式为 &gt; <img src="/img/1401944579808.png"></p>
+<p>6、进行预测： &gt; <span class="math inline">\(h_{\hat{\theta}_{MAP}}(X)=\hat{\theta}_{MAP}^{T}X\)</span></p>
+<p>7、总结与应用： &gt; 1. 与最大似然估计对比发现，MAP 只是将θ移进了条件概率中，并且多了一项p(θ)。 2. 一般情况下我们认为<img src="/img/1401945205238.png">。 3. 贝叶斯最大后验概率估计相对于最大似然估计来说更容易克服过度拟合问题。原因： &gt;&gt; a. 整个公式由两项组成，极大化<img src="/img/1401945277536.png">时，不代表此时p(θ)也能最大化。相反，θ是多值高斯分布，极大化时， p(θ)概率反而可能比较小。要达到最大化需要在两者之间达到平衡，也就靠近了偏差和方差线的交叉点。 b. 这个跟机器翻译里的噪声信道模型比较类似，由两个概率决定比有一个概率决定更靠谱。作者声称利用贝叶斯 logistic 回归（使用θMAP的 logistic 回归）应用于文本分类时，即使特征个数 n 远远大于样例个数 m，也很有效。</p>
+<h2 id="l1和l2规则化">L1和L2规则化？？？？？？？</h2>
+<p><strong>老师上课没有讲到该部分，看了一下Pro Set3。也不是很理解。</strong>先引出正则化参数的损失函数，然后介绍了怎样最小化损失函数（过程不是很理解）。对于L1和L2在ODPS的XLab中有提到。后面，再仔细研究研究。对于L2：将后面一项改为2范数。 ### <strong>贝叶斯xi回归</strong>L1 <img src="/img/1401946026172.png"></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.datadriven.top/2014/06/05/机器学习10--学习理论的基础知识/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="DanielJyc">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="技术博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2014/06/05/机器学习10--学习理论的基础知识/" itemprop="url">机器学习10--学习理论的基础知识</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-06-05T16:57:04+08:00">
+                2014-06-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2014/06/05/机器学习10--学习理论的基础知识/" class="leancloud_visitors" data-flag-title="机器学习10--学习理论的基础知识">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  585
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  2
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="机器学习10--学习理论的基础知识">机器学习10--学习理论的基础知识</h1>
+<p>本章：模型选择（交叉选择的方法）--&gt;特征选择。</p>
+<h2 id="模型选择">模型选择</h2>
+<ul>
+<li>设可选的模型集合为：<img src="/img/1401936205618.png"> ,那么 SVM、 logistic 回归、神经网络等模型都包含在 M 中。</li>
+<li>训练集使用 S 来表示</li>
+<li>任务：从 M 中选择最好的模型</li>
+</ul>
+<h3 id="方法一简单交叉验证数据集大">方法一：简单交叉验证（数据集大）</h3>
+<p><img src="/img/1401936415508.png"> &gt; - 测试集的比例一般占全部数据的 1/4-1/3。<strong>30%是典型值</strong>。 &gt; - 由于测试集是和训练集中是两个世界的，因此我们可以认为这里的经验错误接近于泛化错误。 &gt; - <strong>得到的最好模型，在全部数据上重新训练的到所需模型。</strong></p>
+<h3 id="方法二k-折叠交叉验证数据集小">方法二：k-折叠交叉验证（数据集小）</h3>
+<p><img src="/img/1401936724140.png"> &gt; - 简而言之，这个方法就是将简单交叉验证的测试集改为 1/k，每个模型训练 k 次，测试 k 次，错误率为 k 次的平均。 - <strong>一般讲k 取值为 10</strong> - <strong>数据集非常小的时候：</strong>极端情况下，k 可以取值为 m，意味着每次留一个样例做测试，这个称为 leave-one-out cross validation。</p>
+<h2 id="特征选择">特征选择</h2>
+<ul>
+<li>其实，很多特征对于结果是无用的，想剔除 n 中的无用特征。n 个特征就有<span class="math inline">\(2^n\)</span>种去除情况（每个特征去或者保留）。属于<strong>NP难</strong>问题。</li>
+<li>本节主要将该问题简化：<strong>NP难<span class="math inline">\(2^n\)</span>--&gt;<span class="math inline">\(n^2\)</span>--&gt;<span class="math inline">\(n\)</span></strong></li>
+</ul>
+<h3 id="第一种启发式搜索方法前向搜索和后向搜索on2">第一种：启发式搜索方法<em>：前向搜索和后向搜索</em><span class="math inline">\(O(n^2)\)</span></h3>
+<p><span class="math inline">\(时间 复杂度为O(n + (n − 1) +(n − 2) + ⋯ + 1) = O(n^2)\)</span>。 #### 前向搜索 <img src="/img/1401937283400.png"> #### 后向搜索 先将 F 设置为{1,2,..,n}，然后每次删除一个特征，并评价，直到达到阈值或者为空，然后选择最佳的 F。 ### 第二种：过滤特征选择（Filter feature selection）<span class="math inline">\(O(n)\)</span> 过滤特征选择方法的想法是针对每一个特征<img src="/img/1401937541906.png"> ，i 从 1 到 n，计算<img src="/img/1401937530226.png">相对于类别标签y的信息量S(i)，得到 n 个结果，然后将 n 个S(i)按照从大到小排名，输出前 k 个特征。显然，这样复杂度大大降低，为 <strong>O(n)</strong>。 &gt; <strong>1、 $x_i <span class="math inline">\(是 0/1 离散值的时候 ：** 互信息（Mutual information）公式：![](/img/1401938493509.png) 2、**\)</span>x_i $是多个离散值</strong> <img src="/img/1401938544570.png"> 注：<img src="/img/1401938563506.png"> <img src="/img/1401938700857.png"></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.datadriven.top/2014/06/05/机器学习9--学习理论的基础知识/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -493,878 +1307,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.datadriven.top/2014/06/05/机器学习8--支持向量机（下）/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="DanielJyc">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="技术博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2014/06/05/机器学习8--支持向量机（下）/" itemprop="url">机器学习8--支持向量机（下）</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-06-05T16:55:37+08:00">
-                2014-06-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/机器学习/" itemprop="url" rel="index">
-                    <span itemprop="name">机器学习</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2014/06/05/机器学习8--支持向量机（下）/" class="leancloud_visitors" data-flag-title="机器学习8--支持向量机（下）">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  1k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  3
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="机器学习8--支持向量机下">机器学习8--支持向量机（下）</h1>
-<blockquote>
-<p><strong>上节回顾：</strong>从逻辑回归引出支持向量机--&gt;定义函数间隔和几何间隔--&gt;最优间隔分类器（通过最大化间隔，得到最优）--&gt;引出拉格朗日对偶（作用：通过对偶将算法变得更高效；处理高维）--&gt;将对偶用到最优间隔分类器 <strong>本节内容：</strong>核函数（升维）--&gt;判定是否是有效的核函数--&gt;L1 norm 软间隔SVM（针对不可分的情况）--&gt;<strong>第三种求解最优化的方法：坐标上升法</strong>--&gt;SMO优化算法（最快的二次规划优化算法）</p>
-</blockquote>
-<h2 id="核函数">核函数</h2>
-<p>1、定义 &gt; <img src="/img/1401589792400.png"></p>
-<p>2、核函数的作用 &gt; a、低维映射到高维，从而更好的拟合； b、将不可分的情况变为可分</p>
-<p>3、举例： &gt; 例一： <img src="/img/1401589996693.png"> <img src="/img/1401590011818.png"> 说明：时间复杂度由<img src="/img/1401590126082.png"> 例二： 高斯核（把原始特征映射到无穷维）：<img src="/img/1401590208271.png"> 映射后的优点： <img src="/img/1401590470703.png"></p>
-<p>4、映射后怎样进行<strong>预测</strong>： &gt; 预测函数：<img src="/img/1401590532017.png"> 映射后：将<img src="/img/1401590627850.png"> <strong>问题：</strong>怎样<strong><em>求取</em></strong>和判断核函数？下面将会介绍。</p>
-<h2 id="核函数的判定">核函数的判定</h2>
-<p>1、符号说明 &gt; K：核函数矩阵$K={K_{ij}} $ 第i,j个样本 <span class="math inline">\(K_{ij}\)</span> 或者$K(x<sup>{(i)},x</sup>{(j)}) $ ：核函数$K_{ij}=K(x<sup>{(i)},x</sup>{(j)}) $</p>
-<p>2、利用<strong>Mercer定理</strong> &gt; <img src="/img/1401590742752.png"> 简而言之，<strong>K是一个有效的核函数&lt;--&gt;核函数矩阵是对称半正定</strong></p>
-<h2 id="l1-norm-软间隔svm">L1 norm 软间隔SVM</h2>
-<p>当不可分时，利用<strong>L1 软间隔</strong>进行分离 1、 加入软间隔后的模型： &gt; <strong>（1）凸规划</strong>： <img src="/img/1401591458911.png"> 其中，C是离群点的权重（我们预定的，为已知数），越大表明对目标函数影响越大，也就是月不希望看到离群点。引入非负参数<img src="/img/1401591999936.png">（称为松弛变量） ， 就允许某些样本点的函数间隔小于1，即在最大间隔区间里面，或者函数间隔是负数，即样本点在对方的区域中。 <strong>（2）拉格朗日算子：</strong> <img src="/img/1401591501740.png"> 其中，<img src="/img/1401591562176.png"> <strong>（3）推导结果</strong> 跟前面模型类似：先写出拉格朗日公式 （如上） ，然后将其看作是变量 w 和 b的函数，分别对其求偏导，得到 w 和 b 的表达式。然后代入公式中，求带入后公式的极大值。得到： <img src="/img/1401592399557.png"> &gt;&gt; KTT条件： <img src="/img/1401592240525.png"></p>
-<h2 id="第三种求解最优化的方法坐标上升法">第三种求解最优化的方法：坐标上升法</h2>
-<p>1、三种求解最优化的方法： &gt; <strong>（1）梯度上升法</strong>(求解最小值问题时，称作梯度下降法) <strong>（2）牛顿法</strong>（求解最值） <strong>（3）坐标上升法</strong>（求解最小值问题时，称作坐标下降法）</p>
-<p>2、假设求解下面问题： &gt; <img src="/img/1401592589750.png"> 其中，<img src="/img/1401592830611.png"></p>
-<p>3、算法过程： &gt; <img src="/img/1401592929690.png"> &gt;&gt; <img src="/img/1401593088183.png"> <img src="/img/1401593108069.png"></p>
-<h2 id="smo优化算法">SMO优化算法</h2>
-<p>最快的二次规划优化算法，特别针对线性 SVM 和数据稀疏时性能更优。 1、前面得到的结果 &gt; 首先，先看前面的到的结果，如下图： <img src="/img/1401592399557.png"> &gt;&gt; 这个问题中： <img src="/img/1401593370616.png"> 按照坐标上升法的思路，只固定一个<img src="/img/1401593529971.png">的话，由于限制条件中存在<img src="/img/1401593550357.png">，将导致<img src="/img/1401593529971.png">不再是变量。 因此，我们一次选取两个参数做优化。</p>
-<p><strong>2、SMO的主要步骤</strong> &gt; <img src="/img/1401593654090.png"> 注：第一步，利用启发式方法选取<img src="/img/1401593901295.png">。第二步，固定其他参数，<img src="/img/1401593977721.png"></p>
-<p><strong>3、 具体步骤</strong> &gt; （1）固定除<img src="/img/1401593749701.png">以外的参数，得： <img src="/img/1401593773158.png"> （2）为了方便: <img src="/img/1401593811665.png"> &gt;&gt; 如下图： <img src="/img/1401594617028.png"> 其中，满足：<img src="/img/1401594674995.png">和<img src="/img/1401594696380.png"> L和H的范围： <img src="/img/1401595192630.png"></p>
-<blockquote>
-<p>（3）将<img src="/img/1401595320429.png">带入W中： <img src="/img/1401595417198.png"> 展开，得： <img src="/img/1401595488545.png"> （4）这就是二次函数的最小值问题，容易求得（在纸上画图很容易看出来）： <img src="/img/1401595811976.png"> 其中，<img src="/img/1401595827675.png">为最终结果。<img src="/img/1401595900489.png">为求导得到的结果。 同理，求得<img src="/img/1401596593534.png">的最优解。</p>
-</blockquote>
-<h2 id="总结">总结</h2>
-<p>1、本章的系统结构： &gt; 至此，我们得到： 预测问题只需要求解<img src="/img/1401596884593.png">，即： <img src="/img/1401596939257.png"> &lt;--&gt;上面的过程（SMO）求得<img src="/img/1401596616059.png">为<img src="/img/1401596062693.png">的最优解 &lt;--&gt;<img src="/img/1401596318573.png"> &lt;--&gt;<img src="/img/1401596439772.png"> &lt;--&gt;<img src="/img/1401596460479.png"> &lt;--&gt;<img src="/img/1401596488661.png"> &lt;--&gt;<img src="/img/1401596500584.png">（最大化几何间隔问题）</p>
-<p>2、关于核问题（升维）的说明 &gt; 核问题用来替换第一步中的部分： <img src="/img/1401597230916.png"></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.datadriven.top/2014/05/30/机器学习7-支持向量机（上）/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="DanielJyc">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="技术博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2014/05/30/机器学习7-支持向量机（上）/" itemprop="url">机器学习7--支持向量机（上）</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-05-30T12:37:35+08:00">
-                2014-05-30
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/机器学习/" itemprop="url" rel="index">
-                    <span itemprop="name">机器学习</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2014/05/30/机器学习7-支持向量机（上）/" class="leancloud_visitors" data-flag-title="机器学习7--支持向量机（上）">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  889
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  3
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <a id="more"></a>
-<blockquote>
-<ul>
-<li>本节：从逻辑回归引出支持向量机--&gt;定义函数间隔和几何间隔--&gt;最优间隔分类器（通过最大化间隔，得到最优）--&gt;引出拉格朗日对偶（作用：通过对偶将算法变得更高效；处理高维）--&gt;将对偶用到最优间隔分类器</li>
-<li>本节都是针对很明显的分类'good'，如下图。</li>
-</ul>
-</blockquote>
-<h2 id="逻辑回归和支持向量机关系">逻辑回归和支持向量机关系</h2>
-<h3 id="两者关系">两者关系</h3>
-<p>两者都可以实现分类。LR考虑全局（几经远离的点，通过调节中间线使其更远）；SVM考虑局部（不关心已经确定远离的点）。 <img src="/img/1401413075318.png"> ### 形式化表示LR--&gt;SVM表示 <span class="math inline">\(\theta\)</span> 变为w和b。0、1变为0、-1。 <img src="/img/1401413701601.png"> <img src="/img/1401413727942.png"></p>
-<h2 id="函数间隔和几何间隔">函数间隔和几何间隔</h2>
-<p>定义函数间隔--&gt;通过归一化，再定义几何间隔--&gt;两者关系。几何间隔的意义：点到超平面的距离。 - 函数间隔 一个训练样本：<img src="/img/1401413990360.png"> 所有训练样本：<img src="/img/1401414030946.png"> - 几何间隔 一个训练样本：<img src="/img/1401414126627.png"> 所有训练样本：<img src="/img/1401414136951.png"> - 两者关系 当<img src="/img/1401414173123.png">时，两者等价。</p>
-<h2 id="最优化间隔分类器">最优化间隔分类器</h2>
-<p>几何间隔的优化（非凸规划：集合非凸集）--&gt; 函数间隔的优化（非凸规划：最大化函数非凸函数）--&gt; 改写后的规划（凸规划） - 几何间隔的优化 <img src="/img/1401414627849.png"> - 函数间隔的优化 <img src="/img/1401414643134.png"> - 改写后的规划：令<img src="/img/1401414739683.png">，这样做的意义：将全局的函数间隔定义为1，即将离超平面最近的点的距离定义为<img src="/img/1401414848436.png">，<img src="/img/1401414904554.png">： <img src="/img/1401414657876.png"></p>
-<h2 id="拉格朗日对偶">拉格朗日对偶</h2>
-<h3 id="拉格朗日乘数法">拉格朗日乘数法</h3>
-<ul>
-<li>1.最优化问题： <img src="/img/1401415019283.png"></li>
-<li>2.拉格朗日公式（拉格朗日算子）： <img src="/img/1401415070328.png"> 其中，l为约束的个数（样本数目），<img src="/img/1401415151617.png">为拉格朗日乘数。</li>
-<li>3.通过求偏导，解得参数<img src="/img/1401415247674.png"> <img src="/img/1401415259408.png"></li>
-</ul>
-<h3 id="广义拉格朗日拉格朗日不等式">广义拉格朗日：拉格朗日+不等式</h3>
-<ul>
-<li>1.原始<strong>primal</strong>的最优化问题： <img src="/img/1401415324361.png"></li>
-<li>2.拉格朗日公式（拉格朗日算子）： <img src="/img/1401415353328.png"> 其中，<img src="/img/1401415683097.png">为拉格朗日乘数。</li>
-<li>3.进一步得到 <img src="/img/1401415657129.png"> 即： <img src="/img/1401415727047.png"></li>
-<li>4.从而将问题转化（p:primal）：<img src="/img/1401415781557.png"> <img src="/img/1401416121113.png"></li>
-<li>5.定义对偶问题（D:dual）： 定义：<img src="/img/1401415977743.png">，则： <img src="/img/1401416100848.png"></li>
-<li>6.得到不等式关系： <img src="/img/1401416160802.png"></li>
-<li><strong>7.上面两者等价<img src="/img/1401416215315.png">的条件，KKT条件：</strong> <img src="/img/1401416417346.png"> <img src="/img/1401416445523.png">，即<strong>KKT条件</strong>： <img src="/img/1401416477011.png"> &gt; 注:<img src="/img/1401416691302.png"></li>
-</ul>
-<h2 id="最优间隔分类器及拉格朗日对偶-在svm中的应用">最优间隔分类器及拉格朗日对偶 在SVM中的应用</h2>
-<p><strong>优化问题主要是求解w；b仅仅是一个参数。</strong> ### SVM的优化问题 - 1、优化问题 <img src="/img/1401417232731.png"> <img src="/img/1401417252656.png"> - 2、拉格朗日算子 <img src="/img/1401417819167.png"> - 3、没有等式约束，只有不等式。下图中虚线上的三个点称为<strong>支持向量</strong>（支持向量机中的支持向量）。三点的函数间隔为1。<img src="/img/1401417445083.png">。 <img src="/img/1401417745474.png"> ### 求解最优化问题 - 1、对偶问题 <img src="/img/1401418081844.png"> - 2、求解极小化问题：对w求偏导 <img src="/img/1401418177089.png"> <img src="/img/1401418208766.png"> - 3、求解极小化问题：对w求偏导 <img src="/img/1401418251955.png"> - 4、将w，b带入L中 <img src="/img/1401418402946.png"> <strong>注：</strong>该函数是关于<img src="/img/1401418527912.png">的函数。通过极大化，来求解得到该值。然后，再得到w和b。 - 5、求解极大化问题：<img src="/img/1401418707592.png"> 凸规划： <img src="/img/1401418685006.png"> - 6、求解 &gt; 求解得到<img src="/img/1401418527912.png">； 根据<img src="/img/1401418208766.png">得到w； 根据<img src="/img/1401418939304.png">得到b。 其中，b的意义：离超平面最近的正的函数间隔要等于离超平面最近的负的函数间隔。 - 7、进行预测 如下公式所示:有了<span class="math inline">\(\alpha_i\)</span>，我们不需要求出w，只需将新来的样本和训练数据中的所有样本做内积和即可。那有人会说，与前面所有的样本都做运算是不是太耗时了？其实不然，我们从KKT条件中得到，只有支持向量的<span class="math inline">\(\alpha_i\)</span>&gt; 0，其他情况<span class="math inline">\(\alpha_i\)</span>= 0。 <img src="/img/1401419097015.png"></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.datadriven.top/2014/05/29/机器学习5_6--生成学习算法（高斯、nb）/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="DanielJyc">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="技术博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2014/05/29/机器学习5_6--生成学习算法（高斯、nb）/" itemprop="url">机器学习5_6--生成学习算法(高斯判别分析GDA和朴素贝叶斯NB)</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-05-29T11:44:52+08:00">
-                2014-05-29
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/机器学习/" itemprop="url" rel="index">
-                    <span itemprop="name">机器学习</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2014/05/29/机器学习5_6--生成学习算法（高斯、nb）/" class="leancloud_visitors" data-flag-title="机器学习5_6--生成学习算法(高斯判别分析GDA和朴素贝叶斯NB)">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  489
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  1
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>#生成学习算法 <strong>说明：</strong> - m为样本数目，i为第i个样本数目； - joint likelihood ：联合似然估计 ## 判别学习算法和生成学习算法的区别：</p>
-<table>
-<thead>
-<tr class="header">
-<th style="text-align: left;">算法</th>
-<th style="text-align: right;">Learn</th>
-<th style="text-align: center;">说明</th>
-<th style="text-align: center;">概率类型</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">判别学习算法</td>
-<td style="text-align: right;"><span class="math inline">\(P(y/x)\)</span></td>
-<td style="text-align: center;">特征x下，输出y的概率</td>
-<td style="text-align: center;">先验概率（经验为x）</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">生成学习算法</td>
-<td style="text-align: right;"><span class="math inline">\(P(x/y)和P(y)\)</span></td>
-<td style="text-align: center;">在模型y（为良性肿瘤）下，特征x发生的概率</td>
-<td style="text-align: center;">后验概率（投‘果’探‘因’）——条件概率</td>
-</tr>
-</tbody>
-</table>
-<h2 id="第一个生成学习算法gda高斯判别分析">第一个生成学习算法：GDA（高斯判别分析）</h2>
-<h3 id="特点"><strong>特点</strong></h3>
-<ul>
-<li>假设输入x连续，服从多元高斯分布。</li>
-<li>本例中y服从伯努利分布</li>
-</ul>
-<h3 id="gda模型">GDA模型</h3>
-<ul>
-<li>输入x连续，服从多元高斯分布。</li>
-<li>y服从伯努利分布 <img src="/img/1401326363187.png"></li>
-</ul>
-<h3 id="似然函数">似然函数</h3>
-<p><img src="/img/1401326348207.png"></p>
-<h3 id="最大化似然函数得到所需参数">最大化似然函数得到所需参数</h3>
-<p><img src="/img/1401331060832.png"></p>
-<h3 id="gda与lr的区别">GDA与LR的区别</h3>
-<p><img src="/img/1401331521750.png"></p>
-<h2 id="第二个生成学习算法navie-bayes朴素贝叶斯">第二个生成学习算法：Navie Bayes朴素贝叶斯</h2>
-<h3 id="特点-1">特点</h3>
-<ul>
-<li>输入x离散，服从伯努利分布 （这也是为什么成为“朴素”的原因）。但是，x是<strong>多元伯努利事件模型</strong>。</li>
-<li>本例中y服从伯努利分布</li>
-</ul>
-<h3 id="贝叶斯假设">贝叶斯假设</h3>
-<p>输入变量x相互独立（在给定y的基础上）。</p>
-<h3 id="nb模型">NB模型</h3>
-<ul>
-<li>模型--&gt;最大化似然函数--&gt;得到参数--&gt;进行预测</li>
-<li><strong>模型及最大化</strong> <img src="/img/1401332946851.png"></li>
-<li><strong>最大化似然函数得到的参数</strong> <img src="/img/1401333156438.png"></li>
-<li><strong>进行预测</strong> <img src="/img/1401333180922.png"></li>
-</ul>
-<h3 id="laplace平滑法">Laplace平滑法</h3>
-<p>用来处理，防止<span class="math inline">\(0/0\)</span>的情况。 <img src="/img/1401333778810.png"> 平滑后的NB参数： <img src="/img/1401333804435.png"></p>
-<h2 id="第三个生成学习算法nb的第一种变形多项式事件模型处理文本">第三个生成学习算法：NB的第一种变形：多项式事件模型（处理文本）</h2>
-<ul>
-<li>生成模型 <img src="/img/1401334073894.png"></li>
-<li>似然函数 <img src="/img/1401334120865.png"></li>
-<li>最大化似然函数得到参数 <img src="/img/1401334169041.png"></li>
-<li>参数的物理意义 <img src="/img/1401334507161.png"></li>
-<li>Laplace平滑处理 <img src="/img/1401334227585.png"></li>
-</ul>
-<h2 id="第四个生成学习算法nb的第二2种变形x可以取k个值">第四个生成学习算法：NB的第二2种变形：x可以取K个值</h2>
-<p><img src="/img/1401334828825.png"></p>
-<h1 id="疑问"><em>疑问</em></h1>
-<ul>
-<li>怎么样最大化似然函数，得到参数（似乎不是利用梯度法，或者牛顿法）？这个老师让自己去想。。。</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.datadriven.top/2014/05/22/机器学习4-glm-广义线性模型/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="DanielJyc">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="技术博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2014/05/22/机器学习4-glm-广义线性模型/" itemprop="url">机器学习4--GLM 广义线性模型'</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-05-22T13:18:20+08:00">
-                2014-05-22
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/机器学习/" itemprop="url" rel="index">
-                    <span itemprop="name">机器学习</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2014/05/22/机器学习4-glm-广义线性模型/" class="leancloud_visitors" data-flag-title="机器学习4--GLM 广义线性模型'">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  287
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  1
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="机器学习2-glm-广义线性模型">机器学习2-GLM 广义线性模型</h1>
-<p>对于高斯分布、伯努利分布、多项式分布，均称之为GLM。
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2014/05/22/机器学习4-glm-广义线性模型/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </p></div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1417,7 +1359,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">36</span>
+                  <span class="site-state-item-count">40</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1439,7 +1381,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-count">28</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -1511,7 +1453,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">42.3k</span>
+    <span title="Site words total count">52.5k</span>
   
 </div>
 

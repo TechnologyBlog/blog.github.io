@@ -91,16 +91,16 @@
 <meta property="og:site_name" content="技术博客">
 <meta property="og:description" content="抽时间将数据驱动的一些内容进行了总结，先整理下面五篇，后续将不断完善。  数据驱动应用（一）：整体概述 数据驱动应用（二）：架构设计 数据驱动应用（三）：数据服务 数据驱动应用（四）：数据决策 数据驱动应用（五）：基于时间序列数据的异常识别模型   概述 决策引擎主要目标是将业务决策逻辑从系统逻辑中抽离出来，使两种逻辑可以独立于彼此而变化，这样可以明显降低两种逻辑的维护成本。下面列举三种方案，然">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://www.datadriven.top/images/media/15423697053653/image-20181107174702180.png">
-<meta property="og:image" content="http://www.datadriven.top/images/media/15423697053653/image-20181107181546309.png">
-<meta property="og:image" content="http://www.datadriven.top/images/media/15423697053653/image-20181107192620073.png">
-<meta property="og:image" content="http://www.datadriven.top/images/media/15423697053653/image-20181107194934545.png">
-<meta property="og:image" content="http://www.datadriven.top/images/media/15423697053653/15174046686142.jpg">
-<meta property="og:updated_time" content="2018-11-20T14:58:58.617Z">
+<meta property="og:image" content="http://www.datadriven.top/images/15423697053653/image-20181107174702180.png">
+<meta property="og:image" content="http://www.datadriven.top/images/15423697053653/image-20181107181546309.png">
+<meta property="og:image" content="http://www.datadriven.top/images/15423697053653/image-20181107192620073.png">
+<meta property="og:image" content="http://www.datadriven.top/images/15423697053653/image-20181107194934545.png">
+<meta property="og:image" content="http://www.datadriven.top/images/15423697053653/15174046686142.jpg">
+<meta property="og:updated_time" content="2018-11-20T15:36:23.686Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据驱动应用（四）：数据决策">
 <meta name="twitter:description" content="抽时间将数据驱动的一些内容进行了总结，先整理下面五篇，后续将不断完善。  数据驱动应用（一）：整体概述 数据驱动应用（二）：架构设计 数据驱动应用（三）：数据服务 数据驱动应用（四）：数据决策 数据驱动应用（五）：基于时间序列数据的异常识别模型   概述 决策引擎主要目标是将业务决策逻辑从系统逻辑中抽离出来，使两种逻辑可以独立于彼此而变化，这样可以明显降低两种逻辑的维护成本。下面列举三种方案，然">
-<meta name="twitter:image" content="http://www.datadriven.top/images/media/15423697053653/image-20181107174702180.png">
+<meta name="twitter:image" content="http://www.datadriven.top/images/15423697053653/image-20181107174702180.png">
 
 
 
@@ -474,7 +474,7 @@
 <p><strong>配置流程</strong></p>
 <p>使用 Drools 的规则配置流程如下图。一般只适合开发人员使用。</p>
 <figure>
-<img src="/images/media/15423697053653/image-20181107174702180.png" alt="image-20181107174702180"><figcaption>image-20181107174702180</figcaption>
+<img src="/images/15423697053653/image-20181107174702180.png" alt="image-20181107174702180"><figcaption>image-20181107174702180</figcaption>
 </figure>
 <p><strong>优点</strong>：</p>
 <ul>
@@ -490,7 +490,7 @@
 <p>针对硬编码和drools方案的不足，我们开发了一套适用于运营、产品、业务、开发等人员的决策引擎。</p>
 <p>下图是配置系统，业务人员配置决策、决策树和决策列表，开发人员负责配置底层更原子的一些组件：规则、动作和因子。随着平台积累和完善，逐渐也将规则、动作和因子交给业务人员去配置。配置后的决策元数据落地到决策库。决策引擎从决策库获取元数据，依次经过获取因子数据--&gt;规则解析--&gt;决策执行，将结果输出到数据应用层。</p>
 <figure>
-<img src="/images/media/15423697053653/image-20181107181546309.png" alt="image-20181107181546309"><figcaption>image-20181107181546309</figcaption>
+<img src="/images/15423697053653/image-20181107181546309.png" alt="image-20181107181546309"><figcaption>image-20181107181546309</figcaption>
 </figure>
 <p><strong>优点</strong>：</p>
 <ul>
@@ -512,7 +512,7 @@
 </ul>
 <h2 id="领域模型">领域模型</h2>
 <figure>
-<img src="/images/media/15423697053653/image-20181107192620073.png" alt="image-20181107192620073"><figcaption>image-20181107192620073</figcaption>
+<img src="/images/15423697053653/image-20181107192620073.png" alt="image-20181107192620073"><figcaption>image-20181107192620073</figcaption>
 </figure>
 <p>领域模型，由下往上依次为：</p>
 <ul>
@@ -529,7 +529,7 @@
 </ul>
 <h2 id="技术架构">技术架构</h2>
 <figure>
-<img src="/images/media/15423697053653/image-20181107194934545.png" alt="image-20181107194934545"><figcaption>image-20181107194934545</figcaption>
+<img src="/images/15423697053653/image-20181107194934545.png" alt="image-20181107194934545"><figcaption>image-20181107194934545</figcaption>
 </figure>
 <p><strong>架构主要流程：</strong></p>
 <ol type="1">
@@ -574,7 +574,7 @@
 <h3 id="语法树抽象">语法树抽象</h3>
 <h3 id="缓存">缓存</h3>
 <p>缓存的主键key为<code>业务单元-决策类型-决策code</code>。如下图：</p>
-<p><img src="/images/media/15423697053653/15174046686142.jpg"></p>
+<p><img src="/images/15423697053653/15174046686142.jpg"></p>
 <p>缓存数据前需要对元数据进行预解析，从而决策引擎可以执行预解析后的数据。需要预解析的部分：</p>
 <ul>
 <li>将模型转换为表达式引擎可执行的形式。</li>

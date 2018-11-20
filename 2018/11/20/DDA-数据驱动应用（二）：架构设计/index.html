@@ -91,16 +91,16 @@
 <meta property="og:site_name" content="技术博客">
 <meta property="og:description" content="抽时间将数据驱动的一些内容进行了总结，先整理下面五篇，后续将不断完善。  数据驱动应用（一）：整体概述 数据驱动应用（二）：架构设计 数据驱动应用（三）：数据服务 数据驱动应用（四）：数据决策 数据驱动应用（五）：基于时间序列数据的异常识别模型   整体概述 在本文中，我们采用整体到部分的分析思路。首先介绍大数据系统在整个公司架构中的位置，然后具体介绍大数据系统的架构实现，再次对大数据系统中的数">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://www.datadriven.top/images/media/15423697053589/image-20181103180601858.png">
-<meta property="og:image" content="http://www.datadriven.top/images/media/15423697053589/image-20181103181134952.png">
-<meta property="og:image" content="http://www.datadriven.top/images/media/15423697053589/image-20181103181314458.png">
-<meta property="og:image" content="http://www.datadriven.top/images/media/15423697053589/image-20181103181723636.png">
-<meta property="og:image" content="http://www.datadriven.top/images/media/15423697053589/image-20181103181931158.png">
-<meta property="og:updated_time" content="2018-11-20T14:58:51.790Z">
+<meta property="og:image" content="http://www.datadriven.top/images/15423697053589/image-20181103180601858.png">
+<meta property="og:image" content="http://www.datadriven.top/images/15423697053589/image-20181103181134952.png">
+<meta property="og:image" content="http://www.datadriven.top/images/15423697053589/image-20181103181314458.png">
+<meta property="og:image" content="http://www.datadriven.top/images/15423697053589/image-20181103181723636.png">
+<meta property="og:image" content="http://www.datadriven.top/images/15423697053589/image-20181103181931158.png">
+<meta property="og:updated_time" content="2018-11-20T15:36:39.700Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据驱动应用（二）：架构设计">
 <meta name="twitter:description" content="抽时间将数据驱动的一些内容进行了总结，先整理下面五篇，后续将不断完善。  数据驱动应用（一）：整体概述 数据驱动应用（二）：架构设计 数据驱动应用（三）：数据服务 数据驱动应用（四）：数据决策 数据驱动应用（五）：基于时间序列数据的异常识别模型   整体概述 在本文中，我们采用整体到部分的分析思路。首先介绍大数据系统在整个公司架构中的位置，然后具体介绍大数据系统的架构实现，再次对大数据系统中的数">
-<meta name="twitter:image" content="http://www.datadriven.top/images/media/15423697053589/image-20181103180601858.png">
+<meta name="twitter:image" content="http://www.datadriven.top/images/15423697053589/image-20181103180601858.png">
 
 
 
@@ -465,7 +465,7 @@
 <li>DaaS：意思是数据即服务。可以简单的理解为，大数据系统是DaaS的一种实现形式。这里我们将其分为五层，由下往上依次为：采集层、计算层、存储层、驱动层、应用层。</li>
 </ul>
 <figure>
-<img src="/images/media/15423697053589/image-20181103180601858.png" alt="image-20181103180601858"><figcaption>image-20181103180601858</figcaption>
+<img src="/images/15423697053589/image-20181103180601858.png" alt="image-20181103180601858"><figcaption>image-20181103180601858</figcaption>
 </figure>
 <h2 id="大数据系统架构">大数据系统架构</h2>
 <h3 id="架构分层设计">架构分层设计</h3>
@@ -480,12 +480,12 @@
 <li>应用层和数据驱动应用层：对应金字塔理论的“知识”和“AI”。</li>
 </ul>
 <figure>
-<img src="/images/media/15423697053589/image-20181103181134952.png" alt="image-20181103181134952"><figcaption>image-20181103181134952</figcaption>
+<img src="/images/15423697053589/image-20181103181134952.png" alt="image-20181103181134952"><figcaption>image-20181103181134952</figcaption>
 </figure>
 <h3 id="架构设计">架构设计</h3>
 <p>如图所示，为大数据系统的架构图，主要分为采集层、计算层、存储层、驱动层、应用层5层。大数据系统根据采集的数据，使用实时计算和离线计算能力进行初步加工，然后，再利用规则、算法等能力赋能数据应用。</p>
 <figure>
-<img src="/images/media/15423697053589/image-20181103181314458.png" alt="image-20181103181314458"><figcaption>image-20181103181314458</figcaption>
+<img src="/images/15423697053589/image-20181103181314458.png" alt="image-20181103181314458"><figcaption>image-20181103181314458</figcaption>
 </figure>
 <h4 id="采集层">采集层</h4>
 <p>致力于全面、高性能、规范地完成海量数据的采集，并将其传输到计算层。被采集的数据种类包括：数据库数据和日志数据。</p>
@@ -526,12 +526,12 @@
 <h3 id="数据驱动的思想和架构对应关系">数据驱动的思想和架构对应关系</h3>
 <p>上篇文章讲到了数据驱动的思想，现在将其对应到架构中，则对应数据驱动层和数据应用层。如下图，感知器即为数据服务模块；决策器为数据决策模块和AI算法模块；执行器为数据应用层。</p>
 <figure>
-<img src="/images/media/15423697053589/image-20181103181723636.png" alt="image-20181103181723636"><figcaption>image-20181103181723636</figcaption>
+<img src="/images/15423697053589/image-20181103181723636.png" alt="image-20181103181723636"><figcaption>image-20181103181723636</figcaption>
 </figure>
 <h3 id="数据驱动的架构-1">数据驱动的架构</h3>
 <p>下面对数据驱动的架构进行详细说明。下图是数据驱动的关键架构，也是我们要探讨的重点内容。</p>
 <figure>
-<img src="/images/media/15423697053589/image-20181103181931158.png" alt="image-20181103181931158"><figcaption>image-20181103181931158</figcaption>
+<img src="/images/15423697053589/image-20181103181931158.png" alt="image-20181103181931158"><figcaption>image-20181103181931158</figcaption>
 </figure>
 <h4 id="数据服务">数据服务</h4>
 <p>通过接入数据存储层的各种数据源，基于异构分布式数据库访问层DAG，实现了对异构数据源进行处理和聚合，主要提供简单数据查询复合、复杂数据查询服务和数据实时推送服务。该模块主要将能力输出给数据引用层，好比将眼睛有选择地看到一些事物，然后传输给大脑。</p>

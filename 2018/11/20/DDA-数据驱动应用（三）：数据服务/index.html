@@ -91,24 +91,24 @@
 <meta property="og:site_name" content="技术博客">
 <meta property="og:description" content="抽时间将数据驱动的一些内容进行了总结，先整理下面五篇，后续将不断完善。  数据驱动应用（一）：整体概述 数据驱动应用（二）：架构设计 数据驱动应用（三）：数据服务 数据驱动应用（四）：数据决策 数据驱动应用（五）：基于时间序列数据的异常识别模型   概述 主要概念  数据服务(Data Service)：对异构数据源，基于有向无环图，提供异构数据的查询和推送能力。 指标：用于衡量事物发展程度的单">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://www.datadriven.top/images/media/15423697054405/image-20181106201548669.png">
-<meta property="og:image" content="http://www.datadriven.top/images/media/15423697054405/image-20181106202720647.png">
-<meta property="og:image" content="http://www.datadriven.top/images/media/15423697054405/image-20181106204030223.png">
-<meta property="og:image" content="http://www.datadriven.top/images/media/15423697054405/15253283517773.jpg">
-<meta property="og:image" content="http://www.datadriven.top/images/media/15423697054405/image-20181107102744337.png">
-<meta property="og:image" content="http://www.datadriven.top/images/media/15423697054405/15245723067223.jpg">
-<meta property="og:image" content="http://www.datadriven.top/images/media/15423697054405/image-20181107111452242.png">
-<meta property="og:image" content="http://www.datadriven.top/images/media/15423697054405/image-20181107113511326.png">
-<meta property="og:image" content="http://www.datadriven.top/images/media/15423697054405/15248968893819.jpg">
-<meta property="og:image" content="http://www.datadriven.top/images/media/15423697054405/15248146685958.jpg">
-<meta property="og:image" content="http://www.datadriven.top/images/media/15423697054405/15248195495426.jpg">
-<meta property="og:image" content="http://www.datadriven.top/images/media/15423697054405/15248311695610.jpg">
-<meta property="og:image" content="http://www.datadriven.top/images/media/15423697054405/image-20181107155543474.png">
-<meta property="og:updated_time" content="2018-11-20T14:58:47.837Z">
+<meta property="og:image" content="http://www.datadriven.top/images/15423697054405/image-20181106201548669.png">
+<meta property="og:image" content="http://www.datadriven.top/images/15423697054405/image-20181106202720647.png">
+<meta property="og:image" content="http://www.datadriven.top/images/15423697054405/image-20181106204030223.png">
+<meta property="og:image" content="http://www.datadriven.top/images/15423697054405/15253283517773.jpg">
+<meta property="og:image" content="http://www.datadriven.top/images/15423697054405/image-20181107102744337.png">
+<meta property="og:image" content="http://www.datadriven.top/images/15423697054405/15245723067223.jpg">
+<meta property="og:image" content="http://www.datadriven.top/images/15423697054405/image-20181107111452242.png">
+<meta property="og:image" content="http://www.datadriven.top/images/15423697054405/image-20181107113511326.png">
+<meta property="og:image" content="http://www.datadriven.top/images/15423697054405/15248968893819.jpg">
+<meta property="og:image" content="http://www.datadriven.top/images/15423697054405/15248146685958.jpg">
+<meta property="og:image" content="http://www.datadriven.top/images/15423697054405/15248195495426.jpg">
+<meta property="og:image" content="http://www.datadriven.top/images/15423697054405/15248311695610.jpg">
+<meta property="og:image" content="http://www.datadriven.top/images/15423697054405/image-20181107155543474.png">
+<meta property="og:updated_time" content="2018-11-20T15:37:03.943Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据驱动应用（三）：数据服务">
 <meta name="twitter:description" content="抽时间将数据驱动的一些内容进行了总结，先整理下面五篇，后续将不断完善。  数据驱动应用（一）：整体概述 数据驱动应用（二）：架构设计 数据驱动应用（三）：数据服务 数据驱动应用（四）：数据决策 数据驱动应用（五）：基于时间序列数据的异常识别模型   概述 主要概念  数据服务(Data Service)：对异构数据源，基于有向无环图，提供异构数据的查询和推送能力。 指标：用于衡量事物发展程度的单">
-<meta name="twitter:image" content="http://www.datadriven.top/images/media/15423697054405/image-20181106201548669.png">
+<meta name="twitter:image" content="http://www.datadriven.top/images/15423697054405/image-20181106201548669.png">
 
 
 
@@ -620,7 +620,7 @@
 <li>应用层数据集：一个公共数据集可以产生多个应用数据集，面向智能应用，直接赋能给应用。</li>
 </ul>
 <figure>
-<img src="/images/media/15423697054405/image-20181106201548669.png" alt="image-20181106201548669"><figcaption>image-20181106201548669</figcaption>
+<img src="/images/15423697054405/image-20181106201548669.png" alt="image-20181106201548669"><figcaption>image-20181106201548669</figcaption>
 </figure>
 <h2 id="领域模型">领域模型</h2>
 <p>如下图，领域模型分为逻辑层和物理层。</p>
@@ -629,11 +629,11 @@
 <li>逻辑层：数据集是对物理表的逻辑抽象，一个数据集可能来自不同数据源的多个物理表，其字段称为数据集字段。对数据集字段包装的时候，可以使用自定义的Transform和UDF。通过主题来管理数据集，一个主题包含多个数据集，一个数据集也可以属于多个主题。</li>
 </ul>
 <figure>
-<img src="/images/media/15423697054405/image-20181106202720647.png" alt="image-20181106202720647"><figcaption>image-20181106202720647</figcaption>
+<img src="/images/15423697054405/image-20181106202720647.png" alt="image-20181106202720647"><figcaption>image-20181106202720647</figcaption>
 </figure>
 <h2 id="技术架构">技术架构</h2>
 <figure>
-<img src="/images/media/15423697054405/image-20181106204030223.png" alt="image-20181106204030223"><figcaption>image-20181106204030223</figcaption>
+<img src="/images/15423697054405/image-20181106204030223.png" alt="image-20181106204030223"><figcaption>image-20181106204030223</figcaption>
 </figure>
 <ul>
 <li><strong>元数据管理</strong>：主要提供数据集、物理表、标签、指标等元数据能力。</li>
@@ -656,20 +656,20 @@
 <h3 id="数据集设计">数据集设计</h3>
 <p>根据查询粒度的不同，将查询分为三类：多为统计查询、主键查询和非主键多条件查询。其中，主键查询和非主键多条件查询为单维查询，主键查询的维度就是主键。</p>
 <figure>
-<img src="/images/media/15423697054405/15253283517773.jpg" alt="-w661"><figcaption>-w661</figcaption>
+<img src="/images/15423697054405/15253283517773.jpg" alt="-w661"><figcaption>-w661</figcaption>
 </figure>
 <h4 id="多维统计">1.多维统计</h4>
 <p>多维统计是由&quot;维度+指标&quot;组成的聚合类数据，即聚合字段(group by)+过滤字段(where)+筛选字段(select)。数据集中的粒度(grain)决定了需要输出的维度组合，聚合维度(group by)字段属于粒度的子集，查询条件中的维度字段属于聚合维度的子集。多维统计由多个异构主表(事实表)内存Join，分别查完后按同粒度Grain进行join后输出。如下图所示，两个事实表包含相同的维度，不同的指标，经过内存join后，输出所需指标和维度。</p>
 <figure>
-<img src="/images/media/15423697054405/image-20181107102744337.png" alt="image-20181107102744337"><figcaption>image-20181107102744337</figcaption>
+<img src="/images/15423697054405/image-20181107102744337.png" alt="image-20181107102744337"><figcaption>image-20181107102744337</figcaption>
 </figure>
 <h4 id="单维详情查询按主键pk查询">2.单维详情查询——按主键PK查询</h4>
 <p>通过主键(PK)查询主表一条记录，通过主表的外键查连接其他表(一般是维表)的数据，并且可以支持多级连接，支持多个主表查询。通过主键，在内存进行merge join，输出结果一般为单条记录。</p>
-<p><img src="/images/media/15423697054405/15245723067223.jpg"></p>
+<p><img src="/images/15423697054405/15245723067223.jpg"></p>
 <h4 id="单维详情查询非主键查询">3. 单维详情查询——非主键查询</h4>
 <p>通过非主键的各种条件，查询一批主表记录。该查询中需要有一个确定的主表，通过主表来对结果进行分页查询；其他的表均为关联表，通过主表的外键连接多个关联表。</p>
 <figure>
-<img src="/images/media/15423697054405/image-20181107111452242.png" alt="image-20181107111452242"><figcaption>image-20181107111452242</figcaption>
+<img src="/images/15423697054405/image-20181107111452242.png" alt="image-20181107111452242"><figcaption>image-20181107111452242</figcaption>
 </figure>
 <p>参考：</p>
 <ul>
@@ -679,7 +679,7 @@
 <h3 id="系统流程">系统流程</h3>
 <p>如下图，描述了整个系统的设计流程上的关键部分，同时，对各部分的关键点和设计模式进行了说明。</p>
 <figure>
-<img src="/images/media/15423697054405/image-20181107113511326.png" alt="image-20181107113511326"><figcaption>image-20181107113511326</figcaption>
+<img src="/images/15423697054405/image-20181107113511326.png" alt="image-20181107113511326"><figcaption>image-20181107113511326</figcaption>
 </figure>
 <h3 id="元数据加载">元数据加载</h3>
 <p>该部分主要做了：入参解析、元数据解析、元数据缓存。</p>
@@ -690,7 +690,7 @@
 </ul>
 <h3 id="执行计划构建">执行计划构建</h3>
 <p>执行计划构建就是根据请求参数和元数据，生成数据查询的执行计划。构建的查询计划是一个有向无环图<code>DAG(Directed Acyclic Graph)</code>，每个节点是一个原子数据集。执行计划生成逻辑如下图，左边为加载的元数据信息，中间为执行计划构建流程，右边为执行计划的内容。</p>
-<p><img src="/images/media/15423697054405/15248968893819.jpg"></p>
+<p><img src="/images/15423697054405/15248968893819.jpg"></p>
 <h3 id="执行计划调度">执行计划调度</h3>
 <p>执行计划调度是指，根据前面构建的执行计划DAG，分配线程、调用Runner执行查询，再合并结果。</p>
 <h4 id="执行模式">执行模式</h4>
@@ -701,18 +701,18 @@
 <li><strong>并行模式</strong>：支持多次原子查询及合并。在多个线程中并行执行。根据DAG层数进行调度，即DAG有多少层，就并发执行多少次。执行过程中，每次执行入度为零的所有节点。如图所示，第一次执行<code>node1/node2/node4</code>，第二次执行<code>node3</code>，第三次执行<code>node5</code>。</li>
 </ul>
 <figure>
-<img src="/images/media/15423697054405/15248146685958.jpg" alt="-w676"><figcaption>-w676</figcaption>
+<img src="/images/15423697054405/15248146685958.jpg" alt="-w676"><figcaption>-w676</figcaption>
 </figure>
 <h4 id="调度执行过程">调度执行过程</h4>
 <p>如下图，左侧为执行环境（元数据），右侧为调度过程。首先将DAG拍平，每次找出入度为零的节点执行、合并结果，执行完该节点后，对被引用的节点入度减一。递归执行，直到所有节点入度为-1。</p>
 <figure>
-<img src="/images/media/15423697054405/15248195495426.jpg" alt="-w526"><figcaption>-w526</figcaption>
+<img src="/images/15423697054405/15248195495426.jpg" alt="-w526"><figcaption>-w526</figcaption>
 </figure>
 <h3 id="runner执行">Runner执行</h3>
 <p>类似于jdbc模块的方案，本文使用<code>SPI(Service Provider Interface)</code>机制发现服务，从而实现模块的解耦。同时，如果需要在外部开发定制Runner，使用SPI机制可以更好地实现。Runner种类包括<code>MySQL</code>、<code>HBASE</code>、<code>kafka</code>、<code>dubbo</code>等。下面主要介绍一种实现，即SQL类Runner：<code>SqlRunner</code></p>
 <h4 id="sqlrunner">SqlRunner</h4>
 <p>如下图所示，SqlRunner主要作用是将结构化的对象解析为数据库可执行的SQL。解析工具包括：<code>FilterBuilder</code>、<code>JoinBulider</code>、<code>GroupByBulider</code>、<code>SortBuilder</code>、<code>PageBuilder</code>。</p>
-<p><img src="/images/media/15423697054405/15248311695610.jpg"></p>
+<p><img src="/images/15423697054405/15248311695610.jpg"></p>
 <h5 id="filterbuilder">FilterBuilder</h5>
 <ul>
 <li>根据Filter构造Where子句。需要对&quot;=”、&quot;in”、&quot;range”、&quot;like&quot;四种类型的Filte进行解析。其中，range条件已经被上层区分为“&gt;”、“&gt;=”、“&lt;”、“&lt;=”，可以与&quot;=&quot;、&quot;like”共同视为单一条件值条件，组装为“字段操作符条件值”，其中条件值要根据类型决定是否加单引号。</li>
@@ -744,7 +744,7 @@
 </ul></li>
 </ul>
 <figure>
-<img src="/images/media/15423697054405/image-20181107155543474.png" alt="image-20181107155543474"><figcaption>image-20181107155543474</figcaption>
+<img src="/images/15423697054405/image-20181107155543474.png" alt="image-20181107155543474"><figcaption>image-20181107155543474</figcaption>
 </figure>
 <h5 id="运行时更新topic">运行时更新Topic</h5>
 <p>对于Kafka，一张物理表对应一个Topic。动态新增一张表的时候，需要在运行时，定时更新其对应的Topic。其中的关键点在于，更新Topic要保证在元数据加载完成之后，否则，可能导致接收到的消息数据，无法消费发送出去。kafka对自动新增和删除topic支持不是很好，需要自己实现一些内容。具体可以参考下面链接。</p>

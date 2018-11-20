@@ -298,6 +298,290 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.datadriven.top/2018/11/20/DDA-数据驱动应用（五）：基于时间序列数据的异常识别模型/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="DanielJyc">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="技术博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/11/20/DDA-数据驱动应用（五）：基于时间序列数据的异常识别模型/" itemprop="url">数据驱动应用（五）：基于时间序列数据的异常识别模型</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-20T22:59:44+08:00">
+                2018-11-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/数据驱动/" itemprop="url" rel="index">
+                    <span itemprop="name">数据驱动</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/11/20/DDA-数据驱动应用（五）：基于时间序列数据的异常识别模型/" class="leancloud_visitors" data-flag-title="数据驱动应用（五）：基于时间序列数据的异常识别模型">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2.3k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  8
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="概述">1. 概述</h2>
+<p>大型集群系统中，可能存在软件问题和硬件问题导致的系统故障，严重影响了系统的高可用性。这就要求7*24小时，对系统不间断监控。这就意味着需要不间断地监控大量时间序列数据，以便检测系统潜在的故障和异常现象。然而，实际当中的系统异常很多，且不容易发现；从而导致人工方式监控方式效率很低。</p>
+<p>异常场景本质上是一个或者多个数据点；数据点一般在系统运行过程中产生，且能反应系统的功能是否正常，多以日志形式呈现。当系统功能发生异常时，就会产生异常数据。快速高效地发现这些异常值，对于快速止损具有重要意义。对此，我们提出一种基于时间序列的异常识别模型，用来及时发现异常。</p>
+<p>对于多数系统，一般都有成功率、流量等指标，故障发生时，这些指标也会出现响应的异常。我们将系统成功率、流量统一称为特征值变量，并对其进行建模，从而方便后续其它特征变量的扩展。为了更好地感知这些特征变量的突变，需要对特征变量进行计算处理或者空间转换。那么异常识别问题就转换为以下两个问题：</p>
+<ul>
+<li>特征变量的计算处理和转换</li>
+<li>突变的判断</li>
+</ul>
+<p>针对这两个关键问题，我们将在下文中进行建模和分析。</p>
+<h2 id="异常识别">2. 异常识别</h2>
+<p>如下图，通过计算器进行特征变量的计算处理和转换，通过异常检测器来判断数值的突变，从而解决上面的两个问题。其中，异常检测器由比较器和决策器组成。</p>
+<figure>
+<img src="/images/image-20180815093422131.png" alt="image-20180815093422131"><figcaption>image-20180815093422131</figcaption>
+</figure>
+<p>对于给定时间序列二维矩阵<span class="math inline">\(X=\{x^m_t∈R：∀t≥0, ∀m≥0\}\)</span> ，<span class="math inline">\(x_t^m\)</span>为<span class="math inline">\(t\)</span>时刻的第m个指标的真实数据，<span class="math inline">\(u_t^m\)</span>表示时间<span class="math inline">\(t\)</span>的<span class="math inline">\(x_t^m\)</span>的计算值，<span class="math inline">\(y_t^m\)</span>为第m个指标的输出结果，<span class="math inline">\(y_t\)</span>为整体预测结果。</p>
+<p><span class="math inline">\(x_t^m\)</span>通过计算器得到计算值<span class="math inline">\(u_t^m\)</span>，然后<span class="math inline">\(x_t^m\)</span> 和 <span class="math inline">\(u_t^m\)</span>分别作为比较器的输入，得到第m个指标的输出<span class="math inline">\(y_t^m\)</span>。<span class="math inline">\(y_t^1\)</span>,<span class="math inline">\(y_t^2\)</span>…<span class="math inline">\(y_t^m\)</span>作为决策器的输入得到<span class="math inline">\(y_t\)</span>。<span class="math inline">\(y_t\)</span>是一个二元值，可以用<code>TRUE</code>（表示输出数据正常），<code>FALSE</code>（表示输入数据异常）表示。下面对计算器和检测器进行说明。</p>
+<h3 id="计算器">2.1 计算器</h3>
+<p><strong>计算器</strong>用来对输入值<span class="math inline">\(x_t^m\)</span> 进行计算或者空间转换，从而得到特征变量的计算值<span class="math inline">\(u_t^m\)</span>。一般情况下，特征变量具有趋势性、周期性等特征。基于这些特征，计算值的获取，可以使用以下三种方式：累计窗口均值计算器、基于趋势性的环比计算器、基于周期性的同比计算器。</p>
+<h4 id="累积窗口均值计算器">2.1.1 累积窗口均值计算器</h4>
+<p>输入值为<span class="math inline">\(x_t\)</span>（为了方便省略指标参数<code>m</code>），如果直接只用单个点<span class="math inline">\(x_t\)</span>的抖动来判断，受噪声影响较大。因此，使用累积窗口均值的方式：</p>
+<p><span class="math display">\[  u(t)={\dfrac{x_t+x_{t-1}+...+x_{t-w+1}}{w}}   \tag{1}\]</span></p>
+<p>其中，<span class="math inline">\(w\)</span>为累计窗口的大小。通过窗口平滑之后，会过滤掉尖刺等噪声。</p>
+<h4 id="基于趋势性的计算器">2.1.2 基于趋势性的计算器</h4>
+<p>为了描述数据的趋势性，引入环比类算法。对<span class="math inline">\(x_t\)</span>进行空间转换，得到环比，再使用检测器进行检测。</p>
+<p><span class="math display">\[u(t)={\dfrac{x_t+x_{t-1}+...+x_{t-w+1}}{x_{t-w}+x_{t-w-1}+...+x_{t-2w+1}}}  \tag{2}\]</span></p>
+<p>其中，分子为当前窗口<span class="math inline">\(w\)</span>内的数据，分母为上一窗口<span class="math inline">\(w\)</span>内数据。通过窗口<span class="math inline">\(w\)</span>对数据进行平滑。</p>
+<h4 id="基于周期性的计算器">2.1.3 基于周期性的计算器</h4>
+<p>为了描述数据的周期性，引入同比算法。当同比值过大或者过小时，认为发生故障。同比公式如下：</p>
+<p><span class="math display">\[u(t)={\dfrac{x_t+x_{t-1}+...+x_{t-w+1}}{x_{t-kT}+x_{t-kT-1}+...+x_{t-kT-w+1}}} \tag{3} \]</span></p>
+<p>其中<span class="math inline">\(T\)</span>为周期，<span class="math inline">\(k\)</span>表示第几个周期。一般选取<span class="math inline">\(k\)</span>为<code>1</code>、<code>7</code>、<code>30</code>，来表示昨天、上周、上个月。</p>
+<h4 id="其他类型计算器">2.1.4 其他类型计算器</h4>
+<p>计算器还可以使用其他算法，包括：</p>
+<ul>
+<li>统计类算法：包括同比、环比算法的改进，或者其他统计算法。此时，计算器的输出结果为预测值，预测值和输入值进行比较即可。</li>
+<li>时序型算法：包含ARIMA、Holter-Winter等时序型算法。计算器的输出结果为预测值。</li>
+<li>机器学习：根据有监督、无监督、深度学习(LSTM)等算法，训练出的模型即为计算器。此时，计算器的输出结果一般为归一化的值，根据归一化的值进行比较。</li>
+</ul>
+<p>这些算法，在这里不再做深入研究和阐述。</p>
+<h3 id="异常检测器">2.2 异常检测器</h3>
+<p>当数据出现异常时，计算值会出现较大偏差，该偏差由<strong>异常检测器</strong>来判断。<strong>异常检测器</strong>由比较器和决策器组成，计算值和真实值通过该模块后，得到最终预测结果。</p>
+<h4 id="比较器">2.2.1 比较器</h4>
+<p>比较器的本质是求解如下公式的过程：</p>
+<p><span class="math display">\[f(x^m_t,u^m_t;h^m)\ \    =  \ \ boolean \tag{4}\]</span></p>
+<p>其中，<span class="math inline">\(x^m_t\)</span>为真实值，<span class="math inline">\(u\)</span>为计算值，<span class="math inline">\(h^m\)</span>为阈值参数，<span class="math inline">\(boolean\)</span>为结果<code>TRUE/FALSE</code>。真实值已知，计算值通过计算器得到；剩下的阈值参数<span class="math inline">\(h^m\)</span>，则需要根据故障发生时的实际值进行参数估计。</p>
+<p>很多场景下，该公式还可以简化为：<span class="math inline">\(f(u^m_t;h^m)\ \  = \ \ boolean\)</span> ，即计算值直接和阈值比较即可。</p>
+<h5 id="比较器种类">2.2.1.1 比较器种类</h5>
+<p>比较器有两种：相对值比较器和绝对值比较器。给定计算值<span class="math inline">\(u^m_t\)</span>和输入值<span class="math inline">\(x^m_t\)</span>，得到绝对值比较器：</p>
+<p><span class="math display">\[f= x_t^m−u_t^m\ \    opretor  \ \ h^m  \tag{5}\]</span></p>
+<p>其中，<span class="math inline">\(opretor\)</span>为比较操作符，比如<code>&gt; &lt; &gt;= &lt;=</code>。由于<span class="math inline">\(u_t\)</span>由<span class="math inline">\(x_t\)</span>得到，所以很多情况下公式可以简化为 $ u_t^m    opretor    h_t^m$，即确定计算值的阈值即可。</p>
+<p>对于一些场景来说，需要捕获特征变量的相对性。因此，引入相对值比较器：</p>
+<p><span class="math display">\[ f={\dfrac{x_t^m−u_t^m}{u_t^m}}\ \    opretor  \ \ h^m  \tag{6} \]</span></p>
+<p>通过对相对值比较器进行阈值处理，既可以检测异常值，同时还能对期望值进行归一化。</p>
+<h5 id="比较器阈值h的选取">2.2.1.2 比较器阈值<span class="math inline">\(h\)</span>的选取</h5>
+<p>一般情况下，阈值参数决定了异常检测模块的敏感度。最优阈值的选择，取决于数据分布的性质以及先验数据。一般情况下，<strong>阈值的选取方法为</strong>：</p>
+<ul>
+<li>方法一：跟踪一组故障数据和正常数据，根据经验估计阈值。</li>
+<li>方法二：跟踪一组故障数据和正常数据，根据经验，并结合<code>3σ准则</code>确定，来确定阈值。（特征变量或者特征变量的组合，服从正态分布）</li>
+</ul>
+<h4 id="决策器">2.2.2 决策器</h4>
+<p>如下公式，基于逻辑操作符，对比较器结果进行合并.</p>
+<ul>
+<li>方式一：逻辑组合</li>
+</ul>
+<p><span class="math display">\[   y_t=y_t^1 \ \   \&amp;| \ \  y_t^2  \ \ \&amp;| \ \  y_t^3 \ \  \&amp;| \ \  ...  \ \  y_t^m \tag{7}\]</span></p>
+<p>其中，<span class="math inline">\(|\)</span>表示逻辑或操作，<span class="math inline">\(\&amp;\)</span>表示逻辑与操作。</p>
+<ul>
+<li><p>方式二：权重设置法</p>
+<p><span class="math display">\[y_t=k_1*y_t^1 \ \   + \ \  k_2*y_t^2  \ \ + \ \  k_3*y_t^3 \ \  + \ \  ...  \ \ k_m* y_t^m \tag{8}\]</span></p></li>
+</ul>
+<p>其中，<span class="math inline">\(k_m\)</span>为系数，这种方式一般适合基本无负样本的场景，参数的确定需要使用<code>层次分析法</code>，将在后面的文章进行说明。</p>
+<h2 id="故障止损">3. 故障止损</h2>
+<p>上面主要阐述了异常识别的方式。如果条件过于严格，刚开始并不容易被识别出来；如果条件过松，可能导致误识别。对此，我们将止损策略分为两级：</p>
+<ul>
+<li>级别一：预警。对于不能完全确定故障发生的场景，使用级别一。</li>
+<li>级别二：预警+止损（踢IDC）。对于能确定IDC故障的场景，使用级别二。</li>
+</ul>
+<h2 id="实际场景应用">4. 实际场景应用</h2>
+<p>下面通过一个规则的场景，进行举例说明。假如存在如下异常场景：</p>
+<figure>
+<img src="/images/image-20181108211144340.png" alt="image-20181108211144340"><figcaption>image-20181108211144340</figcaption>
+</figure>
+<p><strong>体现在模型中，则级别一（预警）的模型图</strong></p>
+<figure>
+<img src="/images/image-20180815093336600.png" alt="image-20180815093336600"><figcaption>image-20180815093336600</figcaption>
+</figure>
+<p><strong>级别二（预警+踢IDC）的模型图：</strong></p>
+<figure>
+<img src="/images/image-20180815093352931.png" alt="image-20180815093352931"><figcaption>image-20180815093352931</figcaption>
+</figure>
+<p>最终，得到故障识别规则：</p>
+<ul>
+<li>级别一触发条件: <span class="math inline">\(u_1&lt;h_1 \ \  | \ \  (u5&lt;h5 \ \  \&amp; \ \  u6&lt;h6 \ \  \&amp; \ \  u7&lt;h7 )\)</span></li>
+<li>级别二触发条件：<span class="math inline">\(u_1&lt;h_2 \ \  \&amp; \ \  u_3&gt;h_3​\)</span></li>
+</ul>
+<p>其中，<span class="math inline">\(h_1, h_2,h_3,h_5,h_6,h_7\)</span>为阈值参数。需要结合经验和实际数据估计得到。</p>
+<h2 id="小结">5. 小结</h2>
+<p>本文主要基于时间序列的数据，提出了异常场景识别模型，并重点对基于规则的识别进行了说明。</p>
+<h2 id="参考">参考</h2>
+<ul>
+<li><a href="http://dl.acm.org/citation.cfm?id=2788611" target="_blank" rel="noopener">Generic and Scalable Framework for Automated Time-series Anomaly Detection</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.datadriven.top/2018/11/20/DDA-数据驱动应用（四）：数据决策/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1616,290 +1900,6 @@
 <li><a href="https://cloud.tencent.com/developer/article/1171103" target="_blank" rel="noopener">数据驱动产品智能——数据应用与用户智能</a></li>
 <li><a href="https://book.douban.com/subject/30168661/" target="_blank" rel="noopener">数据驱动：从方法到实践</a></li>
 <li><p><a href="https://mp.weixin.qq.com/s/gMN43aZGtU5nGAG-kvVjbQ" target="_blank" rel="noopener">基于 AIOps 的无人运维</a></p></li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.datadriven.top/2018/11/09/DDA-数据驱动应用（五）：基于时间序列数据的异常识别模型/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="DanielJyc">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="技术博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/11/09/DDA-数据驱动应用（五）：基于时间序列数据的异常识别模型/" itemprop="url">数据驱动应用（五）：基于时间序列数据的异常识别模型</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-09T22:31:44+08:00">
-                2018-11-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/数据驱动/" itemprop="url" rel="index">
-                    <span itemprop="name">数据驱动</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2018/11/09/DDA-数据驱动应用（五）：基于时间序列数据的异常识别模型/" class="leancloud_visitors" data-flag-title="数据驱动应用（五）：基于时间序列数据的异常识别模型">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  2.3k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  8
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="概述">1. 概述</h2>
-<p>大型集群系统中，可能存在软件问题和硬件问题导致的系统故障，严重影响了系统的高可用性。这就要求7*24小时，对系统不间断监控。这就意味着需要不间断地监控大量时间序列数据，以便检测系统潜在的故障和异常现象。然而，实际当中的系统异常很多，且不容易发现；从而导致人工方式监控方式效率很低。</p>
-<p>异常场景本质上是一个或者多个数据点；数据点一般在系统运行过程中产生，且能反应系统的功能是否正常，多以日志形式呈现。当系统功能发生异常时，就会产生异常数据。快速高效地发现这些异常值，对于快速止损具有重要意义。对此，我们提出一种基于时间序列的异常识别模型，用来及时发现异常。</p>
-<p>对于多数系统，一般都有成功率、流量等指标，故障发生时，这些指标也会出现响应的异常。我们将系统成功率、流量统一称为特征值变量，并对其进行建模，从而方便后续其它特征变量的扩展。为了更好地感知这些特征变量的突变，需要对特征变量进行计算处理或者空间转换。那么异常识别问题就转换为以下两个问题：</p>
-<ul>
-<li>特征变量的计算处理和转换</li>
-<li>突变的判断</li>
-</ul>
-<p>针对这两个关键问题，我们将在下文中进行建模和分析。</p>
-<h2 id="异常识别">2. 异常识别</h2>
-<p>如下图，通过计算器进行特征变量的计算处理和转换，通过异常检测器来判断数值的突变，从而解决上面的两个问题。其中，异常检测器由比较器和决策器组成。</p>
-<figure>
-<img src="/images/image-20180815093422131.png" alt="image-20180815093422131"><figcaption>image-20180815093422131</figcaption>
-</figure>
-<p>对于给定时间序列二维矩阵<span class="math inline">\(X=\{x^m_t∈R：∀t≥0, ∀m≥0\}\)</span> ，<span class="math inline">\(x_t^m\)</span>为<span class="math inline">\(t\)</span>时刻的第m个指标的真实数据，<span class="math inline">\(u_t^m\)</span>表示时间<span class="math inline">\(t\)</span>的<span class="math inline">\(x_t^m\)</span>的计算值，<span class="math inline">\(y_t^m\)</span>为第m个指标的输出结果，<span class="math inline">\(y_t\)</span>为整体预测结果。</p>
-<p><span class="math inline">\(x_t^m\)</span>通过计算器得到计算值<span class="math inline">\(u_t^m\)</span>，然后<span class="math inline">\(x_t^m\)</span> 和 <span class="math inline">\(u_t^m\)</span>分别作为比较器的输入，得到第m个指标的输出<span class="math inline">\(y_t^m\)</span>。<span class="math inline">\(y_t^1\)</span>,<span class="math inline">\(y_t^2\)</span>…<span class="math inline">\(y_t^m\)</span>作为决策器的输入得到<span class="math inline">\(y_t\)</span>。<span class="math inline">\(y_t\)</span>是一个二元值，可以用<code>TRUE</code>（表示输出数据正常），<code>FALSE</code>（表示输入数据异常）表示。下面对计算器和检测器进行说明。</p>
-<h3 id="计算器">2.1 计算器</h3>
-<p><strong>计算器</strong>用来对输入值<span class="math inline">\(x_t^m\)</span> 进行计算或者空间转换，从而得到特征变量的计算值<span class="math inline">\(u_t^m\)</span>。一般情况下，特征变量具有趋势性、周期性等特征。基于这些特征，计算值的获取，可以使用以下三种方式：累计窗口均值计算器、基于趋势性的环比计算器、基于周期性的同比计算器。</p>
-<h4 id="累积窗口均值计算器">2.1.1 累积窗口均值计算器</h4>
-<p>输入值为<span class="math inline">\(x_t\)</span>（为了方便省略指标参数<code>m</code>），如果直接只用单个点<span class="math inline">\(x_t\)</span>的抖动来判断，受噪声影响较大。因此，使用累积窗口均值的方式：</p>
-<p><span class="math display">\[  u(t)={\dfrac{x_t+x_{t-1}+...+x_{t-w+1}}{w}}   \tag{1}\]</span></p>
-<p>其中，<span class="math inline">\(w\)</span>为累计窗口的大小。通过窗口平滑之后，会过滤掉尖刺等噪声。</p>
-<h4 id="基于趋势性的计算器">2.1.2 基于趋势性的计算器</h4>
-<p>为了描述数据的趋势性，引入环比类算法。对<span class="math inline">\(x_t\)</span>进行空间转换，得到环比，再使用检测器进行检测。</p>
-<p><span class="math display">\[u(t)={\dfrac{x_t+x_{t-1}+...+x_{t-w+1}}{x_{t-w}+x_{t-w-1}+...+x_{t-2w+1}}}  \tag{2}\]</span></p>
-<p>其中，分子为当前窗口<span class="math inline">\(w\)</span>内的数据，分母为上一窗口<span class="math inline">\(w\)</span>内数据。通过窗口<span class="math inline">\(w\)</span>对数据进行平滑。</p>
-<h4 id="基于周期性的计算器">2.1.3 基于周期性的计算器</h4>
-<p>为了描述数据的周期性，引入同比算法。当同比值过大或者过小时，认为发生故障。同比公式如下：</p>
-<p><span class="math display">\[u(t)={\dfrac{x_t+x_{t-1}+...+x_{t-w+1}}{x_{t-kT}+x_{t-kT-1}+...+x_{t-kT-w+1}}} \tag{3} \]</span></p>
-<p>其中<span class="math inline">\(T\)</span>为周期，<span class="math inline">\(k\)</span>表示第几个周期。一般选取<span class="math inline">\(k\)</span>为<code>1</code>、<code>7</code>、<code>30</code>，来表示昨天、上周、上个月。</p>
-<h4 id="其他类型计算器">2.1.4 其他类型计算器</h4>
-<p>计算器还可以使用其他算法，包括：</p>
-<ul>
-<li>统计类算法：包括同比、环比算法的改进，或者其他统计算法。此时，计算器的输出结果为预测值，预测值和输入值进行比较即可。</li>
-<li>时序型算法：包含ARIMA、Holter-Winter等时序型算法。计算器的输出结果为预测值。</li>
-<li>机器学习：根据有监督、无监督、深度学习(LSTM)等算法，训练出的模型即为计算器。此时，计算器的输出结果一般为归一化的值，根据归一化的值进行比较。</li>
-</ul>
-<p>这些算法，在这里不再做深入研究和阐述。</p>
-<h3 id="异常检测器">2.2 异常检测器</h3>
-<p>当数据出现异常时，计算值会出现较大偏差，该偏差由<strong>异常检测器</strong>来判断。<strong>异常检测器</strong>由比较器和决策器组成，计算值和真实值通过该模块后，得到最终预测结果。</p>
-<h4 id="比较器">2.2.1 比较器</h4>
-<p>比较器的本质是求解如下公式的过程：</p>
-<p><span class="math display">\[f(x^m_t,u^m_t;h^m)\ \    =  \ \ boolean \tag{4}\]</span></p>
-<p>其中，<span class="math inline">\(x^m_t\)</span>为真实值，<span class="math inline">\(u\)</span>为计算值，<span class="math inline">\(h^m\)</span>为阈值参数，<span class="math inline">\(boolean\)</span>为结果<code>TRUE/FALSE</code>。真实值已知，计算值通过计算器得到；剩下的阈值参数<span class="math inline">\(h^m\)</span>，则需要根据故障发生时的实际值进行参数估计。</p>
-<p>很多场景下，该公式还可以简化为：<span class="math inline">\(f(u^m_t;h^m)\ \  = \ \ boolean\)</span> ，即计算值直接和阈值比较即可。</p>
-<h5 id="比较器种类">2.2.1.1 比较器种类</h5>
-<p>比较器有两种：相对值比较器和绝对值比较器。给定计算值<span class="math inline">\(u^m_t\)</span>和输入值<span class="math inline">\(x^m_t\)</span>，得到绝对值比较器：</p>
-<p><span class="math display">\[f= x_t^m−u_t^m\ \    opretor  \ \ h^m  \tag{5}\]</span></p>
-<p>其中，<span class="math inline">\(opretor\)</span>为比较操作符，比如<code>&gt; &lt; &gt;= &lt;=</code>。由于<span class="math inline">\(u_t\)</span>由<span class="math inline">\(x_t\)</span>得到，所以很多情况下公式可以简化为 $ u_t^m    opretor    h_t^m$，即确定计算值的阈值即可。</p>
-<p>对于一些场景来说，需要捕获特征变量的相对性。因此，引入相对值比较器：</p>
-<p><span class="math display">\[ f={\dfrac{x_t^m−u_t^m}{u_t^m}}\ \    opretor  \ \ h^m  \tag{6} \]</span></p>
-<p>通过对相对值比较器进行阈值处理，既可以检测异常值，同时还能对期望值进行归一化。</p>
-<h5 id="比较器阈值h的选取">2.2.1.2 比较器阈值<span class="math inline">\(h\)</span>的选取</h5>
-<p>一般情况下，阈值参数决定了异常检测模块的敏感度。最优阈值的选择，取决于数据分布的性质以及先验数据。一般情况下，<strong>阈值的选取方法为</strong>：</p>
-<ul>
-<li>方法一：跟踪一组故障数据和正常数据，根据经验估计阈值。</li>
-<li>方法二：跟踪一组故障数据和正常数据，根据经验，并结合<code>3σ准则</code>确定，来确定阈值。（特征变量或者特征变量的组合，服从正态分布）</li>
-</ul>
-<h4 id="决策器">2.2.2 决策器</h4>
-<p>如下公式，基于逻辑操作符，对比较器结果进行合并.</p>
-<ul>
-<li>方式一：逻辑组合</li>
-</ul>
-<p><span class="math display">\[   y_t=y_t^1 \ \   \&amp;| \ \  y_t^2  \ \ \&amp;| \ \  y_t^3 \ \  \&amp;| \ \  ...  \ \  y_t^m \tag{7}\]</span></p>
-<p>其中，<span class="math inline">\(|\)</span>表示逻辑或操作，<span class="math inline">\(\&amp;\)</span>表示逻辑与操作。</p>
-<ul>
-<li><p>方式二：权重设置法</p>
-<p><span class="math display">\[y_t=k_1*y_t^1 \ \   + \ \  k_2*y_t^2  \ \ + \ \  k_3*y_t^3 \ \  + \ \  ...  \ \ k_m* y_t^m \tag{8}\]</span></p></li>
-</ul>
-<p>其中，<span class="math inline">\(k_m\)</span>为系数，这种方式一般适合基本无负样本的场景，参数的确定需要使用<code>层次分析法</code>，将在后面的文章进行说明。</p>
-<h2 id="故障止损">3. 故障止损</h2>
-<p>上面主要阐述了异常识别的方式。如果条件过于严格，刚开始并不容易被识别出来；如果条件过松，可能导致误识别。对此，我们将止损策略分为两级：</p>
-<ul>
-<li>级别一：预警。对于不能完全确定故障发生的场景，使用级别一。</li>
-<li>级别二：预警+止损（踢IDC）。对于能确定IDC故障的场景，使用级别二。</li>
-</ul>
-<h2 id="实际场景应用">4. 实际场景应用</h2>
-<p>下面通过一个规则的场景，进行举例说明。假如存在如下异常场景：</p>
-<figure>
-<img src="/images/image-20181108211144340.png" alt="image-20181108211144340"><figcaption>image-20181108211144340</figcaption>
-</figure>
-<p><strong>体现在模型中，则级别一（预警）的模型图</strong></p>
-<figure>
-<img src="/images/image-20180815093336600.png" alt="image-20180815093336600"><figcaption>image-20180815093336600</figcaption>
-</figure>
-<p><strong>级别二（预警+踢IDC）的模型图：</strong></p>
-<figure>
-<img src="/images/image-20180815093352931.png" alt="image-20180815093352931"><figcaption>image-20180815093352931</figcaption>
-</figure>
-<p>最终，得到故障识别规则：</p>
-<ul>
-<li>级别一触发条件: <span class="math inline">\(u_1&lt;h_1 \ \  | \ \  (u5&lt;h5 \ \  \&amp; \ \  u6&lt;h6 \ \  \&amp; \ \  u7&lt;h7 )\)</span></li>
-<li>级别二触发条件：<span class="math inline">\(u_1&lt;h_2 \ \  \&amp; \ \  u_3&gt;h_3​\)</span></li>
-</ul>
-<p>其中，<span class="math inline">\(h_1, h_2,h_3,h_5,h_6,h_7\)</span>为阈值参数。需要结合经验和实际数据估计得到。</p>
-<h2 id="小结">5. 小结</h2>
-<p>本文主要基于时间序列的数据，提出了异常场景识别模型，并重点对基于规则的识别进行了说明。</p>
-<h2 id="参考">参考</h2>
-<ul>
-<li><a href="http://dl.acm.org/citation.cfm?id=2788611" target="_blank" rel="noopener">Generic and Scalable Framework for Automated Time-series Anomaly Detection</a></li>
 </ul>
 
           
